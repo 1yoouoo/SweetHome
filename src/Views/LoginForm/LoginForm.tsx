@@ -2,14 +2,12 @@ import LoginButton from "../LoginButton/LoginButton";
 import LoginInputBox from "../LoginInputBox/LoginInputBox";
 import WhiteLogo from "../Logo/WhiteLogo";
 import "./LoginForm.scss";
-type LoginInputBox = {
-  placeholder: string;
-};
+
 const LoginForm = () => {
   return (
     <>
       <form className="LoginForm">
-        <WhiteLogo />
+        <WhiteLogo width="175px" height="51px" />
         <section className="LoginForm__input-section">
           <LoginInputBox placeholder="Phone number, username, or email" />
           <LoginInputBox placeholder="Password" />
