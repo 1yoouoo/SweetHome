@@ -1,12 +1,12 @@
 import React from "react";
-import "./App.css";
-import WhiteLogo from "./Views/Logo/WhiteLogo";
+import "./App.scss";
+import Routing from "./Routing";
 
 function App() {
   return (
-    <div className="App">
-      <WhiteLogo />
-    </div>
+    <>
+      <Routing />
+    </>
   );
 }
 
