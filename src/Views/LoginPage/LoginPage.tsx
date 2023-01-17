@@ -1,25 +1,12 @@
-import WhiteLogo from "../Logo/WhiteLogo";
+import LoginForm from "../LoginForm/LoginForm";
+import "./LoginPage.scss";
 
 const LoginPage = () => {
   return (
     <>
-      <div>
-        <div>
-          <form>
-            <WhiteLogo />
-            <label>
-              <input />
-            </label>
-            <label>
-              <input />
-            </label>
-            <button>Login</button>
-          </form>
-          <div>
-            <div>----or------</div>
-            <div>Log in with Facebook</div>
-            <div>Forgot password ?</div>
-          </div>
+      <div className="LoginPage">
+        <div className="LoginPage__wrapper">
+          <LoginForm />
         </div>
         <div>
           <span>Dont'have an account?</span>

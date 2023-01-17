@@ -1,0 +1,11 @@
+.LoginInputBox {
+  &__label {
+    width: 100%;
+    height: 36px;
+    margin-top: 10px;
+    &--input {
+      width: 258px;
+      height: 30px;
+    }
+  }
+}

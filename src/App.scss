@@ -2,3 +2,26 @@
   text-align: center;
   background-color: #121212;
 }
+#root {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  border: 1px solid red;
+  width: 500px;
+  height: 100%;
+}
+
+input {
+  padding: 0;
+  border: none;
+}
+
+button {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}

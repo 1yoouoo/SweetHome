@@ -1,0 +1,12 @@
+.LoginPage {
+  background-color: #343434;
+  width: 350px;
+  height: 600px;
+  margin: auto;
+  &__wrapper {
+    padding: 10px 0;
+    margin: 13%;
+    height: 380px;
+    background-color: blueviolet;
+  }
+}
