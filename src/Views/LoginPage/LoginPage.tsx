@@ -8,9 +8,11 @@ const LoginPage = () => {
         <div className="LoginPage__wrapper">
           <LoginForm />
         </div>
-        <div>
-          <span>Dont'have an account?</span>
-          <a>Sign up</a>
+        <div className="LoginPage__signup">
+          <span className="LoginPage__signup--text">
+            Don't have an account?
+          </span>
+          <a className="LoginPage__signup--hyperlink">Sign up</a>
         </div>
       </div>
     </>

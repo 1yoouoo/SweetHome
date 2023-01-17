@@ -2,21 +2,25 @@ import LoginButton from "../LoginButton/LoginButton";
 import LoginInputBox from "../LoginInputBox/LoginInputBox";
 import WhiteLogo from "../Logo/WhiteLogo";
 import "./LoginForm.scss";
+type LoginInputBox = {
+  placeholder: string;
+};
 const LoginForm = () => {
   return (
     <>
       <form className="LoginForm">
         <WhiteLogo />
-        <LoginInputBox />
-        <LoginInputBox />
-        <LoginButton />
+        <section className="LoginForm__input-section">
+          <LoginInputBox placeholder="Phone number, username, or email" />
+          <LoginInputBox placeholder="Password" />
+          <LoginButton />
+        </section>
         <div className="LoginForm__division">
-          <span></span>
-          <span>or</span>
-          <span></span>
+          <span className="LoginForm__division--left"></span>
+          <span className="LoginForm__division--or">OR</span>
+          <span className="LoginForm__division--right"></span>
         </div>
-        <div>Log in with Facebook</div>
-        <div>Forgot password ?</div>
+        <div className="LoginForm__forgot-pw">Forgot password ?</div>
       </form>
     </>
   );

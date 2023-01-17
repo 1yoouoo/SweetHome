@@ -1,6 +1,33 @@
 .LoginForm {
   display: flex;
   flex-direction: column;
-  background-color: rebeccapurple;
   align-items: center;
+  margin: 8% 13% 13% 13%;
+  &__input-section {
+    margin-top: 13%;
+  }
+  &__division {
+    display: flex;
+    width: 258px;
+    text-align: center;
+    align-items: center;
+    margin: 10px 0 20px 0;
+    &--left {
+      flex-grow: 3;
+      height: 1px;
+      background-color: rgba(219, 219, 219, 0.8);
+    }
+    &--or {
+      flex-grow: 1;
+      color: rgba(219, 219, 219, 0.8);
+    }
+    &--right {
+      flex-grow: 3;
+      height: 1px;
+      background-color: rgba(219, 219, 219, 0.8);
+    }
+  }
+  &__forgot-pw {
+    margin: 10px 0;
+  }
 }

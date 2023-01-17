@@ -1,12 +1,28 @@
 .LoginPage {
-  background-color: #343434;
   width: 350px;
   height: 600px;
   margin: auto;
+
   &__wrapper {
-    padding: 10px 0;
-    margin: 13%;
-    height: 380px;
-    background-color: blueviolet;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+    background-color: #232323;
+    margin: 13% 0 5% 0;
+    padding: 10px 0px;
+    height: 420px;
+  }
+  &__signup {
+    display: flex;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+    background-color: #232323;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    &--hyperlink {
+      margin-left: 5px;
+      color: #0095f6;
+    }
   }
 }
