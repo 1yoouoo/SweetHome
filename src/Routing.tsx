@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.scss";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import LoginPage from "./Views/LoginPage/LoginPage";
 import Home from "./Views/Home/Home";
@@ -10,12 +9,12 @@ const user = true;
 const Routing: React.FC = (): JSX.Element => (
   <BrowserRouter>
     <Routes>
-      <Route
+      {/* <Route
         path="/"
         element={user ? <Navigate to="/home" /> : <Navigate to="/login" />}
-      />
+      /> */}
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/home" element={<Home />}></Route>
+      <Route path="/*" element={<Home />}></Route>
     </Routes>
   </BrowserRouter>
 );

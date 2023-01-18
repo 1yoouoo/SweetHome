@@ -1,5 +1,5 @@
 .logo {
-  &__white {
+  > img {
     filter: brightness(0) invert(1);
     width: 175px;
     height: 51px;

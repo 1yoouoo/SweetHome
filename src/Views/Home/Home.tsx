@@ -1,11 +1,13 @@
+import Header from "../Header/Header";
+import PostList from "../PostList/PostList";
+import "./Home.scss";
+
 const Home = () => {
   return (
-    <>
-      여기는 홈입니다.여기는 홈입니다.여기는 홈입니다.여기는 홈입니다.여기는
-      홈입니다.여기는 홈입니다.여기는 홈입니다.여기는 홈입니다.여기는
-      홈입니다.여기는 홈입니다.여기는 홈입니다.여기는 홈입니다.여기는
-      홈입니다.여기는 홈입니다.여기는 홈입니다.여기는 홈입니다.
-    </>
+    <div className="Home">
+      <Header />
+      <PostList />
+    </div>
   );
 };
 

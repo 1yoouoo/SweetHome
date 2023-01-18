@@ -1,13 +1,16 @@
-.LoginInputBox {
+@import "/src/sass/abstracts/variables";
+
+.InputBox {
   &__label {
     display: flex;
     position: relative;
     &--input {
-      margin-top: 10px;
+      color: $font-color;
+      margin: 5px 0;
       width: 250px;
       height: 20px;
       border-radius: 3px;
-      background-color: #b3b3b3;
+      background-color: $background-color-brigter;
     }
     &--placeholder {
       position: absolute;
@@ -19,7 +22,7 @@
       transform-origin: left;
       font-size: 12px;
       transition: transform ease-out 0.1s;
-      transform: translateY(10px);
+      transform: translateY(5px);
     }
   }
 }

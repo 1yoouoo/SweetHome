@@ -1,12 +1,11 @@
 import logo from "/Users/blanc/Documents/Project/sns/src/Assets/logo.png";
 import "./Logo.scss";
-import { WhiteLogoTypeProps } from "../../types/snsType";
-const WhiteLogo = ({ width, height }: WhiteLogoTypeProps) => {
+import { LogoTypeProps } from "../../types/snsType";
+const Logo = ({ width, height }: LogoTypeProps) => {
   return (
     <>
       <span className="logo">
         <img
-          className="logo__white"
           src={logo}
           alt="logo"
           style={{ width: `${width}`, height: `${height}` }}
@@ -16,4 +15,4 @@ const WhiteLogo = ({ width, height }: WhiteLogoTypeProps) => {
   );
 };
 
-export default WhiteLogo;
+export default Logo;
