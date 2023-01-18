@@ -1,10 +1,22 @@
+import Ellipsis from "../../Assets/SVG/Ellipsis";
 import "./PostItem.scss";
+import sample from "/Users/blanc/Documents/Project/sns/src/Assets/sample.png";
 
 const PostItem = () => {
   return (
     <section className="PostItem">
-      <div className="PostItem__top">hi</div>
-      <div className="PostItem__main">hi</div>
+      <div className="PostItem__top">
+        <span className="PostItem__top--left">
+          <span>img</span>
+          <span>nickname</span>
+        </span>
+        <span className="PostItem__top--right">
+          <Ellipsis />
+        </span>
+      </div>
+      <div className="PostItem__main">
+        <img src={sample} alt="sample" />
+      </div>
       <div className="PostItem__bottom">hi</div>
     </section>
   );

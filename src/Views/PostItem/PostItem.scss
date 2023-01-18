@@ -4,7 +4,43 @@
   margin: 15px auto;
 
   width: 470px;
-  height: 2000px;
   border: 1px solid $border-color;
   border-radius: $border-radius;
+  &__top {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &--left {
+      display: flex;
+      align-items: center;
+      :nth-child(1) {
+        display: block;
+        overflow: hidden;
+        border: 1px solid #fff;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 38px;
+        margin-left: 10px;
+      }
+      :nth-child(2) {
+        font-weight: 800;
+        margin-left: 10px;
+      }
+    }
+    &--right {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  }
+  &__main {
+    & > img {
+      min-height: 400px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 }
