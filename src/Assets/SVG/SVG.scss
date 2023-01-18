@@ -1,16 +1,74 @@
 @import "/src/sass/abstracts/variables";
 
-.Heart {
+.HeartSvg {
   svg {
-    width: 30px;
-    height: 30px;
+    fill: $font-color;
+    display: block;
+    width: 24px;
+    height: 24px;
+    padding: 12px;
+    cursor: pointer;
+  }
+}
+.MessageSvg {
+  svg {
+    fill: $font-color;
+    display: block;
+    width: 24px;
+    height: 24px;
+    padding: 12px;
+    cursor: pointer;
   }
 }
 
-.Ellipsis {
+.EllipsisSvg {
   svg {
     fill: $font-color;
-    width: 20px;
-    height: 20px;
+    display: block;
+    width: 24px;
+    height: 24px;
+    padding: 12px;
+    cursor: pointer;
+  }
+}
+.HomeSvg {
+  svg {
+    fill: $font-color;
+    display: block;
+    width: 24px;
+    height: 24px;
+    padding: 12px;
+    cursor: pointer;
+  }
+}
+.CompassSvg {
+  svg {
+    fill: $font-color;
+    display: block;
+    width: 24px;
+    height: 24px;
+    padding: 12px;
+    cursor: pointer;
+  }
+}
+
+.UserSvg {
+  svg {
+    fill: $font-color;
+    display: block;
+    width: 24px;
+    height: 24px;
+    padding: 12px;
+    cursor: pointer;
+  }
+}
+.PostSvg {
+  svg {
+    fill: $font-color;
+    display: block;
+    width: 24px;
+    height: 24px;
+    padding: 12px;
+    cursor: pointer;
   }
 }

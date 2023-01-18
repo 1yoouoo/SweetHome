@@ -1,4 +1,4 @@
-import Ellipsis from "../../Assets/SVG/Ellipsis";
+import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
 import "./PostItem.scss";
 import sample from "/Users/blanc/Documents/Project/sns/src/Assets/sample.png";
 
@@ -11,7 +11,7 @@ const PostItem = () => {
           <span>nickname</span>
         </span>
         <span className="PostItem__top--right">
-          <Ellipsis />
+          <EllipsisSvg />
         </span>
       </div>
       <div className="PostItem__main">

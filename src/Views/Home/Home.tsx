@@ -1,4 +1,5 @@
 import Header from "../Header/Header";
+import Nav from "../Nav/Nav";
 import PostList from "../PostList/PostList";
 import "./Home.scss";
 
@@ -7,6 +8,7 @@ const Home = () => {
     <div className="Home">
       <Header />
       <PostList />
+      <Nav />
     </div>
   );
 };

@@ -1,19 +1,24 @@
 @import "/src/sass/abstracts/variables";
 
-.Header {
+.Nav {
   background-color: $background-color-black;
   position: fixed;
+  bottom: 0;
   width: 90%;
-  top: 0;
   display: flex;
   padding: 0 5%;
-  height: 60px;
-  border-bottom: 1px solid $border-color;
+  height: 49px;
+  border-top: 1px solid $border-color;
   align-items: center;
   &__wrapper {
     align-items: center;
     display: flex;
     width: 100%;
     justify-content: space-between;
+    // border: 1px solid #fff;
+    justify-content: space-around;
+    & span {
+      // border: 1px solid #fff;
+    }
   }
 }
