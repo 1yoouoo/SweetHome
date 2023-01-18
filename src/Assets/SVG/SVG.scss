@@ -72,3 +72,25 @@
     cursor: pointer;
   }
 }
+.CommentsSvg {
+  svg {
+    fill: $font-color;
+    display: block;
+    width: 24px;
+    height: 24px;
+    padding: 12px;
+    transform: scaleX(-1);
+    cursor: pointer;
+  }
+}
+
+.BookMarkSvg {
+  svg {
+    fill: $font-color;
+    display: block;
+    width: 24px;
+    height: 24px;
+    padding: 12px;
+    cursor: pointer;
+  }
+}

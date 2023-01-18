@@ -1,0 +1,24 @@
+.InteractionBar {
+  display: flex;
+  justify-content: space-between;
+  &__left {
+    display: flex;
+    .HeartSvg {
+      svg {
+        padding: 12px 6px 0 0;
+      }
+    }
+    .CommentsSvg {
+      svg {
+        padding: 12px;
+      }
+    }
+  }
+  &__right {
+    .BookMarkSvg {
+      svg {
+        padding: 12px 0;
+      }
+    }
+  }
+}
