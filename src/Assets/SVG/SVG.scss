@@ -94,3 +94,15 @@
     cursor: pointer;
   }
 }
+
+.ChevronLeftSvg {
+  position: absolute;
+  left: 18px;
+  svg {
+    fill: $font-color;
+    display: block;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+}

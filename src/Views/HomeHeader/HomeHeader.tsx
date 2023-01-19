@@ -1,14 +1,14 @@
 import InputBox from "../InputBox/InputBox";
 import WhiteLogo from "../Logo/Logo";
-import "./Header.scss";
-const Header = () => {
+import "./HomeHeader.scss";
+const HomeHeader = () => {
   return (
-    <div className="Header">
-      <div className="Header__wrapper">
+    <div className="HomeHeader">
+      <div className="HomeHeader__wrapper">
         <WhiteLogo width="103px" height="29px" />
         <InputBox placeholder="Search" />
       </div>
     </div>
   );
 };
-export default Header;
+export default HomeHeader;
