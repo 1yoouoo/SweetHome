@@ -96,7 +96,23 @@
 }
 
 .ChevronLeftSvg {
-  position: absolute;
+  position: fixed;
+  z-index: 3;
+  top: 9px;
+  left: 18px;
+  svg {
+    fill: $font-color;
+    display: block;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+}
+
+.Setting {
+  position: fixed;
+  z-index: 3;
+  top: 9px;
   left: 18px;
   svg {
     fill: $font-color;

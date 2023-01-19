@@ -1,6 +1,6 @@
-import Header from "../HomeHeader/HomeHeader";
+import Header from "../../Views/HomeHeader/HomeHeader";
 
-import PostList from "../PostList/PostList";
+import PostList from "../../Views/PostList/PostList";
 import "./Home.scss";
 
 const Home = () => {

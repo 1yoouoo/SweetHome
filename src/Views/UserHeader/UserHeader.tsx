@@ -1,11 +1,9 @@
-import ChevronLeftSvg from "../../Assets/SVG/ChevronLeftSvg";
 import "./UserHeader.scss";
 
-const UserHeader = () => {
+const UserHeader = ({ userName }: any) => {
   return (
     <div className="UserHeader">
-      <ChevronLeftSvg />
-      <span className="UserHeader__user-id">name</span>
+      <span className="UserHeader__user-id">{userName}</span>
     </div>
   );
 };

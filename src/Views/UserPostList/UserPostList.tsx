@@ -18,6 +18,34 @@ const UserPostList = () => {
       id: 4,
       img: "/Users/blanc/Documents/Project/sns/src/Assets/cat4.jpeg",
     },
+    {
+      id: 5,
+      img: "/Users/blanc/Documents/Project/sns/src/Assets/cat4.jpeg",
+    },
+    {
+      id: 6,
+      img: "/Users/blanc/Documents/Project/sns/src/Assets/cat4.jpeg",
+    },
+    {
+      id: 7,
+      img: "/Users/blanc/Documents/Project/sns/src/Assets/cat4.jpeg",
+    },
+    {
+      id: 8,
+      img: "/Users/blanc/Documents/Project/sns/src/Assets/cat4.jpeg",
+    },
+    {
+      id: 9,
+      img: "/Users/blanc/Documents/Project/sns/src/Assets/cat4.jpeg",
+    },
+    {
+      id: 10,
+      img: "/Users/blanc/Documents/Project/sns/src/Assets/cat4.jpeg",
+    },
+    {
+      id: 11,
+      img: "/Users/blanc/Documents/Project/sns/src/Assets/cat4.jpeg",
+    },
   ];
   return (
     <ul className="UserPostList">
