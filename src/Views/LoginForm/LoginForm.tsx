@@ -1,4 +1,4 @@
-import LoginButton from "../LoginButton/LoginButton";
+import StyledButton from "../StyledButton/StyledButton";
 import LoginInputBox from "../InputBox/InputBox";
 import Logo from "../Logo/Logo";
 import "./LoginForm.scss";
@@ -11,7 +11,15 @@ const LoginForm = () => {
         <section className="LoginForm__input-section">
           <LoginInputBox placeholder="Phone number, username, or email" />
           <LoginInputBox placeholder="Password" />
-          <LoginButton />
+          <div style={{ margin: "20px 0" }}>
+            <StyledButton
+              width="258px"
+              height="34px"
+              backgroundColor="#0095f6"
+              content="Log In"
+              color="#fff"
+            />
+          </div>
         </section>
         <div className="LoginForm__division">
           <span className="LoginForm__division--left"></span>
