@@ -25,10 +25,13 @@ const UserPostList = () => {
         SampleitemList.map((item) => {
           return (
             <li className="UserPostList__item" key={item.id}>
-              <img
-                src={require(`/Users/blanc/Documents/Project/sns/src/Assets/cat${item.id}.jpeg`)}
-                alt=""
-              />
+              <span className="UserPostList__item--img">
+                <img
+                  // src={require(`/Users/blanc/Documents/Project/sns/src/Assets/cat${item.id}.png`)}
+                  src={require(`/Users/blanc/Documents/Project/sns/src/Assets/testimg.png`)}
+                  alt=""
+                />
+              </span>
             </li>
           );
         })}
