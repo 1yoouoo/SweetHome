@@ -1,0 +1,26 @@
+@import "/src/sass/abstracts/variables";
+
+.UserNav {
+  display: flex;
+  align-items: center;
+  height: 61px;
+  border-bottom: 1px solid $border-color;
+  & > li {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    cursor: pointer;
+    :nth-child(1) {
+      color: $font-color;
+    }
+    :nth-child(2) {
+      color: $font-color-pointer;
+    }
+  }
+  &__posts {
+    height: 61px;
+    border-bottom: 1px solid #fff;
+  }
+}

@@ -1,4 +1,7 @@
+@import "/src/sass/abstracts/variables";
+
 .UserPage {
+  background-color: $background-color-bright;
   &__gap {
     height: 44px;
   }
