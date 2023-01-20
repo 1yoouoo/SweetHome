@@ -1,11 +1,11 @@
 import blanc from "/Users/blanc/Documents/Project/sns/src/Assets/blanc.jpeg";
 import styled from "styled-components";
 
-interface UserPhotoType {
+interface UserPhotoPropTypes {
   size: string;
 }
 
-const StyledUserPhoto = styled.div<UserPhotoType>`
+const StyledUserPhoto = styled.div<UserPhotoPropTypes>`
   .UserPhoto {
     position: relative;
     width: calc(${(props) => props.size});
@@ -52,7 +52,7 @@ const StyledUserPhoto = styled.div<UserPhotoType>`
   }
 `;
 
-const UserPhoto = ({ size }: UserPhotoType) => {
+const UserPhoto = ({ size }: UserPhotoPropTypes) => {
   return (
     <StyledUserPhoto size={size}>
       <div className="UserPhoto">

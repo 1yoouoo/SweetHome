@@ -1,4 +1,3 @@
-import ChevronLeftSvg from "../../Assets/SVG/ChevronLeftSvg";
 import PostingButton from "../../sass/styled-components/ShareButton";
 import UploadPhotos from "../../Views/UploadPhotos/UploadPhotos";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
@@ -8,8 +7,6 @@ const CreatePost = () => {
   return (
     <>
       <CurrentHeader current="새 게시물" />
-      <ChevronLeftSvg />
-      <PostingButton text="공유" />
       <div className="CreatePost">
         <UploadPhotos />
         <div className="CreatePost__text">

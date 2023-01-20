@@ -14,3 +14,7 @@ export type ButtonTypeProps = {
   color: string;
   content: string;
 };
+
+export interface SvgPropTypes {
+  size: string;
+}

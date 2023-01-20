@@ -14,7 +14,7 @@ const Nav = () => {
           <HomeSvg />
           <CompassSvg />
           <PostSvg />
-          <HeartSvg />
+          <HeartSvg size="24px" />
           <MessageSvg />
           <UserSvg />
         </div>

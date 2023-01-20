@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledPostingButton = styled.div`
   color: #0095f6;
   cursor: pointer;
-  position: fixed;
+  position: absolute;
   z-index: 3;
   top: 0;
   right: 0;

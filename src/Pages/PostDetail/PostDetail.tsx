@@ -1,4 +1,3 @@
-import ChevronLeftSvg from "../../Assets/SVG/ChevronLeftSvg";
 import PostComments from "../../Views/PostComment/PostComments";
 import PostContent from "../../Views/PostContent/PostContent";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
@@ -9,7 +8,6 @@ const PostDetail = () => {
   return (
     <div className="PostDetail">
       <CurrentHeader current={current} />
-      <ChevronLeftSvg />
       <PostContent />
       <PostComments />
     </div>

@@ -8,7 +8,7 @@ const InteractionBar = () => {
     <>
       <div className="InteractionBar">
         <span className="InteractionBar__left">
-          <HeartSvg />
+          <HeartSvg size="24px" />
           <CommentsSvg />
         </span>
         <span className="InteractionBar__right">

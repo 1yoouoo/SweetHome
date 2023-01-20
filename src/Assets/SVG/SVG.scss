@@ -1,15 +1,5 @@
 @import "/src/sass/abstracts/variables";
 
-.HeartSvg {
-  svg {
-    fill: $font-color;
-    display: block;
-    width: 24px;
-    height: 24px;
-    padding: 12px;
-    cursor: pointer;
-  }
-}
 .MessageSvg {
   svg {
     fill: $font-color;
@@ -96,7 +86,7 @@
 }
 
 .ChevronLeftSvg {
-  position: fixed;
+  position: absolute;
   z-index: 3;
   top: 9px;
   left: 18px;
