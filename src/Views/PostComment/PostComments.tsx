@@ -1,4 +1,4 @@
-import HeartSvg from "../../Assets/SVG/HeartSvg";
+import SmallHeartSvg from "../../Assets/SVG/SmallHeartSvg";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import UserComment from "../UserComment/UserComment";
 import "./PostComments.scss";
@@ -12,7 +12,7 @@ const PostComments = () => {
         </span>
         <UserComment />
         <span className="PostComment__right">
-          <HeartSvg size="12px" />
+          <SmallHeartSvg />
         </span>
       </li>
 
@@ -22,7 +22,7 @@ const PostComments = () => {
         </span>
         <UserComment />
         <span className="PostComment__right">
-          <HeartSvg size="12px" />
+          <SmallHeartSvg />
         </span>
       </li>
     </ul>

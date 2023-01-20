@@ -1,7 +1,7 @@
 import StyledButton from "../StyledButton/StyledButton";
-import LoginInputBox from "../InputBox/InputBox";
 import Logo from "../Logo/Logo";
 import "./LoginForm.scss";
+import InputBox from "../InputBox/InputBox";
 
 const LoginForm = () => {
   return (
@@ -9,8 +9,8 @@ const LoginForm = () => {
       <form className="LoginForm">
         <Logo width="175px" height="51px" />
         <section className="LoginForm__input-section">
-          <LoginInputBox placeholder="Phone number, username, or email" />
-          <LoginInputBox placeholder="Password" />
+          <InputBox placeholder="Phone number, username, or email" />
+          <InputBox placeholder="Password" />
           <div style={{ margin: "20px 0" }}>
             <StyledButton
               width="258px"

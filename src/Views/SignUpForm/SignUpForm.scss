@@ -1,0 +1,35 @@
+@import "/src/sass/abstracts/variables";
+
+.SignUpForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 8% 13% 13% 13%;
+  &__input-section {
+    margin-top: 13%;
+  }
+  &__division {
+    display: flex;
+    width: 258px;
+    text-align: center;
+    align-items: center;
+    margin: 10px 0 20px 0;
+    &--left {
+      flex-grow: 3;
+      height: 1px;
+      background-color: $division-color;
+    }
+    &--or {
+      flex-grow: 1;
+      color: $division-color;
+    }
+    &--right {
+      flex-grow: 3;
+      height: 1px;
+      background-color: $division-color;
+    }
+  }
+  &__forgot-pw {
+    margin: 10px 0;
+  }
+}

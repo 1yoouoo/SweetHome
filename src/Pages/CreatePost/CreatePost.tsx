@@ -1,4 +1,3 @@
-import PostingButton from "../../sass/styled-components/ShareButton";
 import UploadPhotos from "../../Views/UploadPhotos/UploadPhotos";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
 import "./CreatePost.scss";
