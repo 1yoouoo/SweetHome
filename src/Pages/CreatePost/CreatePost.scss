@@ -1,11 +1,11 @@
 .CreatePost {
   min-height: 90%;
-  padding: 10px;
+  padding: 60px 10px;
   &__text {
     margin-top: 10px;
     &--textarea {
       width: 480px;
-      min-height: 460px;
+      min-height: 450px;
     }
   }
 }

@@ -6,28 +6,18 @@
   border: 1px solid $border-color;
   border-radius: $border-radius;
   &__top {
-    height: 48px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid $border-color;
     &--left {
+      margin: 10px;
       display: flex;
       align-items: center;
-      :nth-child(1) {
-        display: block;
-        overflow: hidden;
-        border: 1px solid #fff;
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 38px;
-        margin-left: 10px;
-      }
       :nth-child(2) {
         font-weight: 800;
-        margin-left: 10px;
+        margin-left: 5px;
       }
     }
     &--right {

@@ -3,6 +3,9 @@
   width: 500px;
   display: flex;
   align-items: center;
+  &__photo {
+    margin: 10px 0 10px 10px;
+  }
   &__name {
     margin: auto 10px;
     width: 367px;

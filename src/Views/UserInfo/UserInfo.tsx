@@ -1,8 +1,8 @@
 import BookMarkSvg from "../../Assets/SVG/BookMarkSvg";
 import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
 import Setting from "../../Assets/SVG/Setting";
+import UserPhoto from "../../sass/styled-components/UserPhoto";
 import StyledButton from "../StyledButton/StyledButton";
-import UserPhoto from "../UserPhoto/UserPhoto";
 import "./UserInfo.scss";
 
 const UserInfo = () => {
@@ -10,7 +10,9 @@ const UserInfo = () => {
   return (
     <>
       <div className="UserInfo">
-        <UserPhoto />
+        <span className="UserInfo__photo">
+          <UserPhoto size="88px" />
+        </span>
 
         <div className="UserInfo__name">
           <div className="UserInfo__name--top">

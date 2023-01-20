@@ -15,10 +15,12 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
-    // border: 1px solid #fff;
     justify-content: space-around;
-    & span {
-      // border: 1px solid #fff;
-    }
   }
+}
+#gap {
+  z-index: 3;
+  color: #fff;
+  position: relative;
+  height: 400px;
 }

@@ -1,4 +1,5 @@
 import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
+import UserPhoto from "../../sass/styled-components/UserPhoto";
 import InteractionBar from "../InteractionBar/InteractionBar";
 import "./PostItem.scss";
 import sample from "/Users/blanc/Documents/Project/sns/src/Assets/sample.png";
@@ -10,7 +11,7 @@ const PostItem = () => {
       <section className="PostItem">
         <div className="PostItem__top">
           <span className="PostItem__top--left">
-            <span>img</span>
+            <UserPhoto size="44px" />
             <span>NICK_NAME</span>
           </span>
           <span className="PostItem__top--right">
@@ -34,7 +35,7 @@ const PostItem = () => {
       <section className="PostItem">
         <div className="PostItem__top">
           <span className="PostItem__top--left">
-            <span>img</span>
+            <UserPhoto size="44px" />
             <span>NICK_NAME</span>
           </span>
           <span className="PostItem__top--right">
