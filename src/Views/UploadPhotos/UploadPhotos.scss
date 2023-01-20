@@ -1,0 +1,16 @@
+@import "/src/sass/abstracts/variables";
+
+.UploadPhotos {
+  display: flex;
+  height: 80px;
+  &__add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 55px;
+    margin: 0 2.5px;
+    background-color: $background-color-brigter;
+    border: 1px solid $border-color;
+  }
+}
