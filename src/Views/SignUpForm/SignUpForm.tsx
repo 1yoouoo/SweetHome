@@ -2,8 +2,30 @@ import StyledButton from "../StyledButton/StyledButton";
 import Logo from "../Logo/Logo";
 import "./SignUpForm.scss";
 import InputBox from "../InputBox/InputBox";
+import { useState } from "react";
+// type
+interface inputValueType {
+  email: string;
+  name: string;
+  nickName: string;
+  password: string;
+}
 
 const SignUpForm = () => {
+  const [inputValue, setInputValue] = useState<inputValueType>({
+    email: "",
+    name: "",
+    nickName: "",
+    password: "",
+  });
+  const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue({
+      ...inputValue,
+      [e.currentTarget.name]: e.currentTarget.value,
+    });
+    console.log(e.currentTarget.value);
+  };
+
   return (
     <>
       <form className="SignUpForm">
@@ -14,10 +36,30 @@ const SignUpForm = () => {
             <span className="SignUpForm__division--or">OR</span>
             <span className="SignUpForm__division--right"></span>
           </div>
-          <InputBox placeholder="Email" />
-          <InputBox placeholder="Name" />
-          <InputBox placeholder="NickName" />
-          <InputBox placeholder="Password" />
+          <InputBox
+            placeholder="Email"
+            name="email"
+            value={inputValue.email}
+            onChangeValue={onChangeValue}
+          />
+          <InputBox
+            placeholder="Name"
+            name="name"
+            value={inputValue.name}
+            onChangeValue={onChangeValue}
+          />
+          <InputBox
+            placeholder="NickName"
+            name="nickname"
+            value={inputValue.nickName}
+            onChangeValue={onChangeValue}
+          />
+          <InputBox
+            placeholder="Password"
+            name="password"
+            value={inputValue.password}
+            onChangeValue={onChangeValue}
+          />
           <div style={{ margin: "20px 0" }}>
             <StyledButton
               width="258px"

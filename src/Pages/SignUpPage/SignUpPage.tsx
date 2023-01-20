@@ -1,3 +1,4 @@
+import { useState } from "react";
 import SignUpForm from "../../Views/SignUpForm/SignUpForm";
 import "./SignUpPage.scss";
 
