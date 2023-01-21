@@ -1,4 +1,5 @@
-import Header from "../../Views/HomeHeader/HomeHeader";
+import { useState } from "react";
+import HomeHeader from "../../Views/HomeHeader/HomeHeader";
 
 import PostList from "../../Views/PostList/PostList";
 import "./Home.scss";
@@ -6,7 +7,7 @@ import "./Home.scss";
 const Home = () => {
   return (
     <div className="Home">
-      <Header />
+      <HomeHeader />
       <PostList />
     </div>
   );
