@@ -122,3 +122,25 @@
     cursor: pointer;
   }
 }
+.CircleCheckSvg {
+  z-index: 3;
+  position: absolute;
+  svg {
+    fill: $font-color;
+    display: block;
+    width: 24px;
+    height: 24px;
+    padding: 12px;
+    cursor: pointer;
+  }
+}
+.CircleXmarkSvg {
+  svg {
+    fill: $font-color;
+    display: block;
+    width: 24px;
+    height: 24px;
+    padding: 12px;
+    cursor: pointer;
+  }
+}

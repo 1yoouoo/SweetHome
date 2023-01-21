@@ -39,7 +39,17 @@
         transform: translateY(5px);
       }
     }
+    &--validation {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      height: 36px;
+      width: 36px;
+      top: 6px;
+      bottom: 0;
+      right: 0;
+      line-height: 36px;
+    }
   }
 }
-// .nfTextField:focus ~ .placeLabel-email,
-// .nfTextField:valid ~ .placeLabel-email {

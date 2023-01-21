@@ -2,15 +2,44 @@ import StyledButton from "../StyledButton/StyledButton";
 import Logo from "../Logo/Logo";
 import "./LoginForm.scss";
 import InputBox from "../InputBox/InputBox";
-
+import { useState } from "react";
+// type
+interface inputValueType {
+  email: string;
+  password: string;
+}
 const LoginForm = () => {
+  const [inputValue, setInputValue] = useState<inputValueType>({
+    email: "",
+    password: "",
+  });
+  const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue({
+      ...inputValue,
+      [e.currentTarget.name]: e.currentTarget.value,
+    });
+  };
+  const onSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    console.log(inputValue);
+  };
   return (
     <>
-      <form className="LoginForm">
+      <form className="LoginForm" onSubmit={onSubmit}>
         <Logo width="175px" height="51px" />
         <section className="LoginForm__input-section">
-          <InputBox placeholder="Phone number, username, or email" />
-          <InputBox placeholder="Password" />
+          <InputBox
+            placeholder="Email"
+            name="email"
+            value={inputValue.email}
+            onChangeValue={onChangeValue}
+          />
+          <InputBox
+            placeholder="Password"
+            name="password"
+            value={inputValue.password}
+            onChangeValue={onChangeValue}
+          />
           <div style={{ margin: "20px 0" }}>
             <StyledButton
               width="258px"

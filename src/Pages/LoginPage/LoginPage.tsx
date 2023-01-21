@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import LoginForm from "../../Views/LoginForm/LoginForm";
 import "./LoginPage.scss";
 
@@ -12,7 +13,9 @@ const LoginPage = () => {
           <span className="LoginPage__signup--text">
             Don't have an account?
           </span>
-          <a className="LoginPage__signup--hyperlink">Sign up</a>
+          <Link to="/signup" className="LoginPage__signup--hyperlink">
+            Sign up
+          </Link>
         </div>
       </div>
     </>

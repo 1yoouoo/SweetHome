@@ -28,7 +28,6 @@ const SignUpForm = () => {
     e.preventDefault();
     console.log(inputValue);
   };
-
   return (
     <>
       <form className="SignUpForm" onSubmit={onSubmit}>
@@ -39,29 +38,34 @@ const SignUpForm = () => {
             <span className="SignUpForm__division--or">OR</span>
             <span className="SignUpForm__division--right"></span>
           </div>
+          {/* 이메일 폼 */}
           <InputBox
             placeholder="Email"
             name="email"
             value={inputValue.email}
             onChangeValue={onChangeValue}
           />
+          {/* 이름 2자이상 10자 이하 */}
           <InputBox
             placeholder="Name"
             name="name"
             value={inputValue.name}
             onChangeValue={onChangeValue}
           />
+          {/* 중복 x 2자이상 10자 이하 */}
           <InputBox
             placeholder="NickName"
             name="nickName"
             value={inputValue.nickName}
             onChangeValue={onChangeValue}
           />
+          {/* 5자 이상 10자 이하 */}
           <InputBox
             placeholder="Password"
             name="password"
             value={inputValue.password}
             onChangeValue={onChangeValue}
+            type="password"
           />
           <div style={{ margin: "20px 0" }}>
             <StyledButton
