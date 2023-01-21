@@ -23,12 +23,15 @@ const SignUpForm = () => {
       ...inputValue,
       [e.currentTarget.name]: e.currentTarget.value,
     });
-    console.log(e.currentTarget.value);
+  };
+  const onSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    console.log(inputValue);
   };
 
   return (
     <>
-      <form className="SignUpForm">
+      <form className="SignUpForm" onSubmit={onSubmit}>
         <Logo width="175px" height="51px" />
         <section className="SignUpForm__input-section">
           <div className="SignUpForm__division">
@@ -50,7 +53,7 @@ const SignUpForm = () => {
           />
           <InputBox
             placeholder="NickName"
-            name="nickname"
+            name="nickName"
             value={inputValue.nickName}
             onChangeValue={onChangeValue}
           />

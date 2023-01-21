@@ -12,13 +12,16 @@ const InputBox = (props: InputBoxTypeProps) => {
   return (
     <>
       <label className="InputBox__label">
-        <span className="InputBox__label--placeholder">{placeholder}</span>
         <input
           className="InputBox__label--input"
           name={name}
           value={value}
           onChange={(e) => onChangeValue?.(e)}
+          required
         />
+        <span className="InputBox__label--input--placeholder">
+          {placeholder}
+        </span>
       </label>
     </>
   );
