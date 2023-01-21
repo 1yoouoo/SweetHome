@@ -1,0 +1,7 @@
+@import "/src/sass/abstracts/variables";
+
+.UserDetail {
+  box-sizing: border-box;
+  border-bottom: 1px solid $border-color;
+  padding-bottom: 20px;
+}

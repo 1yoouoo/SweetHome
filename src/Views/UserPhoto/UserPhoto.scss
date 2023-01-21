@@ -1,0 +1,45 @@
+$size: 44px;
+.UserPhoto {
+  margin: 10px;
+  position: relative;
+  width: $size;
+  height: $size;
+  &__gradient {
+    display: flex;
+    position: absolute;
+    box-sizing: border-box;
+    width: $size - 3px;
+    height: $size - 3px;
+    border-radius: 50%;
+    border: double 2px transparent;
+    background-image: linear-gradient(black, black),
+      radial-gradient(
+        circle at bottom left,
+        #ff7a00,
+        #ffd600,
+        #ff0169,
+        #d300c5,
+        #7638fa
+      );
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    justify-content: center;
+    align-items: center;
+  }
+  &__img--wrapper {
+    box-sizing: border-box;
+    width: $size - 8px;
+    height: $size - 8px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 3px solid #000;
+    & > img {
+      width: $size - 14px;
+      height: $size - 14px;
+    }
+  }
+}

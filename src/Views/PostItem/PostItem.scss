@@ -1,0 +1,63 @@
+@import "/src/sass/abstracts/variables";
+
+.PostItem {
+  margin: 15px auto;
+  width: 470px;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  &__top {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $border-color;
+    &--left {
+      margin: 10px;
+      display: flex;
+      align-items: center;
+      :nth-child(2) {
+        font-weight: 800;
+        margin-left: 5px;
+      }
+    }
+    &--right {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  }
+  &__main {
+    display: flex;
+    align-items: center;
+    & > img {
+      width: 100%;
+    }
+  }
+  &__bottom {
+    padding: 0 16px;
+    & > div {
+      margin-bottom: 10px;
+    }
+    &--likes {
+      font-size: 16px;
+      font-weight: 800;
+    }
+    &--content {
+      :nth-child(1) {
+        font-size: 16px;
+        font-weight: 800;
+      }
+      :nth-child(2) {
+        font-size: 16px;
+        margin-left: 10px;
+      }
+    }
+    &--comments {
+      font-size: 16px;
+      color: $font-color-pointer;
+    }
+    &--posted-at {
+      font-size: 10px;
+      color: $font-color-pointer;
+    }
+  }
+}

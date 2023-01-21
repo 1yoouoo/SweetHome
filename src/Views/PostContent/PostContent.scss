@@ -1,0 +1,11 @@
+@import "/src/sass/abstracts/variables";
+
+.PostContent {
+  // background-color: red;
+  padding: 10px;
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  &__author {
+    padding: 5px;
+  }
+}

@@ -1,0 +1,18 @@
+.UserPostList {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  &__item {
+    display: flex;
+    &--img {
+      margin: 0;
+      > img {
+        box-sizing: border-box;
+        width: 164.66px;
+        height: 164.66px;
+        object-fit: scale-down;
+        margin: 0 1px;
+      }
+    }
+  }
+}

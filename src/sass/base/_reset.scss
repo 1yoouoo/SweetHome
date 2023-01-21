@@ -1,0 +1,34 @@
+@import "/src/sass/abstracts/variables";
+
+input {
+  padding: 0;
+  border: none;
+  outline: none;
+  padding: 9px 0 7px 8px;
+  font-size: 14px;
+}
+
+button {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+textarea {
+  box-sizing: border-box;
+  color: #fff;
+  background-color: #000;
+  border-style: none;
+  border-color: Transparent;
+  overflow: auto;
+  border: 1px solid $border-color;
+  outline: none;
+  resize: none;
+  padding: 5px;
+}

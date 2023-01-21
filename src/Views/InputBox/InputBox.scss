@@ -1,0 +1,55 @@
+@import "/src/sass/abstracts/variables";
+
+.InputBox {
+  &__label {
+    display: flex;
+    position: relative;
+    &--input {
+      color: $font-color;
+      border: 1px solid #363636;
+      margin: 5px 0;
+      width: 250px;
+      height: 20px;
+      border-radius: 3px;
+      background-color: $background-color-brigter;
+      &:focus {
+        border: 1px solid #636363;
+      }
+      &:valid ~ &--placeholder {
+        transform: translate(-1px, -4px);
+        transform-origin: left;
+        transition: transform ease-out 0.1s;
+        transition-duration: 0.1s;
+        transition-timing-function: ease-out;
+        transition-delay: 0s;
+        transition-property: all;
+        font-size: 9px;
+      }
+      &--placeholder {
+        position: absolute;
+        color: $font-color-pointer;
+        height: 36px;
+        left: 8px;
+        right: 0;
+        line-height: 36px;
+        pointer-events: none;
+        transform-origin: left;
+        font-size: 12px;
+        transition: transform ease-out 0.1s;
+        transform: translateY(5px);
+      }
+    }
+    &--validation {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      height: 36px;
+      width: 36px;
+      top: 6px;
+      bottom: 0;
+      right: 0;
+      line-height: 36px;
+    }
+  }
+}

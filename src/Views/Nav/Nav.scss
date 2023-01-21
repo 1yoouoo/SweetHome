@@ -1,0 +1,26 @@
+@import "/src/sass/abstracts/variables";
+
+.Nav {
+  background-color: $background-color-black;
+  position: fixed;
+  bottom: 0;
+  width: 430px;
+  display: flex;
+  padding: 0 35px;
+  height: 49px;
+  border-top: 1px solid $border-color;
+  align-items: center;
+  &__wrapper {
+    align-items: center;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    justify-content: space-around;
+  }
+}
+#gap {
+  z-index: 3;
+  color: #fff;
+  position: relative;
+  height: 400px;
+}

@@ -1,0 +1,30 @@
+.UserInfo {
+  box-sizing: border-box;
+  width: 500px;
+  display: flex;
+  align-items: center;
+  &__photo {
+    margin: 10px 0 10px 10px;
+  }
+  &__name {
+    margin: auto 10px;
+    width: 367px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    &--top {
+      display: flex;
+      align-items: center;
+      margin: 0 10px;
+      &--id {
+        font-size: 18px;
+      }
+    }
+    &--bottom {
+      display: flex;
+      margin: 0 10px;
+      align-items: center;
+    }
+  }
+}
