@@ -21,7 +21,7 @@ const InputBox = (props: InputBoxTypeProps) => {
           onChange={(e) => onChangeValue?.(e)}
           type={type}
           required
-          onBlur={() => console.log("out!")}
+          // onBlur={() => console.log("focus out!")}
         />
         <span className="InputBox__label--input--placeholder">
           {placeholder}
