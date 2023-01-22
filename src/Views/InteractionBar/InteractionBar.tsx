@@ -1,16 +1,28 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import BookMarkSvg from "../../Assets/SVG/BookMarkSvg";
 import CommentsSvg from "../../Assets/SVG/Comments";
 import HeartActivedSvg from "../../Assets/SVG/HeartActivedSvg";
 import HeartSvg from "../../Assets/SVG/HeartSvg";
 import "./InteractionBar.scss";
+
+// type
 export interface onClickHeartTypeProps {
   onClickHeart?: () => void;
 }
-const InteractionBar = () => {
+interface InteractionBarTypeProps {
+  likes: number;
+  setLikes: Dispatch<SetStateAction<number>>;
+}
+const InteractionBar = ({ likes, setLikes }: InteractionBarTypeProps) => {
   const [heartToggle, setHeartToggle] = useState(true);
+
   const onClickHeart = () => {
     setHeartToggle(!heartToggle);
+    if (heartToggle == true) {
+      setLikes(likes + 1);
+    } else {
+      setLikes(likes - 1);
+    }
   };
   return (
     <>
