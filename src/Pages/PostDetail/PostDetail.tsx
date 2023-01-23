@@ -18,7 +18,7 @@ const PostDetail = () => {
     <div className="PostDetail">
       <CurrentHeader current="댓글" />
       <PostContent clickedPost={clickedPost} />
-      <PostComments postComments={clickedPost?.postComments} />
+      <PostComments clickedPost={clickedPost} />
     </div>
   );
 };

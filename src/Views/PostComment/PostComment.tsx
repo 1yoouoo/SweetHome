@@ -3,8 +3,8 @@ import "./PostComment.scss";
 import SmallHeartSvg from "../../Assets/SVG/SmallHeartSvg";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 
-const PostComment = ({ PostComment }: any) => {
-  console.log("PostComment", PostComment);
+const PostComment = ({ postComment }: any) => {
+  console.log("PostComment", postComment);
   return (
     <li className="PostComment">
       <span className="PostComment__wrapper">
@@ -24,7 +24,9 @@ const PostComment = ({ PostComment }: any) => {
               1시간
             </span>
           </div>
-          <div className="PostComment__center--text">{PostComment?.text}</div>
+          <div className="PostComment__center--text">
+            {postComment?.commentContent}
+          </div>
           <div className="PostComment__center--comment">
             <span className="PostComment__center--comment-like">좋아요</span>
             <span className="PostComment__center--comment-recomment">
