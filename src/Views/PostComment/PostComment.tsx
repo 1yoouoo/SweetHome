@@ -2,8 +2,11 @@ import SingleDotSvg from "../../Assets/SVG/SingleDotSvg";
 import "./PostComment.scss";
 import SmallHeartSvg from "../../Assets/SVG/SmallHeartSvg";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
-
-const PostComment = ({ postComment }: any) => {
+import { commentType } from "../PostList/PostList";
+interface PostCommentTypeProps {
+  postComment: commentType;
+}
+const PostComment = ({ postComment }: PostCommentTypeProps) => {
   console.log("PostComment", postComment);
   return (
     <li className="PostComment">

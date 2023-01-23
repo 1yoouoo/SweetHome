@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { datasState } from "../../recoil/snsState";
 import PostItem from "../PostItem/PostItem";
@@ -15,7 +14,7 @@ export interface dataType {
   postContent: string;
   postComments: commentType[];
 }
-interface commentType {
+export interface commentType {
   commentId: number;
   commentLikes: number;
   commentContent: string;

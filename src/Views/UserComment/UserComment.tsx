@@ -1,7 +1,8 @@
 import SingleDotSvg from "../../Assets/SVG/SingleDotSvg";
+import { clickedPostTypeProps } from "../../Pages/PostDetail/PostDetail";
 import "./UserComment.scss";
 
-const UserComment = ({ clickedPost }: any) => {
+const UserComment = ({ clickedPost }: clickedPostTypeProps) => {
   console.log("UserComment", clickedPost);
   return (
     <div className="UserComment">
