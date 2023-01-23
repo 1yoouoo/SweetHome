@@ -9,7 +9,7 @@ export interface dataType {
   likes: number;
   nickName: string;
   commentsNumber: number;
-  postedAt: string;
+  postedAt?: Date | string | undefined;
   userImg: string;
   postContent: string;
   postComments: commentType[];

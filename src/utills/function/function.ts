@@ -1,4 +1,4 @@
-export function timeFormat(value: string) {
+export function timeFormat(value: any) {
   const today = new Date();
   const timeValue = new Date(value);
 
@@ -24,4 +24,9 @@ export function timeFormat(value: string) {
   }
 
   return `${Math.floor(betweenTimeDay / 365)}년 전`;
+}
+
+export function getNickName() {
+  const nickName = "blanc";
+  return nickName;
 }
