@@ -1,7 +1,6 @@
-import { newDataTypeProps } from "../../Pages/CreatePost/CreatePost";
 import "./UploadPhotos.scss";
 
-const UploadPhotos = ({ setNewData, newData }: newDataTypeProps) => {
+const UploadPhotos = () => {
   return (
     <div className="UploadPhotos">
       <span className="UploadPhotos__add">+</span>

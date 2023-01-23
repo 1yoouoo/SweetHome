@@ -2,11 +2,13 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { useRecoilState } from "recoil";
 import { datasState } from "../../recoil/snsState";
 import { getNickName } from "../../utills/function/function";
+import Nav from "../../Views/Nav/Nav";
 import { dataType } from "../../Views/PostList/PostList";
 import TextArea from "../../Views/TextArea/TextArea";
 import UploadPhotos from "../../Views/UploadPhotos/UploadPhotos";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
 import "./CreatePost.scss";
+
 export interface newDataType {
   postImg: string;
   postContent: string;
@@ -16,6 +18,7 @@ export interface newDataTypeProps {
   setNewData: Dispatch<SetStateAction<dataType>>;
   newData: dataType;
 }
+
 const CreatePost = () => {
   const [datas, setDatas] = useRecoilState<dataType[]>(datasState);
   const [newData, setNewData] = useState<dataType>({
@@ -42,9 +45,10 @@ const CreatePost = () => {
         onClickSharing={onClickSharing}
       />
       <form className="CreatePost">
-        <UploadPhotos setNewData={setNewData} newData={newData} />
+        <UploadPhotos />
         <TextArea setNewData={setNewData} newData={newData} />
       </form>
+      <Nav />
     </>
   );
 };

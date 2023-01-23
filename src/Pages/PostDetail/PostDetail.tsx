@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { datasState } from "../../recoil/snsState";
+import AddComment from "../../Views/AddComment/AddComment";
 import PostComments from "../../Views/PostComments/PostComments";
 import PostContent from "../../Views/PostContent/PostContent";
 import { dataType } from "../../Views/PostList/PostList";
@@ -23,6 +24,7 @@ const PostDetail = () => {
       <CurrentHeader current="댓글" />
       <PostContent clickedPost={clickedPost} />
       <PostComments clickedPost={clickedPost} />
+      <AddComment />
     </div>
   );
 };

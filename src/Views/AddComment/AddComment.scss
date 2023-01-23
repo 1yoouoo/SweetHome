@@ -1,0 +1,28 @@
+@import "/src/sass/abstracts/variables";
+
+.AddComment {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 500px;
+  min-height: 50px;
+  justify-content: left;
+  &__user {
+    height: 50px;
+    margin: 10px;
+  }
+  &__input {
+    margin: 6px;
+    input {
+      width: 390px;
+    }
+    &--button {
+      background-color: $background-color-brigter;
+      padding: 5px;
+      color: $input-background;
+      position: absolute;
+      right: 35px;
+      bottom: 26px;
+    }
+  }
+}

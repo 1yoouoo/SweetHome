@@ -4,6 +4,7 @@ import UserPostList from "../../Views/UserPostList/UserPostList";
 import "./UserPage.scss";
 
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
+import Nav from "../../Views/Nav/Nav";
 
 const UserPage = () => {
   const current = "blanc";
@@ -13,6 +14,7 @@ const UserPage = () => {
       <UserDetail />
       <UserNav />
       <UserPostList />
+      <Nav />
     </div>
   );
 };

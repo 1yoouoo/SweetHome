@@ -24,7 +24,6 @@ const Routing: React.FC = (): JSX.Element => (
       <Route path="/createpost" element={<CreatePost />}></Route>
       <Route path="/post/:postId" element={<PostDetail />}></Route>
     </Routes>
-    <Nav />
   </BrowserRouter>
 );
 
