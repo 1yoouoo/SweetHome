@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import { timeFormat } from "../../utills/function/function";
@@ -13,6 +14,8 @@ interface dataTypeProps {
 }
 const PostItem = ({ data }: dataTypeProps) => {
   const [likes, setLikes] = useState(data.likes);
+  const navigate = useNavigate();
+  const { postId } = useParams();
 
   console.log("postItem", data);
   return (
@@ -35,10 +38,12 @@ const PostItem = ({ data }: dataTypeProps) => {
           <div className="PostItem__bottom--likes">{likes} likes</div>
           <div className="PostItem__bottom--content">
             <span>{data.nickName}</span>
-            <span>{data.text}</span>
+            {/* <span>{data.text}</span> */}
           </div>
           <div className="PostItem__bottom--comments">
-            View all {data.commentsNumber} comments
+            <span onClick={() => navigate(`/post/${data.postId}`)}>
+              View all {data.commentsNumber} comments
+            </span>
           </div>
           <div className="PostItem__bottom--posted-at">
             {timeFormat(data.postedAt)}

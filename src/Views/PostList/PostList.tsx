@@ -9,10 +9,17 @@ export interface dataType {
   postImg: string;
   likes: number;
   nickName: string;
-  text: string;
   commentsNumber: number;
   postedAt: string;
   userImg: string;
+  postContent: string;
+  postComments: commentType[];
+}
+interface commentType {
+  commentId: number;
+  commentLikes: number;
+  commentContent: string;
+  commentedAt: string;
 }
 
 const PostList = () => {

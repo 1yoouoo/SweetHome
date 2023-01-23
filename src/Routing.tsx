@@ -22,7 +22,7 @@ const Routing: React.FC = (): JSX.Element => (
       <Route path="/*" element={<Home />}></Route>
       <Route path="/user" element={<UserPage />}></Route>
       <Route path="/createpost" element={<CreatePost />}></Route>
-      <Route path="/post1" element={<PostDetail />}></Route>
+      <Route path="/post/:postId" element={<PostDetail />}></Route>
     </Routes>
     <Nav />
   </BrowserRouter>
