@@ -10,7 +10,10 @@ const StyledUserNickName = styled.span`
     }
   }
 `;
-const UserNickName = ({ nickName }: any) => {
+interface UserNickNamePropTypes {
+  nickName: string;
+}
+const UserNickName = ({ nickName }: UserNickNamePropTypes) => {
   return <StyledUserNickName>{nickName}</StyledUserNickName>;
 };
 export default UserNickName;
