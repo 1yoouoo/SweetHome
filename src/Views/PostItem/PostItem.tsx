@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
+import UserNickName from "../../sass/styled-components/UserNickName";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import { timeFormat } from "../../utills/function/function";
 import InteractionBar from "../InteractionBar/InteractionBar";
@@ -22,7 +23,7 @@ const PostItem = ({ data }: dataTypeProps) => {
         <div className="PostItem__top">
           <span className="PostItem__top--left">
             <UserPhoto size="44px" />
-            <span>{data.nickName}</span>
+            <UserNickName nickName={data.nickName} />
           </span>
           <span className="PostItem__top--right">
             <EllipsisSvg />
@@ -44,7 +45,7 @@ const PostItem = ({ data }: dataTypeProps) => {
             </span>
           </div>
           <div className="PostItem__bottom--posted-at">
-            {timeFormat(data.postedAt)}
+            {timeFormat(data?.postedAt)}
           </div>
         </div>
       </section>
