@@ -14,14 +14,14 @@ interface InteractionBarTypeProps {
   setLikes: Dispatch<SetStateAction<number>>;
 }
 const InteractionBar = ({ likes, setLikes }: InteractionBarTypeProps) => {
-  const [heartToggle, setHeartToggle] = useState(true);
+  const [heartToggle, setHeartToggle] = useState(false);
 
   const onClickHeart = () => {
     setHeartToggle(!heartToggle);
     if (heartToggle == true) {
-      setLikes(likes + 1);
-    } else {
       setLikes(likes - 1);
+    } else {
+      setLikes(likes + 1);
     }
   };
   return (
