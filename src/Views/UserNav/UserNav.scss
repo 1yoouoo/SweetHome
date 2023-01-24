@@ -5,6 +5,13 @@
   align-items: center;
   height: 61px;
   border-bottom: 1px solid $border-color;
+  &__slideborder {
+    transition: all 1s ease-out;
+    display: block;
+    position: absolute;
+    height: 61px;
+    border-top: 1px solid #fff;
+  }
   & > li {
     justify-content: center;
     display: flex;
@@ -21,6 +28,5 @@
   }
   &__posts {
     height: 61px;
-    border-top: 1px solid #fff;
   }
 }

@@ -1,6 +1,7 @@
+import { slideTypeProps } from "../../Pages/UserPage/UserPage";
 import "./UserPostList.scss";
 
-const UserPostList = () => {
+const UserPostList = ({ slide }: slideTypeProps) => {
   const SampleitemList = [
     {
       id: 1,
@@ -48,7 +49,10 @@ const UserPostList = () => {
     },
   ];
   return (
-    <ul className="UserPostList">
+    <ul
+      className="UserPostList"
+      style={{ transform: `translateX(-${slide * 500}px)` }}
+    >
       {SampleitemList &&
         SampleitemList.map((item) => {
           return (

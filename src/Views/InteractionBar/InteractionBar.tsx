@@ -12,8 +12,13 @@ export interface onClickHeartTypeProps {
 interface InteractionBarTypeProps {
   likes: number;
   setLikes: Dispatch<SetStateAction<number>>;
+  postId: number;
 }
-const InteractionBar = ({ likes, setLikes }: InteractionBarTypeProps) => {
+const InteractionBar = ({
+  likes,
+  setLikes,
+  postId,
+}: InteractionBarTypeProps) => {
   const [heartToggle, setHeartToggle] = useState(false);
 
   const onClickHeart = () => {
@@ -29,7 +34,7 @@ const InteractionBar = ({ likes, setLikes }: InteractionBarTypeProps) => {
           ) : (
             <HeartSvg onClickHeart={onClickHeart} />
           )}
-          <CommentsSvg />
+          <CommentsSvg postId={postId} />
         </span>
         <span className="InteractionBar__right">
           <BookMarkSvg />

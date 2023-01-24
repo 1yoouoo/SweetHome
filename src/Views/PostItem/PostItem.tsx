@@ -33,7 +33,11 @@ const PostItem = ({ postItem }: postItemTypeProps) => {
           <img src={sample} alt="sample" />
         </div>
         <div className="PostItem__bottom">
-          <InteractionBar likes={likes} setLikes={setLikes} />
+          <InteractionBar
+            likes={likes}
+            setLikes={setLikes}
+            postId={postItem.postId}
+          />
           <div className="PostItem__bottom--likes">{likes} likes</div>
           <div className="PostItem__bottom--content">
             <span>{postItem.nickName}</span>

@@ -1,4 +1,6 @@
 .UserPostList {
+  transition: all 1s ease-out;
+  width: 500px;
   display: flex;
   flex-wrap: wrap;
   height: 100%;

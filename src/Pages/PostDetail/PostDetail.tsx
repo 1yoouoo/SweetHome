@@ -12,10 +12,11 @@ export interface clickedPostTypeProps {
   clickedPost?: PostItemType;
 }
 const PostDetail = () => {
-  const [datas, setDatas] = useRecoilState<PostItemType[]>(postItemState);
+  const [postItems, setPostItems] =
+    useRecoilState<PostItemType[]>(postItemState);
   const { postId } = useParams();
   // FIXME
-  const clickedPost = datas?.find(function (data: any) {
+  const clickedPost = postItems?.find(function (data: any) {
     return data.postId == postId;
   });
   console.log(clickedPost);

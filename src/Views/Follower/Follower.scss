@@ -1,0 +1,20 @@
+.Follower {
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &--nickname {
+      margin-left: 5px;
+    }
+  }
+  &__action {
+    display: flex;
+    button {
+      margin: 7px 0;
+    }
+  }
+}
