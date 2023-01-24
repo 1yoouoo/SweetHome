@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { useRecoilState } from "recoil";
-import { datasState } from "../../recoil/snsState";
+import { postItemState } from "../../recoil/snsState";
 import { getNickName } from "../../utills/function/function";
 import Nav from "../../Views/Nav/Nav";
-import { dataType } from "../../Views/PostList/PostList";
+import { PostItemType } from "../../Views/PostList/PostList";
 import TextArea from "../../Views/TextArea/TextArea";
 import UploadPhotos from "../../Views/UploadPhotos/UploadPhotos";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
@@ -15,13 +15,13 @@ export interface newDataType {
   nickName: string;
 }
 export interface newDataTypeProps {
-  setNewData: Dispatch<SetStateAction<dataType>>;
-  newData: dataType;
+  setNewData: Dispatch<SetStateAction<PostItemType>>;
+  newData: PostItemType;
 }
 
 const CreatePost = () => {
-  const [datas, setDatas] = useRecoilState<dataType[]>(datasState);
-  const [newData, setNewData] = useState<dataType>({
+  const [datas, setDatas] = useRecoilState<PostItemType[]>(postItemState);
+  const [newData, setNewData] = useState<PostItemType>({
     postId: 3,
     postImg: "/Users/blanc/Documents/Project/sns/src/Assets/blanc.jpeg", //
     likes: 0,
@@ -33,7 +33,7 @@ const CreatePost = () => {
     postComments: [],
   });
   const onClickSharing = () => {
-    setDatas((datas): dataType[] => [...datas, newData]);
+    setDatas((datas): PostItemType[] => [...datas, newData]);
     console.log("newData", newData);
     console.log("datas", datas);
   };

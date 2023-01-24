@@ -1,8 +1,8 @@
-import { dataType } from "../Views/PostList/PostList";
+import { PostItemType } from "../Views/PostList/PostList";
 import { atom } from "recoil";
 
-export const datasState = atom<dataType[]>({
-  key: "datas",
+export const postItemState = atom<PostItemType[]>({
+  key: "postItems",
   default: [
     {
       postId: 1,

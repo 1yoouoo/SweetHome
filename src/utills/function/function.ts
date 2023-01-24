@@ -1,6 +1,6 @@
-export function timeFormat(value: any) {
+export function timeFormat(millisecond: any) {
   const today = new Date();
-  const timeValue = new Date(value);
+  const timeValue = new Date(millisecond);
 
   const betweenTime = Math.floor(
     (today.getTime() - timeValue.getTime()) / 1000 / 60

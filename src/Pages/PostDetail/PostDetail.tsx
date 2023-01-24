@@ -1,18 +1,18 @@
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { datasState } from "../../recoil/snsState";
+import { postItemState } from "../../recoil/snsState";
 import AddComment from "../../Views/AddComment/AddComment";
 import PostComments from "../../Views/PostComments/PostComments";
 import PostContent from "../../Views/PostContent/PostContent";
-import { dataType } from "../../Views/PostList/PostList";
+import { PostItemType } from "../../Views/PostList/PostList";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
 import "./PostDetail.scss";
 
 export interface clickedPostTypeProps {
-  clickedPost?: dataType;
+  clickedPost?: PostItemType;
 }
 const PostDetail = () => {
-  const [datas, setDatas] = useRecoilState<dataType[]>(datasState);
+  const [datas, setDatas] = useRecoilState<PostItemType[]>(postItemState);
   const { postId } = useParams();
   // FIXME
   const clickedPost = datas?.find(function (data: any) {

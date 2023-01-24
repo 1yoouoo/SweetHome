@@ -18,11 +18,7 @@ const InteractionBar = ({ likes, setLikes }: InteractionBarTypeProps) => {
 
   const onClickHeart = () => {
     setHeartToggle(!heartToggle);
-    if (heartToggle == true) {
-      setLikes(likes - 1);
-    } else {
-      setLikes(likes + 1);
-    }
+    setLikes(heartToggle ? likes + -1 : likes + 1);
   };
   return (
     <>

@@ -1,9 +1,9 @@
 import { useRecoilState } from "recoil";
-import { datasState } from "../../recoil/snsState";
+import { postItemState } from "../../recoil/snsState";
 import PostItem from "../PostItem/PostItem";
 import "./PostList.scss";
 
-export interface dataType {
+export interface PostItemType {
   postId: number;
   postImg: string;
   likes: number;
@@ -22,14 +22,15 @@ export interface commentType {
 }
 
 const PostList = () => {
-  const [datas, setDatas] = useRecoilState<dataType[]>(datasState);
+  const [postItems, setPostItems] =
+    useRecoilState<PostItemType[]>(postItemState);
 
-  console.log("postList", datas);
+  console.log("postList", postItems);
   return (
     <main className="PostList">
-      {datas &&
-        datas.map((data: dataType) => {
-          return <PostItem data={data} key={data.postId} />;
+      {postItems &&
+        postItems.map((postItem: PostItemType) => {
+          return <PostItem postItem={postItem} key={postItem.postId} />;
         })}
     </main>
   );
