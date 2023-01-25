@@ -3,6 +3,7 @@ import Logo from "../Logo/Logo";
 import "./SignUpForm.scss";
 import InputBox from "../InputBox/InputBox";
 import { useState } from "react";
+import API from "../../API/API";
 // type
 interface inputValueType {
   email: string;
@@ -24,9 +25,19 @@ const SignUpForm = () => {
       [e.currentTarget.name]: e.currentTarget.value,
     });
   };
-  const onSubmit = (e: React.SyntheticEvent) => {
+  const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log(inputValue);
+    const data = await API.signUp({
+      email: inputValue.email,
+      nickName: inputValue.nickName,
+      name: inputValue.name,
+      password: inputValue.password,
+    });
+    if (data?.validation === null) {
+      alert(data.error.message);
+    } else {
+      alert("회원가입 성공 !");
+    }
   };
   return (
     <>
