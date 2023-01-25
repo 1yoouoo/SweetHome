@@ -30,3 +30,8 @@ export function getNickName() {
   const nickName = "blanc";
   return nickName;
 }
+
+export const findLastId = (datas: any) => {
+  const lastId = datas.slice(-1)[0].postId;
+  return lastId;
+};

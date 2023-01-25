@@ -15,10 +15,11 @@ export interface PostItemType {
   postComments: commentType[];
 }
 export interface commentType {
+  nickName: string;
   commentId: number;
   commentLikes: number;
   commentContent: string;
-  commentedAt: string;
+  commentedAt: string | Date;
 }
 
 const PostList = () => {

@@ -7,7 +7,6 @@ interface PostCommentTypeProps {
   postComment: commentType;
 }
 const PostComment = ({ postComment }: PostCommentTypeProps) => {
-  console.log("PostComment", postComment);
   return (
     <li className="PostComment">
       <span className="PostComment__wrapper">

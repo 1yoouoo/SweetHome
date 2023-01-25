@@ -4,7 +4,6 @@ import { commentType } from "../PostList/PostList";
 import "./PostComments.scss";
 
 const PostComments = ({ clickedPost }: clickedPostTypeProps) => {
-  console.log("comments", clickedPost);
   return (
     <ul className="PostComments">
       {clickedPost?.postComments.map((postComment: commentType) => {

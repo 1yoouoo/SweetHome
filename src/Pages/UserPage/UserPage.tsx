@@ -2,7 +2,6 @@ import UserDetail from "../../Views/UserDetail/UserDetail";
 import UserNav from "../../Views/UserNav/UserNav";
 import UserPostList from "../../Views/UserPostList/UserPostList";
 import "./UserPage.scss";
-
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
 import Nav from "../../Views/Nav/Nav";
 import FollowersPage from "../../Views/FollowersPage/FollowersPage";

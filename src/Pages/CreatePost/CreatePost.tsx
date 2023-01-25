@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { useRecoilState } from "recoil";
 import { postItemState } from "../../recoil/snsState";
-import { getNickName } from "../../utills/function/function";
+import { findLastId, getNickName } from "../../utills/function/function";
 import Nav from "../../Views/Nav/Nav";
 import { PostItemType } from "../../Views/PostList/PostList";
 import TextArea from "../../Views/TextArea/TextArea";
@@ -32,6 +32,7 @@ const CreatePost = () => {
     commentsNumber: 0,
     postComments: [],
   });
+
   const onClickSharing = () => {
     setDatas((datas): PostItemType[] => [...datas, newData]);
     console.log("newData", newData);

@@ -15,12 +15,14 @@ export const postItemState = atom<PostItemType[]>({
       commentsNumber: 4,
       postComments: [
         {
+          nickName: "blanc",
           commentId: 1,
           commentLikes: 5,
           commentContent: "댓글 1 입니다.",
           commentedAt: "Sat Jan 21 2023 17:29:28",
         },
         {
+          nickName: "blanc",
           commentId: 2,
           commentLikes: 3,
           commentContent: "댓글 2 입니다.",
@@ -39,12 +41,14 @@ export const postItemState = atom<PostItemType[]>({
       postContent: "게시물 내용 테스트 2 입니다",
       postComments: [
         {
+          nickName: "blanc",
           commentId: 1,
           commentLikes: 5,
           commentContent: "댓글 1 입니다.",
           commentedAt: "Sat Jan 21 2023 17:29:28",
         },
         {
+          nickName: "blanc",
           commentId: 2,
           commentLikes: 3,
           commentContent: "댓글 2 입니다.",

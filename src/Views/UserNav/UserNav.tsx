@@ -2,6 +2,7 @@ import { slideTypeProps } from "../../Pages/UserPage/UserPage";
 import "./UserNav.scss";
 
 const UserNav = ({ slide, setSlide }: slideTypeProps) => {
+  // onClick. 트리거로 비동기 처리해야함
   const onClickPosts = () => {
     setSlide?.(0);
   };
