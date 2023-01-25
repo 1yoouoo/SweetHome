@@ -3,12 +3,15 @@ import Logo from "../Logo/Logo";
 import "./LoginForm.scss";
 import InputBox from "../InputBox/InputBox";
 import { useState } from "react";
+import API from "../../API/API";
+import { useNavigate } from "react-router-dom";
 // type
 interface inputValueType {
   email: string;
   password: string;
 }
 const LoginForm = () => {
+  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState<inputValueType>({
     email: "",
     password: "",
@@ -19,9 +22,21 @@ const LoginForm = () => {
       [e.currentTarget.name]: e.currentTarget.value,
     });
   };
-  const onSubmit = (e: React.SyntheticEvent) => {
+  const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log(inputValue);
+    const data = await API.logIn({
+      email: inputValue.email,
+      password: inputValue.password,
+    });
+    if (data?.validation === null) {
+      // 성공시
+      alert(data.error.message);
+      setInputValue({ email: "", password: "" });
+    } else {
+      // 실패시
+      alert(data.validation.message);
+      navigate("/home");
+    }
   };
   return (
     <>
@@ -37,6 +52,7 @@ const LoginForm = () => {
           <InputBox
             placeholder="Password"
             name="password"
+            type="password"
             value={inputValue.password}
             onChangeValue={onChangeValue}
           />

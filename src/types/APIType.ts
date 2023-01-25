@@ -4,6 +4,10 @@ export type signUpType = {
   nickName: string;
   password: string;
 };
+export type logInType = {
+  email: string;
+  password: string;
+};
 
 // const a = 1
 // { a } => "{ a: 1 }"
