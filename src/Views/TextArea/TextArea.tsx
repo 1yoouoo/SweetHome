@@ -1,12 +1,9 @@
-import { newDataTypeProps } from "../../Pages/CreatePost/CreatePost";
+import { CreatePostTypeProps } from "../../Pages/CreatePost/CreatePost";
 import "./TextArea.scss";
 
-const TextArea = ({ setNewData, newData }: newDataTypeProps) => {
+const TextArea = ({ setInputValue, inputValue }: CreatePostTypeProps) => {
   const onChangeValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setNewData({
-      ...newData,
-      [e.currentTarget.name]: e.currentTarget.value,
-    });
+    setInputValue(e.currentTarget.value);
   };
   return (
     <>
@@ -14,7 +11,7 @@ const TextArea = ({ setNewData, newData }: newDataTypeProps) => {
         <textarea
           className="TextArea__input"
           placeholder="문구 입력..."
-          name="postContent"
+          value={inputValue}
           onChange={(e) => onChangeValue(e)}
         />
       </div>

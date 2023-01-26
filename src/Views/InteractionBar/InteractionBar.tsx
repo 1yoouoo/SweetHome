@@ -20,7 +20,7 @@ const InteractionBar = ({
   postId,
 }: InteractionBarTypeProps) => {
   const [heartToggle, setHeartToggle] = useState(false);
-
+  // 게시글 리스트 조회 후 좋아요 여부에 따라 로직 달라질 거
   const onClickHeart = () => {
     setHeartToggle(!heartToggle);
     setLikes(heartToggle ? likes + -1 : likes + 1);

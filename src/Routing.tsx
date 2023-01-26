@@ -9,7 +9,6 @@ import PostDetail from "./Pages/PostDetail/PostDetail";
 import SignUpPage from "./Pages/SignUpPage/SignUpPage";
 
 // const { user } = useContext(AuthContext);
-const user = true;
 const Routing: React.FC = (): JSX.Element => (
   <BrowserRouter>
     <Routes>

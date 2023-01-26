@@ -4,6 +4,7 @@ import "./SignUpForm.scss";
 import InputBox from "../InputBox/InputBox";
 import { useState } from "react";
 import API from "../../API/API";
+import { useNavigate } from "react-router-dom";
 // type
 interface inputValueType {
   email: string;
@@ -13,6 +14,7 @@ interface inputValueType {
 }
 
 const SignUpForm = () => {
+  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState<inputValueType>({
     email: "",
     name: "",
@@ -27,7 +29,7 @@ const SignUpForm = () => {
   };
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const data = await API.signUp({
+    const data = await API.test({
       email: inputValue.email,
       nickName: inputValue.nickName,
       name: inputValue.name,
@@ -37,6 +39,7 @@ const SignUpForm = () => {
       alert(data.error.message);
     } else {
       alert("회원가입 성공 !");
+      navigate("/login");
     }
   };
   return (
