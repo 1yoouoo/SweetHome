@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { useRecoilState } from "recoil";
+import API from "../../API/API";
 import { postItemState } from "../../recoil/snsState";
 import { findLastId, getNickName } from "../../utills/function/function";
 import Nav from "../../Views/Nav/Nav";
@@ -33,10 +34,22 @@ const CreatePost = () => {
     postComments: [],
   });
 
-  const onClickSharing = () => {
-    setDatas((datas): PostItemType[] => [...datas, newData]);
-    console.log("newData", newData);
-    console.log("datas", datas);
+  const onClickSharing = async () => {
+    // setDatas((datas): PostItemType[] => [...datas, newData]);
+    // console.log("newData", newData);
+    // console.log("datas", datas);
+    const data = await API.createPost({
+      content: "asdasdas",
+    });
+    if (data?.data.validation === null) {
+      // 실패시
+      alert(data?.data.error.message);
+    } else {
+      // 성공시
+      const token = data?.headers.token;
+      localStorage.setItem("token", token);
+      alert(data?.data.validation.message);
+    }
   };
   return (
     <>

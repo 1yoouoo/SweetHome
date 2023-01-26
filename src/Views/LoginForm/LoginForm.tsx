@@ -28,13 +28,15 @@ const LoginForm = () => {
       email: inputValue.email,
       password: inputValue.password,
     });
-    if (data?.validation === null) {
-      // 성공시
-      alert(data.error.message);
+    if (data?.data.validation === null) {
+      // 실패시
+      alert(data?.data.error.message);
       setInputValue({ email: "", password: "" });
     } else {
-      // 실패시
-      alert(data.validation.message);
+      // 성공시
+      const token = data?.headers.token;
+      localStorage.setItem("token", token);
+      alert(data?.data.validation.message);
       navigate("/home");
     }
   };
