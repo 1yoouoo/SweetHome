@@ -24,19 +24,20 @@ const LoginForm = () => {
   };
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const data = await API.logIn({
+    const response = await API.logIn({
       email: inputValue.email,
       password: inputValue.password,
     });
-    if (data?.data.validation === null) {
+    if (response?.data.validation === null) {
       // 실패시
-      alert(data?.data.error.message);
+      alert(response.data.data.message);
       setInputValue({ email: "", password: "" });
     } else {
       // 성공시
-      const token = data?.headers.token;
+      const token = response?.headers.token;
+      console.log(token);
       localStorage.setItem("token", token);
-      alert(data?.data.validation.message);
+      alert(response?.data.validation.message);
       navigate("/home");
     }
   };

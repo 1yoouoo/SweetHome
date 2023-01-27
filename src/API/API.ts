@@ -1,65 +1,44 @@
 import { logInType } from "./../types/APIType";
 import axios from "axios";
 import { signUpType } from "../types/APIType";
-import { defaultInstance } from "./customAPI";
+import { authInstance, defaultInstance } from "./customAPI";
 const API_base = "http://192.168.35.126:80";
 const API = {
-  test: async ({ email, name, nickName, password }: signUpType) => {
-    const data = await defaultInstance.post(`signup`, {
+  signUp: async ({ email, name, nickName, password }: signUpType) => {
+    const response = await defaultInstance.post(`signup`, {
       email: email,
       nickName: nickName,
       name: name,
       password: password,
     });
-    if (data.status === 200) {
-      return data.data;
-    } else {
-      console.log("error", data?.status);
-    }
+    return response;
   },
 
-  signUp: async ({ email, name, nickName, password }: signUpType) => {
-    const response = await axios.post(`${API_base}/signup`, {
+  logIn: async ({ email, password }: logInType) => {
+    const response = await defaultInstance.post(`login`, {
       email: email,
-      nickName: nickName,
-      name: name,
       password: password,
     });
-    console.log(response.data);
+    console.log(response);
     if (response.status === 200) {
-      return response.data;
+      return response;
     } else {
       console.log("error", response?.status);
     }
   },
-  logIn: async ({ email, password }: logInType) => {
-    const data = await axios.post(`${API_base}/login`, {
-      email: email,
-      password: password,
-    });
-    console.log(data);
-    if (data.status === 200) {
-      return data;
-    } else {
-      console.log("error", data?.status);
-    }
-  },
   logOut: async (token: any) => {
-    const data = await axios.post(
-      `${API_base}/logout`,
-      { token: token },
-      {
-        headers: { token: token },
-      }
-    );
-    if (data.status === 200) {
-      return data;
+    const response = await authInstance.post(`logout`, {
+      token: token,
+    });
+    if (response.status === 200) {
+      console.log(response);
+      return response;
     } else {
-      console.log("error", data?.status);
+      console.log("error", response?.status);
     }
   },
   createPost: async ({ content, token }: any) => {
-    const data = await axios.post(
+    const response = await axios.post(
       `${API_base}/post`,
       {
         content: content,
@@ -68,72 +47,72 @@ const API = {
         headers: { token: token },
       }
     );
-    if (data.status === 200) {
-      return data;
+    if (response.status === 200) {
+      return response;
     } else {
-      console.log("error", data?.status);
+      console.log("error", response?.status);
     }
   },
   editPost: async ({ content, postId }: any) => {
-    const data = await axios.put(`${API_base}/post/${postId}`, {
+    const response = await axios.put(`${API_base}/post/${postId}`, {
       content: content,
     });
-    if (data.status === 200) {
-      return data;
+    if (response.status === 200) {
+      return response;
     } else {
-      console.log("error", data?.status);
+      console.log("error", response?.status);
     }
   },
   deletePost: async ({ postId }: any) => {
-    const data = await axios.delete(`${API_base}/comment/${postId}`, {
+    const response = await axios.delete(`${API_base}/comment/${postId}`, {
       // postId: postId,
     });
-    if (data.status === 200) {
-      return data;
+    if (response.status === 200) {
+      return response;
     } else {
-      console.log("error", data?.status);
+      console.log("error", response?.status);
     }
   },
   clickedLike: async ({ postId }: any) => {
-    const data = await axios.post(`${API_base}/post/${postId}/toggle`, {
+    const response = await axios.post(`${API_base}/post/${postId}/toggle`, {
       postId: postId,
     });
-    if (data.status === 200) {
-      return data;
+    if (response.status === 200) {
+      return response;
     } else {
-      console.log("error", data?.status);
+      console.log("error", response?.status);
     }
   },
   createComment: async ({ content, postId }: any) => {
-    const data = await axios.post(`${API_base}/post/${postId}/comment`, {
+    const response = await axios.post(`${API_base}/post/${postId}/comment`, {
       postId: postId,
       content: content,
     });
-    if (data.status === 200) {
-      return data;
+    if (response.status === 200) {
+      return response;
     } else {
-      console.log("error", data?.status);
+      console.log("error", response?.status);
     }
   },
   editComment: async ({ commentId, content }: any) => {
-    const data = await axios.put(`${API_base}/comment/${commentId}`, {
+    const response = await axios.put(`${API_base}/comment/${commentId}`, {
       commentId: commentId,
       content: content,
     });
-    if (data.status === 200) {
-      return data;
+    if (response.status === 200) {
+      return response;
     } else {
-      console.log("error", data?.status);
+      console.log("error", response?.status);
     }
   },
   deleteComment: async ({ commentId }: any) => {
-    const data = await axios.delete(`${API_base}/comment/${commentId}`, {
+    const response = await axios.delete(`${API_base}/comment/${commentId}`, {
       // commentId: commentId,
     });
-    if (data.status === 200) {
-      return data;
+    if (response.status === 200) {
+      return response;
     } else {
-      console.log("error", data?.status);
+      console.log("error", response?.status);
     }
   },
 };

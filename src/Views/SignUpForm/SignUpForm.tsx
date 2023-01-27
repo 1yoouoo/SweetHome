@@ -29,18 +29,19 @@ const SignUpForm = () => {
   };
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const data = await API.test({
+    const response = await API.signUp({
       email: inputValue.email,
       nickName: inputValue.nickName,
       name: inputValue.name,
       password: inputValue.password,
     });
-    if (data?.validation === null) {
-      alert(data.error.message);
-    } else {
-      alert("회원가입 성공 !");
-      navigate("/login");
-    }
+    console.log(response);
+    // if (response?. === null) {
+    //   alert(response.error.message);
+    // } else {
+    //   alert(response?.data.message);
+    //   navigate("/login");
+    // }
   };
   return (
     <>
