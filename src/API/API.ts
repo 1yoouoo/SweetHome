@@ -58,9 +58,13 @@ const API = {
     const response = await authInstance.delete(`${postId}/unlike`);
     return response;
   },
+  getComments: async ({ postId }: any) => {
+    const response = await authInstance.get(`post/${postId}/comments`);
+    return response;
+  },
 
   createComment: async ({ content, postId }: any) => {
-    const response = await authInstance.post(`post/${postId}/comment`, {
+    const response = await authInstance.post(`${postId}/comment`, {
       postId: postId,
       content: content,
     });

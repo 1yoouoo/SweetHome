@@ -1,35 +1,28 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import API from "../../API/API";
 import { clickedPostTypeProps } from "../../Pages/PostDetail/PostDetail";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import { getNickName } from "../../utills/function/function";
 import InputBox from "../InputBox/InputBox";
 import "./AddComment.scss";
-const AddComment = ({ post, setPost }: clickedPostTypeProps) => {
-  const [inputValue, setInputValue] = useState({
-    nickName: getNickName(),
-    commentId: 3,
-    commentLikes: 3,
-    commentContent: "",
-    commentedAt: "Sat Jan 21 2023 17:29:28",
-  });
+const AddComment = () => {
+  const { postId } = useParams();
+  const [inputValue, setInputValue] = useState("");
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue({
-      ...inputValue,
-      [e.currentTarget.name]: e.currentTarget.value,
+    setInputValue(e.currentTarget.value);
+  };
+  const createComment = async () => {
+    const response = await API.createComment({
+      content: inputValue,
+      postId: postId,
     });
+    return response;
   };
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     // Api 호출
-    console.log("post", post);
-    // setPost({
-    //   ...post,
-    //   postComments: [...post?.postComments, inputValue],
-    // });
-    // Fix Unsafe usage of optional chaining. If it short-circuits with 'undefined' the evaluation will throw TypeError.
-
-    // input 비우기
-    // setInputValue({ ...inputValue, commentContent: "" });
+    createComment();
   };
   return (
     <form className="AddComment" onSubmit={onSubmit}>

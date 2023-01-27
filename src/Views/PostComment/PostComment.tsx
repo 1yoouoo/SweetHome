@@ -4,9 +4,9 @@ import SmallHeartSvg from "../../Assets/SVG/SmallHeartSvg";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import { commentType } from "../PostList/PostList";
 interface PostCommentTypeProps {
-  postComment: commentType;
+  comment: commentType;
 }
-const PostComment = ({ postComment }: PostCommentTypeProps) => {
+const PostComment = ({ comment }: PostCommentTypeProps) => {
   return (
     <li className="PostComment">
       <span className="PostComment__wrapper">
@@ -27,7 +27,7 @@ const PostComment = ({ postComment }: PostCommentTypeProps) => {
             </span>
           </div>
           <div className="PostComment__center--text">
-            {postComment?.commentContent}
+            {comment?.commentContent}
           </div>
           <div className="PostComment__center--comment">
             <span className="PostComment__center--comment-like">좋아요</span>

@@ -16,15 +16,7 @@ export interface clickedPostTypeProps {
   setPost?: any;
 }
 const PostDetail = () => {
-  // const [postItems, setPostItems] =
-  //   useRecoilState<PostItemType[]>(postItemState);
   const { postId } = useParams();
-  // // FIXME
-  // const [clickedPost, setClickedPost] = useState(
-  //   postItems?.find(function (data: any) {
-  //     return data.postId == postId;
-  //   })
-  // );
   const [post, setPost] = useState<AxiosResponse | null>(null);
   useEffect(() => {
     const getUserApi = async () => {
@@ -37,8 +29,8 @@ const PostDetail = () => {
     <div className="PostDetail">
       <CurrentHeader current="댓글" />
       <PostContent post={post} />
-      {/* <PostComments post={post} /> */}
-      <AddComment post={post} setPost={setPost} />
+      <PostComments />
+      <AddComment />
     </div>
   );
 };
