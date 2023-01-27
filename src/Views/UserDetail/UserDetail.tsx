@@ -8,12 +8,15 @@ const UserDetail = () => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const logOut = async () => {
-    const data = await API.logOut(token);
-    if (data?.data.validation !== null) {
-      alert(data?.data.validation.message);
+    const response = await API.logOut(token);
+    if (response?.data.error === null) {
+      alert(response?.data.data.message);
       navigate("/login");
       localStorage.removeItem("token");
+    } else {
+      alert(response?.data.error.message);
     }
+    // console.log(response);
   };
   return (
     <div className="UserDetail">

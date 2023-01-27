@@ -12,22 +12,18 @@ export interface CreatePostTypeProps {
 }
 
 const CreatePost = () => {
-  const token = localStorage.getItem("token");
   const [inputValue, setInputValue] = useState("");
 
   const onClickSharing = async () => {
-    const data = await API.createPost({
+    const response = await API.createPost({
       content: inputValue,
-      token: token,
     });
-    if (data?.data.validation === null) {
-      // 실패시
-      alert(data?.data.error.message);
+    // 성공
+    if (response?.data.error === null) {
+      alert(response.data.data.message);
+      // 실패
     } else {
-      // 성공시
-      const token = data?.headers.token;
-      localStorage.setItem("token", token);
-      alert(data?.data.validation.message);
+      alert(response.data.error.message);
     }
   };
   return (

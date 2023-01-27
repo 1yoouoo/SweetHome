@@ -19,39 +19,20 @@ const API = {
       email: email,
       password: password,
     });
-    console.log(response);
-    if (response.status === 200) {
-      return response;
-    } else {
-      console.log("error", response?.status);
-    }
+    return response;
   },
+
   logOut: async (token: any) => {
     const response = await authInstance.post(`logout`, {
       token: token,
     });
-    if (response.status === 200) {
-      console.log(response);
-      return response;
-    } else {
-      console.log("error", response?.status);
-    }
+    return response;
   },
-  createPost: async ({ content, token }: any) => {
-    const response = await axios.post(
-      `${API_base}/post`,
-      {
-        content: content,
-      },
-      {
-        headers: { token: token },
-      }
-    );
-    if (response.status === 200) {
-      return response;
-    } else {
-      console.log("error", response?.status);
-    }
+  createPost: async ({ content }: any) => {
+    const response = await authInstance.post(`post`, {
+      content: content,
+    });
+    return response;
   },
   editPost: async ({ content, postId }: any) => {
     const response = await axios.put(`${API_base}/post/${postId}`, {

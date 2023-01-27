@@ -35,13 +35,14 @@ const SignUpForm = () => {
       name: inputValue.name,
       password: inputValue.password,
     });
-    console.log(response);
-    // if (response?. === null) {
-    //   alert(response.error.message);
-    // } else {
-    //   alert(response?.data.message);
-    //   navigate("/login");
-    // }
+    // 성공
+    if (response?.data.error === null) {
+      alert(response.data.data.message);
+      navigate("/login");
+      // 실패
+    } else {
+      alert(response.data.error.message);
+    }
   };
   return (
     <>
