@@ -3,10 +3,10 @@ import PostComment from "../PostComment/PostComment";
 import { commentType } from "../PostList/PostList";
 import "./PostComments.scss";
 
-const PostComments = ({ clickedPost }: clickedPostTypeProps) => {
+const PostComments = ({ post }: clickedPostTypeProps) => {
   return (
     <ul className="PostComments">
-      {clickedPost?.postComments.map((postComment: commentType) => {
+      {post?.postComments.map((postComment: commentType) => {
         return (
           <PostComment postComment={postComment} key={postComment.commentId} />
         );

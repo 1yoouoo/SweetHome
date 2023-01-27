@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
+import API from "../../API/API";
 import BookMarkSvg from "../../Assets/SVG/BookMarkSvg";
 import CommentsSvg from "../../Assets/SVG/Comments";
 import HeartActivedSvg from "../../Assets/SVG/HeartActivedSvg";
@@ -19,11 +20,32 @@ const InteractionBar = ({
   setLikes,
   postId,
 }: InteractionBarTypeProps) => {
-  const [heartToggle, setHeartToggle] = useState(false);
+  const [heartToggle, setHeartToggle] = useState(true);
   // 게시글 리스트 조회 후 좋아요 여부에 따라 로직 달라질 거
-  const onClickHeart = () => {
-    setHeartToggle(!heartToggle);
-    setLikes(heartToggle ? likes + -1 : likes + 1);
+  const like = async () => {
+    const response = await API.clickedLike({
+      postId: postId,
+    });
+    if (response?.data.error === null) {
+      setHeartToggle(!heartToggle);
+      setLikes(heartToggle ? likes - 1 : likes + 1);
+    } else {
+      alert(response?.data.error.message);
+    }
+  };
+  const unLike = async () => {
+    const response = await API.clickedUnLike({
+      postId: postId,
+    });
+    if (response?.data.error === null) {
+      setHeartToggle(!heartToggle);
+      setLikes(heartToggle ? likes - 1 : likes + 1);
+    } else {
+      alert(response?.data.error.message);
+    }
+  };
+  const onClickHeart = async () => {
+    heartToggle ? like() : unLike();
   };
   return (
     <>

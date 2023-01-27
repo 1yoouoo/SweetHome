@@ -28,73 +28,62 @@ const API = {
     });
     return response;
   },
+
   createPost: async ({ content }: any) => {
     const response = await authInstance.post(`post`, {
       content: content,
     });
     return response;
   },
+
   editPost: async ({ content, postId }: any) => {
-    const response = await axios.put(`${API_base}/post/${postId}`, {
+    const response = await authInstance.put(`post/${postId}`, {
       content: content,
     });
-    if (response.status === 200) {
-      return response;
-    } else {
-      console.log("error", response?.status);
-    }
+    return response;
   },
+
   deletePost: async ({ postId }: any) => {
-    const response = await axios.delete(`${API_base}/comment/${postId}`, {
-      // postId: postId,
-    });
-    if (response.status === 200) {
-      return response;
-    } else {
-      console.log("error", response?.status);
-    }
+    const response = await authInstance.delete(`comment/${postId}`);
+    return response;
   },
+
   clickedLike: async ({ postId }: any) => {
-    const response = await axios.post(`${API_base}/post/${postId}/toggle`, {
+    const response = await authInstance.post(`${postId}/like`, {
       postId: postId,
     });
-    if (response.status === 200) {
-      return response;
-    } else {
-      console.log("error", response?.status);
-    }
+    return response;
   },
+  clickedUnLike: async ({ postId }: any) => {
+    const response = await authInstance.delete(`${postId}/unlike`);
+    return response;
+  },
+
   createComment: async ({ content, postId }: any) => {
-    const response = await axios.post(`${API_base}/post/${postId}/comment`, {
+    const response = await authInstance.post(`post/${postId}/comment`, {
       postId: postId,
       content: content,
     });
-    if (response.status === 200) {
-      return response;
-    } else {
-      console.log("error", response?.status);
-    }
+    return response;
   },
+
   editComment: async ({ commentId, content }: any) => {
-    const response = await axios.put(`${API_base}/comment/${commentId}`, {
+    const response = await authInstance.post(`comment/${commentId}`, {
       commentId: commentId,
       content: content,
     });
-    if (response.status === 200) {
-      return response;
-    } else {
-      console.log("error", response?.status);
-    }
+    return response;
   },
+
   deleteComment: async ({ commentId }: any) => {
-    const response = await axios.delete(`${API_base}/comment/${commentId}`, {
-      // commentId: commentId,
-    });
-    if (response.status === 200) {
-      return response;
-    } else {
-      console.log("error", response?.status);
-    }
+    const response = await authInstance.delete(`comment/${commentId}`);
+    return response;
+  },
+
+  getPost: async ({ postId }: any) => {
+    const response = await authInstance.get(`post/${postId}`);
+    return response;
   },
 };
+
 export default API;

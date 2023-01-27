@@ -4,7 +4,7 @@ import UserPhoto from "../../sass/styled-components/UserPhoto";
 import { getNickName } from "../../utills/function/function";
 import InputBox from "../InputBox/InputBox";
 import "./AddComment.scss";
-const AddComment = ({ clickedPost, setClickedPost }: clickedPostTypeProps) => {
+const AddComment = ({ post, setPost }: clickedPostTypeProps) => {
   const [inputValue, setInputValue] = useState({
     nickName: getNickName(),
     commentId: 3,
@@ -21,10 +21,10 @@ const AddComment = ({ clickedPost, setClickedPost }: clickedPostTypeProps) => {
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     // Api 호출
-    console.log("clickedPost", clickedPost);
-    // setClickedPost({
-    //   ...clickedPost,
-    //   postComments: [...clickedPost?.postComments, inputValue],
+    console.log("post", post);
+    // setPost({
+    //   ...post,
+    //   postComments: [...post?.postComments, inputValue],
     // });
     // Fix Unsafe usage of optional chaining. If it short-circuits with 'undefined' the evaluation will throw TypeError.
 
