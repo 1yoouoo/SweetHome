@@ -1,5 +1,6 @@
 import { useRecoilState } from "recoil";
 import { postItemState } from "../../recoil/snsState";
+import { CommentType } from "../AddComment/AddComment";
 import PostItem from "../PostItem/PostItem";
 import "./PostList.scss";
 
@@ -12,14 +13,7 @@ export interface PostItemType {
   postedAt?: Date | string | undefined;
   userImg: string;
   postContent: string;
-  postComments: commentType[];
-}
-export interface commentType {
-  nickName: string;
-  commentId: number;
-  commentLikes: number;
-  commentContent: string;
-  updatedAt: string | Date;
+  postComments: CommentType[];
 }
 
 const PostList = () => {

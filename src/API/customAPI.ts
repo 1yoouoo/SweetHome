@@ -38,7 +38,7 @@ const axiosAuthApi = ({ options }: any) => {
   });
   instance.interceptors.response.use(
     function (response) {
-      console.log("interceptor > response", options, response);
+      console.log("interceptor > response", response);
       return response;
     },
     function (error) {

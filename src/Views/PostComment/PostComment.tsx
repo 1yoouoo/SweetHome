@@ -2,9 +2,9 @@ import SingleDotSvg from "../../Assets/SVG/SingleDotSvg";
 import "./PostComment.scss";
 import SmallHeartSvg from "../../Assets/SVG/SmallHeartSvg";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
-import { commentType } from "../PostList/PostList";
+import { CommentType } from "../AddComment/AddComment";
 interface PostCommentTypeProps {
-  comment: commentType;
+  comment: CommentType;
 }
 const PostComment = ({ comment }: PostCommentTypeProps) => {
   return (

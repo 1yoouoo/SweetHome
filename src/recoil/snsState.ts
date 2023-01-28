@@ -1,3 +1,4 @@
+import { CommentType } from "./../Views/AddComment/AddComment";
 import { PostItemType } from "../Views/PostList/PostList";
 import { atom } from "recoil";
 
@@ -17,14 +18,12 @@ export const postItemState = atom<PostItemType[]>({
         {
           nickName: "blanc",
           commentId: 1,
-          commentLikes: 5,
           commentContent: "댓글 1 입니다.",
           updatedAt: "Sat Jan 21 2023 17:29:28",
         },
         {
           nickName: "blanc",
           commentId: 2,
-          commentLikes: 3,
           commentContent: "댓글 2 입니다.",
           updatedAt: "Sat Jan 21 2023 12:10:28",
         },
@@ -43,18 +42,21 @@ export const postItemState = atom<PostItemType[]>({
         {
           nickName: "blanc",
           commentId: 1,
-          commentLikes: 5,
           commentContent: "댓글 1 입니다.",
           updatedAt: "Sat Jan 21 2023 17:29:28",
         },
         {
           nickName: "blanc",
           commentId: 2,
-          commentLikes: 3,
           commentContent: "댓글 2 입니다.",
           updatedAt: "Sat Jan 21 2023 12:10:28",
         },
       ],
     },
   ],
+});
+
+export const commentState = atom<CommentType[]>({
+  key: "comments",
+  default: [],
 });
