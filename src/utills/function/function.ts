@@ -35,3 +35,12 @@ export const newCommentId = (datas: any) => {
   const newId = datas.slice(-1)[0].commentId + 1;
   return newId;
 };
+
+export const isLogin = () => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    return true;
+  } else {
+    return false;
+  }
+};

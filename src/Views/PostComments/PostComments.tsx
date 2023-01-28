@@ -16,6 +16,7 @@ const PostComments = ({ comments, setComments }: any) => {
       const res = response?.data.data.postCommentResponse.commentResponses;
       setComments(res);
     };
+
     getComments();
   }, []);
   return (

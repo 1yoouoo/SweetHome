@@ -5,10 +5,9 @@ import UserSummary from "../UserSummary/UserSummary";
 import "./UserDetail.scss";
 
 const UserDetail = () => {
-  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const logOut = async () => {
-    const response = await API.logOut(token);
+    const response = await API.logOut();
     if (response?.data.error === null) {
       alert(response?.data.data.message);
       navigate("/login");

@@ -22,10 +22,8 @@ const API = {
     return response;
   },
 
-  logOut: async (token: any) => {
-    const response = await authInstance.post(`logout`, {
-      token: token,
-    });
+  logOut: async () => {
+    const response = await authInstance.post(`logout`);
     return response;
   },
 
