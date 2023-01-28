@@ -18,6 +18,8 @@ export interface clickedPostTypeProps {
 const PostDetail = () => {
   const { postId } = useParams();
   const [post, setPost] = useState<AxiosResponse | null>(null);
+  const [comments, setComments] = useState([]);
+
   useEffect(() => {
     const getUserApi = async () => {
       const response = await API.getPost({ postId });
@@ -29,8 +31,8 @@ const PostDetail = () => {
     <div className="PostDetail">
       <CurrentHeader current="댓글" />
       <PostContent post={post} />
-      <PostComments />
-      <AddComment />
+      <PostComments comments={comments} setComments={setComments} />
+      <AddComment comments={comments} setComments={setComments} />
     </div>
   );
 };

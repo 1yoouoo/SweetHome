@@ -7,25 +7,22 @@ import PostComment from "../PostComment/PostComment";
 import { commentType } from "../PostList/PostList";
 import "./PostComments.scss";
 
-const PostComments = () => {
+const PostComments = ({ comments, setComments }: any) => {
   const { postId } = useParams();
-  const [comments, setComments] = useState<AxiosResponse | null>();
 
   useEffect(() => {
-    const getUserApi = async () => {
+    const getComments = async () => {
       const response = await API.getComments({ postId });
-      setComments(response?.data.data.postDetailResponse);
-      console.log("comments", response);
+      const res = response?.data.data.postCommentResponse.commentResponses;
+      setComments(res);
     };
-    getUserApi();
+    getComments();
   }, []);
   return (
     <ul className="PostComments">
-      {/* {comments?.map((comment: commentType) => {
-        return (
-          <PostComment comment={comment} key={comment.commentId} />
-        );
-      })} */}
+      {comments?.map((comment: commentType) => {
+        return <PostComment comment={comment} key={comment.commentId} />;
+      })}
     </ul>
   );
 };

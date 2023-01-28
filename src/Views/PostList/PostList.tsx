@@ -19,7 +19,7 @@ export interface commentType {
   commentId: number;
   commentLikes: number;
   commentContent: string;
-  commentedAt: string | Date;
+  updatedAt: string | Date;
 }
 
 const PostList = () => {

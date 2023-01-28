@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import API from "../../API/API";
 import { clickedPostTypeProps } from "../../Pages/PostDetail/PostDetail";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
-import { getNickName } from "../../utills/function/function";
+import { newCommentId, getNickName } from "../../utills/function/function";
 import InputBox from "../InputBox/InputBox";
 import "./AddComment.scss";
-const AddComment = () => {
+const AddComment = ({ comments, setComments }: any) => {
   const { postId } = useParams();
   const [inputValue, setInputValue] = useState("");
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,6 +17,16 @@ const AddComment = () => {
       content: inputValue,
       postId: postId,
     });
+    setComments([
+      ...comments,
+      {
+        commentContent: inputValue,
+        commentId: newCommentId(comments),
+        nickName: getNickName(),
+        updatedAt: new Date(),
+      },
+    ]);
+    console.log(newCommentId(comments));
     return response;
   };
   const onSubmit = (e: React.SyntheticEvent) => {

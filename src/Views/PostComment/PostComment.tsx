@@ -17,7 +17,7 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
         <div className="PostComment__center">
           <div className="PostComment__center--wrapper">
             <span className="PostComment__center--wrapper-username">
-              username
+              {comment.nickName}
             </span>
             <span className="PostComment__center--wrapper-dot">
               <SingleDotSvg />

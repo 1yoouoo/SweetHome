@@ -31,7 +31,7 @@ export function getNickName() {
   return nickName;
 }
 
-export const findLastId = (datas: any) => {
-  const lastId = datas.slice(-1)[0].postId;
-  return lastId;
+export const newCommentId = (datas: any) => {
+  const newId = datas.slice(-1)[0].commentId + 1;
+  return newId;
 };
