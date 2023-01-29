@@ -4,12 +4,12 @@ import { useRecoilState } from "recoil";
 import API from "../../API/API";
 import { commentState } from "../../recoil/snsState";
 import { CommentType } from "../../Components/AddComment/AddComment";
-import PostComment from "../PostComment/PostComment";
+import PostComment from "../../Components/PostComment/PostComment";
 import "./PostComments.scss";
 
 const PostComments = () => {
   const { postId } = useParams();
-  const [comments, setComments] = useRecoilState(commentState);
+  const [comments, setComments] = useRecoilState<CommentType[]>(commentState);
 
   useEffect(() => {
     const getComments = async () => {
