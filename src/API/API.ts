@@ -1,8 +1,11 @@
-import { logInType } from "./../types/APIType";
-import axios from "axios";
+import {
+  commentsType,
+  likeType,
+  logInType,
+  postType,
+} from "./../types/APIType";
 import { signUpType } from "../types/APIType";
 import { authInstance, defaultInstance } from "./customAPI";
-const API_base = "http://192.168.35.126:80";
 const API = {
   signUp: async ({ email, name, nickName, password }: signUpType) => {
     const response = await defaultInstance.post(`signup`, {
@@ -26,42 +29,46 @@ const API = {
     const response = await authInstance.post(`logout`);
     return response;
   },
+  getPost: async ({ postId }: postType) => {
+    const response = await authInstance.get(`post/${postId}`);
+    return response;
+  },
 
-  createPost: async ({ content }: any) => {
+  createPost: async ({ content }: postType) => {
     const response = await authInstance.post(`post`, {
       content: content,
     });
     return response;
   },
 
-  editPost: async ({ content, postId }: any) => {
+  editPost: async ({ content, postId }: postType) => {
     const response = await authInstance.put(`post/${postId}`, {
       content: content,
     });
     return response;
   },
 
-  deletePost: async ({ postId }: any) => {
+  deletePost: async ({ postId }: postType) => {
     const response = await authInstance.delete(`comment/${postId}`);
     return response;
   },
 
-  clickedLike: async ({ postId }: any) => {
+  clickedLike: async ({ postId }: likeType) => {
     const response = await authInstance.post(`${postId}/like`, {
       postId: postId,
     });
     return response;
   },
-  clickedUnLike: async ({ postId }: any) => {
+  clickedUnLike: async ({ postId }: likeType) => {
     const response = await authInstance.delete(`${postId}/unlike`);
     return response;
   },
-  getComments: async ({ postId }: any) => {
+  getComments: async ({ postId }: commentsType) => {
     const response = await authInstance.get(`post/${postId}/comments`);
     return response;
   },
 
-  createComment: async ({ content, postId }: any) => {
+  createComment: async ({ content, postId }: commentsType) => {
     const response = await authInstance.post(`${postId}/comment`, {
       postId: postId,
       content: content,
@@ -69,7 +76,7 @@ const API = {
     return response;
   },
 
-  editComment: async ({ commentId, content }: any) => {
+  editComment: async ({ commentId, content }: commentsType) => {
     const response = await authInstance.put(`comment/${commentId}`, {
       commentId: commentId,
       content: content,
@@ -77,13 +84,8 @@ const API = {
     return response;
   },
 
-  deleteComment: async ({ commentId }: any) => {
+  deleteComment: async ({ commentId }: commentsType) => {
     const response = await authInstance.delete(`comment/${commentId}`);
-    return response;
-  },
-
-  getPost: async ({ postId }: any) => {
-    const response = await authInstance.get(`post/${postId}`);
     return response;
   },
 };

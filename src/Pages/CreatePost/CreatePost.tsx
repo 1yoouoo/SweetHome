@@ -12,7 +12,7 @@ export interface CreatePostTypeProps {
 }
 
 const CreatePost = () => {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState<string>("");
 
   const onClickSharing = async () => {
     const response = await API.createPost({

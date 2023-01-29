@@ -13,7 +13,7 @@ export interface clickedPostTypeProps {
   setPost?: any;
 }
 const PostDetail = () => {
-  const { postId } = useParams();
+  const { postId } = useParams<string>();
   const [post, setPost] = useState<AxiosResponse | null>(null);
 
   useEffect(() => {

@@ -12,7 +12,7 @@ export interface deleteCommentStateTypeProps {
 }
 
 const PostComments = () => {
-  const { postId } = useParams();
+  const { postId } = useParams<string>();
   const [comments, setComments] = useRecoilState<CommentType[]>(commentState);
   const deleteCommentState = ({ commentId }: deleteCommentStateTypeProps) => {
     setComments(comments.filter((comment) => comment.commentId !== commentId));

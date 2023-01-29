@@ -1,4 +1,4 @@
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { postItemState } from "../../recoil/snsState";
 import { CommentType } from "../../Components/AddComment/AddComment";
 import PostItem from "../PostItem/PostItem";
@@ -17,8 +17,7 @@ export interface PostItemType {
 }
 
 const PostList = () => {
-  const [postItems, setPostItems] =
-    useRecoilState<PostItemType[]>(postItemState);
+  const postItems = useRecoilValue<PostItemType[]>(postItemState);
 
   console.log("postList", postItems);
   return (

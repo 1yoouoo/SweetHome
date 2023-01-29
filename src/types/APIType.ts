@@ -8,3 +8,15 @@ export type logInType = {
   email: string;
   password: string;
 };
+export type postType = {
+  postId?: number | string;
+  content?: string;
+};
+export type likeType = {
+  postId: number;
+};
+export type commentsType = {
+  postId?: string | number;
+  commentId?: number;
+  content?: string;
+};

@@ -14,7 +14,7 @@ interface postItemTypeProps {
   postItem: PostItemType;
 }
 const PostItem = ({ postItem }: postItemTypeProps) => {
-  const [likes, setLikes] = useState(postItem.likes);
+  const [likes, setLikes] = useState<number>(postItem.likes);
   const navigate = useNavigate();
 
   return (

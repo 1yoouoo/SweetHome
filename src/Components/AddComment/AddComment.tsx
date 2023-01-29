@@ -14,8 +14,8 @@ export interface CommentType {
   updatedAt: string | Date;
 }
 const AddComment = () => {
-  const { postId } = useParams();
-  const [inputValue, setInputValue] = useState("");
+  const { postId } = useParams<string>();
+  const [inputValue, setInputValue] = useState<string>("");
   const [comments, setComments] = useRecoilState<CommentType[]>(commentState);
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {

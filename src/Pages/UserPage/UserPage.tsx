@@ -13,7 +13,7 @@ export interface slideTypeProps {
   setSlide?: Dispatch<SetStateAction<number>>;
 }
 const UserPage = () => {
-  const [slide, setSlide] = useState(0);
+  const [slide, setSlide] = useState<number>(0);
   const current = "blanc";
   return (
     <div className="UserPage">
