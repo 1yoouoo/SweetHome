@@ -27,13 +27,13 @@ const AddComment = () => {
       postId: postId,
     });
     setComments([
-      ...comments,
       {
         commentContent: inputValue,
         commentId: newCommentId(comments),
         nickName: getNickName(),
         updatedAt: new Date(),
       },
+      ...comments,
     ]);
     console.log(newCommentId(comments));
     return response;

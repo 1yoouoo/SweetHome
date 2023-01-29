@@ -6,11 +6,13 @@ import { CommentType } from "../AddComment/AddComment";
 import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
 import { useState } from "react";
 import API from "../../API/API";
+import { deleteCommentStateTypeProps } from "../../Views/PostComments/PostComments";
 interface PostCommentTypeProps {
   comment: CommentType;
+  deleteCommentState: ({ commentId }: deleteCommentStateTypeProps) => void;
 }
 
-const PostComment = ({ comment }: PostCommentTypeProps) => {
+const PostComment = ({ comment, deleteCommentState }: PostCommentTypeProps) => {
   const [commentItem, setCommentItem] = useState(comment);
   const [dotToggle, setDotToggle] = useState(false);
   const [editable, setEditable] = useState(false);
@@ -23,7 +25,13 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
   };
   const deleteComment = async () => {
     const response = await API.deleteComment({ commentId: comment.commentId });
-    alert(response?.data.data.message);
+    const success = response?.data.data != null;
+    if (success) {
+      alert(response?.data.data.message);
+      deleteCommentState({ commentId: comment.commentId });
+    } else {
+      alert(response?.data.error.message);
+    }
   };
   const onClickEdit = () => {
     setEditable(!editable);

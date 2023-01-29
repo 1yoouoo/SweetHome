@@ -7,10 +7,16 @@ import { CommentType } from "../../Components/AddComment/AddComment";
 import PostComment from "../../Components/PostComment/PostComment";
 import "./PostComments.scss";
 
+export interface deleteCommentStateTypeProps {
+  commentId: number;
+}
+
 const PostComments = () => {
   const { postId } = useParams();
   const [comments, setComments] = useRecoilState<CommentType[]>(commentState);
-
+  const deleteCommentState = ({ commentId }: deleteCommentStateTypeProps) => {
+    setComments(comments.filter((comment) => comment.commentId !== commentId));
+  };
   useEffect(() => {
     const getComments = async () => {
       const response = await API.getComments({ postId });
@@ -24,7 +30,13 @@ const PostComments = () => {
   return (
     <ul className="PostComments">
       {comments?.map((comment: CommentType) => {
-        return <PostComment comment={comment} key={comment.commentId} />;
+        return (
+          <PostComment
+            comment={comment}
+            key={comment.commentId}
+            deleteCommentState={deleteCommentState}
+          />
+        );
       })}
     </ul>
   );
