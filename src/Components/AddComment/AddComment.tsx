@@ -5,7 +5,7 @@ import API from "../../API/API";
 import { commentState } from "../../recoil/snsState";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import { newCommentId, getNickName } from "../../utills/function/function";
-import InputBox from "../InputBox/InputBox";
+import InputBox from "../../Views/InputBox/InputBox";
 import "./AddComment.scss";
 export interface CommentType {
   commentContent: string;

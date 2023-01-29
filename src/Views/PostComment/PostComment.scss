@@ -64,6 +64,21 @@
   }
 
   &__right {
+    display: flex;
     padding: 10px 0;
+    align-items: center;
+    &--dot {
+      .activated_dot {
+        position: absolute;
+        background-color: #000;
+        cursor: pointer;
+        span {
+          margin: 1px;
+        }
+      }
+      .hidden_dot {
+        display: none;
+      }
+    }
   }
 }

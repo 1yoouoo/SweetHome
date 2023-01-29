@@ -1,4 +1,4 @@
-import { CommentType } from "./../Views/AddComment/AddComment";
+import { CommentType } from "../Components/AddComment/AddComment";
 import { PostItemType } from "../Views/PostList/PostList";
 import { atom } from "recoil";
 

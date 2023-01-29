@@ -1,7 +1,7 @@
-import StyledButton from "../StyledButton/StyledButton";
-import Logo from "../Logo/Logo";
+import StyledButton from "../../Views/StyledButton/StyledButton";
+import Logo from "../../Views/Logo/Logo";
 import "./LoginForm.scss";
-import InputBox from "../InputBox/InputBox";
+import InputBox from "../../Views/InputBox/InputBox";
 import { useState } from "react";
 import API from "../../API/API";
 import { useNavigate } from "react-router-dom";

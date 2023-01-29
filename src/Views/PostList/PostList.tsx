@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { postItemState } from "../../recoil/snsState";
-import { CommentType } from "../AddComment/AddComment";
+import { CommentType } from "../../Components/AddComment/AddComment";
 import PostItem from "../PostItem/PostItem";
 import "./PostList.scss";
 

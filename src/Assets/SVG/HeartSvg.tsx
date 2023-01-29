@@ -1,6 +1,6 @@
 import "./SVG.scss";
 import styled from "styled-components";
-import { onClickHeartTypeProps } from "../../Views/InteractionBar/InteractionBar";
+import { onClickHeartTypeProps } from "../../Components/InteractionBar/InteractionBar";
 
 const StyledHeartSvg = styled.span`
   .HeartSvg {

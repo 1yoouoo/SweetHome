@@ -1,10 +1,9 @@
 import React from "react";
-import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import Home from "./Pages/Home/Home";
 import UserPage from "./Pages/UserPage/UserPage";
 import CreatePost from "./Pages/CreatePost/CreatePost";
-import Nav from "./Views/Nav/Nav";
 import PostDetail from "./Pages/PostDetail/PostDetail";
 import SignUpPage from "./Pages/SignUpPage/SignUpPage";
 import { isLogin } from "./utills/function/function";

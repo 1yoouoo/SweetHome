@@ -70,7 +70,7 @@ const API = {
   },
 
   editComment: async ({ commentId, content }: any) => {
-    const response = await authInstance.post(`comment/${commentId}`, {
+    const response = await authInstance.put(`comment/${commentId}`, {
       commentId: commentId,
       content: content,
     });

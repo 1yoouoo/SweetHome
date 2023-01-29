@@ -4,7 +4,7 @@ import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
 import UserNickName from "../../sass/styled-components/UserNickName";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import { timeFormat } from "../../utills/function/function";
-import InteractionBar from "../InteractionBar/InteractionBar";
+import InteractionBar from "../../Components/InteractionBar/InteractionBar";
 import { PostItemType } from "../PostList/PostList";
 import "./PostItem.scss";
 import sample from "/Users/blanc/Documents/Project/sns/src/Assets/sample.png";

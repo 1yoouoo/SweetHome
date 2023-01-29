@@ -1,11 +1,9 @@
-import { AxiosResponse } from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import API from "../../API/API";
-import { clickedPostTypeProps } from "../../Pages/PostDetail/PostDetail";
 import { commentState } from "../../recoil/snsState";
-import { CommentType } from "../AddComment/AddComment";
+import { CommentType } from "../../Components/AddComment/AddComment";
 import PostComment from "../PostComment/PostComment";
 import "./PostComments.scss";
 

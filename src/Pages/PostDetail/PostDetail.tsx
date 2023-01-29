@@ -1,12 +1,10 @@
 import { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
 import API from "../../API/API";
-import AddComment from "../../Views/AddComment/AddComment";
+import AddComment from "../../Components/AddComment/AddComment";
 import PostComments from "../../Views/PostComments/PostComments";
 import PostContent from "../../Views/PostContent/PostContent";
-import { PostItemType } from "../../Views/PostList/PostList";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
 import "./PostDetail.scss";
 
