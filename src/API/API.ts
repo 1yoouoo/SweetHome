@@ -1,5 +1,6 @@
 import {
   commentsType,
+  followType,
   likeType,
   logInType,
   postType,
@@ -86,6 +87,16 @@ const API = {
 
   deleteComment: async ({ commentId }: commentsType) => {
     const response = await authInstance.delete(`comment/${commentId}`);
+    return response;
+  },
+
+  follow: async ({ userId }: followType) => {
+    const response = await authInstance.post(`${userId}/follow`);
+    return response;
+  },
+
+  unFollow: async ({ userId }: followType) => {
+    const response = await authInstance.delete(`${userId}/unfollow`);
     return response;
   },
 };

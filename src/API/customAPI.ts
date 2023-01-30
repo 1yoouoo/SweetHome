@@ -1,4 +1,3 @@
-import { useState } from "react";
 import axios from "axios";
 
 const API_base = "http://192.168.35.126:80";

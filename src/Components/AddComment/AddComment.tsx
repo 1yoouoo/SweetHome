@@ -29,7 +29,7 @@ const AddComment = () => {
     setComments([
       {
         commentContent: inputValue,
-        commentId: newCommentId(comments),
+        commentId: newCommentId(comments), // FIXME 정렬된 리스트가 필요함
         nickName: getNickName(),
         updatedAt: new Date(),
       },

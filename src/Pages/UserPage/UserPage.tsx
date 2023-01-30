@@ -6,7 +6,7 @@ import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
 import Nav from "../../Views/Nav/Nav";
 import FollowersPage from "../../Views/FollowersPage/FollowersPage";
 import FollowingPage from "../../Views/FollowingPage/FollowingPage";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 export interface slideTypeProps {
   slide: number;
@@ -15,6 +15,10 @@ export interface slideTypeProps {
 const UserPage = () => {
   const [slide, setSlide] = useState<number>(0);
   const current = "blanc";
+
+  useEffect(() => {
+    console.log("UserPage Mount!");
+  }, []);
   return (
     <div className="UserPage">
       <CurrentHeader current={current} />

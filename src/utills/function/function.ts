@@ -44,3 +44,7 @@ export const isLogin = () => {
     return false;
   }
 };
+
+// export const updateComment = () => {
+
+// }

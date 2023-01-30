@@ -20,3 +20,6 @@ export type commentsType = {
   commentId?: number;
   content?: string;
 };
+export type followType = {
+  userId: number;
+};
