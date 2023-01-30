@@ -62,5 +62,35 @@ const axiosAuthApi = ({ options }: any) => {
   return instance;
 };
 
+const axiosFormDataApi = ({ options }: any) => {
+  const instance = axios.create({
+    baseURL: "http://192.168.35.126:80/",
+    ...options,
+  });
+  instance.interceptors.response.use(
+    function (response) {
+      console.log("interceptor > response", response);
+      return response;
+    },
+    function (error) {
+      console.log("interceptor > error", error);
+      return Promise.reject(error);
+    }
+  );
+  instance.interceptors.request.use(
+    function (request) {
+      console.log("interceptor > request", request);
+      request.headers["Content-Type"] = "multipart/form-data";
+      return request;
+    },
+    function (error) {
+      console.log("interceptor > error", error);
+      return Promise.reject(error);
+    }
+  );
+  return instance;
+};
+
 export const defaultInstance = axiosApi(API_base);
 export const authInstance = axiosAuthApi(API_base);
+export const formDataInstance = axiosFormDataApi(API_base);

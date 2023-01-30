@@ -1,8 +1,11 @@
 export type signUpType = {
-  email: string;
-  name: string;
-  nickName: string;
-  password: string;
+  formData: object;
+  // image_file: object;
+  // preview_URL?: any;
+  // email: string;
+  // name: string;
+  // nickName: string;
+  // password: string;
 };
 export type logInType = {
   email: string;

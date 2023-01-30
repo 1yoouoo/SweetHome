@@ -6,15 +6,10 @@ import {
   postType,
 } from "./../types/APIType";
 import { signUpType } from "../types/APIType";
-import { authInstance, defaultInstance } from "./customAPI";
+import { authInstance, defaultInstance, formDataInstance } from "./customAPI";
 const API = {
-  signUp: async ({ email, name, nickName, password }: signUpType) => {
-    const response = await defaultInstance.post(`signup`, {
-      email: email,
-      nickName: nickName,
-      name: name,
-      password: password,
-    });
+  signUp: async ({ formData }: signUpType) => {
+    const response = await formDataInstance.post(`signup`, formData);
     return response;
   },
 
