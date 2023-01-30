@@ -5,6 +5,7 @@ import InputBox from "../../Views/InputBox/InputBox";
 import { useState } from "react";
 import API from "../../API/API";
 import { useNavigate } from "react-router-dom";
+import UploadProfilePhoto from "../../Views/UploadProfilePhoto/UploadProfilePhoto";
 // type
 interface inputValueType {
   email: string;
@@ -48,6 +49,10 @@ const SignUpForm = () => {
     <>
       <form className="SignUpForm" onSubmit={onSubmit}>
         <Logo width="175px" height="51px" />
+        <div className="SignUpForm__profile-photo">
+          <UploadProfilePhoto />
+        </div>
+
         <section className="SignUpForm__input-section">
           <div className="SignUpForm__division">
             <span className="SignUpForm__division--left"></span>

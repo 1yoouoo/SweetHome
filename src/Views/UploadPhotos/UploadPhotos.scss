@@ -12,5 +12,10 @@
     margin: 0 2.5px;
     background-color: $background-color-brigter;
     border: 1px solid $border-color;
+    cursor: pointer;
+  }
+
+  &__input {
+    display: none;
   }
 }

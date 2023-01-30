@@ -168,3 +168,12 @@
     cursor: pointer;
   }
 }
+.CirclePlus {
+  svg {
+    fill: $font-color-pointer;
+    display: block;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+}
