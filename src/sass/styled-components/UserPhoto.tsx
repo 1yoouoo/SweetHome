@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 interface UserPhotoPropTypes {
   size: string;
+  userProfileImage?: string;
 }
 
 const StyledUserPhoto = styled.div<UserPhotoPropTypes>`
@@ -52,13 +53,13 @@ const StyledUserPhoto = styled.div<UserPhotoPropTypes>`
   }
 `;
 
-const UserPhoto = ({ size }: UserPhotoPropTypes) => {
+const UserPhoto = ({ size, userProfileImage }: UserPhotoPropTypes) => {
   return (
     <StyledUserPhoto size={size}>
       <div className="UserPhoto">
         <div className="UserPhoto__gradient">
           <span className="UserPhoto__img--wrapper">
-            <img src={blanc} alt="logo" />
+            <img src={userProfileImage} alt="logo" />
           </span>
         </div>
       </div>

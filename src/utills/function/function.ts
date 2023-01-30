@@ -1,9 +1,8 @@
-export function timeFormat(millisecond: any) {
+export function timeFormat(now: any) {
   const today = new Date();
-  const timeValue = new Date(millisecond);
-
+  const currentTime = new Date(now);
   const betweenTime = Math.floor(
-    (today.getTime() - timeValue.getTime()) / 1000 / 60
+    (today.getTime() - currentTime.getTime()) / 1000 / 60
   );
   if (betweenTime < 1) return "방금 전";
   if (betweenTime < 60) {
@@ -38,6 +37,7 @@ export const newCommentId = (datas: any) => {
 
 export const isLogin = () => {
   const token = localStorage.getItem("token");
+  console.log(token);
   if (token) {
     return true;
   } else {

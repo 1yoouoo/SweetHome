@@ -19,10 +19,9 @@ const PostDetail = () => {
   useEffect(() => {
     const getUserApi = async () => {
       const response = await API.getPost({ postId });
-      console.log("check", response?.data.data);
+      console.log("check", response);
       setPost(response?.data.data.postDetailResponse);
     };
-    console.log("useEffect. PostDetail!");
     getUserApi();
   }, []);
   return (

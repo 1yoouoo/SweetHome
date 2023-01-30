@@ -1,16 +1,19 @@
 import SingleDotSvg from "../../Assets/SVG/SingleDotSvg";
 import { clickedPostTypeProps } from "../../Pages/PostDetail/PostDetail";
+import { timeFormat } from "../../utills/function/function";
 import "./UserComment.scss";
 
 const UserComment = ({ post }: clickedPostTypeProps) => {
   return (
     <div className="UserComment">
       <div className="UserComment__wrapper">
-        <span className="UserComment__username">username</span>
+        <span className="UserComment__username">{post?.nickName}</span>
         <span className="UserComment__dot">
           <SingleDotSvg />
         </span>
-        <span className="UserComment__created-at">1시간</span>
+        <span className="UserComment__created-at">
+          {timeFormat(post?.updatedAt)}
+        </span>
       </div>
       <div className="UserComment__text">{post?.content}</div>
       <div className="UserComment__comment">

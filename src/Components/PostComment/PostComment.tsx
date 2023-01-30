@@ -7,6 +7,7 @@ import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
 import { useState } from "react";
 import API from "../../API/API";
 import { deleteCommentStateTypeProps } from "../../Views/PostComments/PostComments";
+import { timeFormat } from "../../utills/function/function";
 interface PostCommentTypeProps {
   comment: CommentType;
   deleteCommentState: ({ commentId }: deleteCommentStateTypeProps) => void;
@@ -56,12 +57,16 @@ const PostComment = ({ comment, deleteCommentState }: PostCommentTypeProps) => {
       });
       setEditable(!editable);
     }
+    console.log(commentItem);
   };
   return (
     <li className="PostComment">
       <span className="PostComment__wrapper">
         <span className="PostComment__left">
-          <UserPhoto size="44px" />
+          <UserPhoto
+            size="44px"
+            userProfileImage={commentItem.userProfileImage}
+          />
         </span>
         <div className="PostComment__center">
           <div className="PostComment__center--wrapper">
@@ -72,7 +77,7 @@ const PostComment = ({ comment, deleteCommentState }: PostCommentTypeProps) => {
               <SingleDotSvg />
             </span>
             <span className="PostComment__center--wrapper-created-at">
-              1시간
+              {timeFormat(commentItem.updatedAt)}
             </span>
           </div>
           <div className="PostComment__center--text">

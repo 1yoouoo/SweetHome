@@ -1,6 +1,4 @@
-import BookMarkSvg from "../../Assets/SVG/BookMarkSvg";
 import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
-import Setting from "../../Assets/SVG/Setting";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import StyledButton from "../StyledButton/StyledButton";
 import "./UserInfo.scss";

@@ -12,6 +12,7 @@ export interface CommentType {
   commentId: number;
   nickName: string;
   updatedAt: string | Date;
+  userProfileImage?: string;
 }
 const AddComment = () => {
   const { postId } = useParams<string>();

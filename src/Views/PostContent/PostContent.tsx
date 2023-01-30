@@ -4,10 +4,11 @@ import UserComment from "../UserComment/UserComment";
 import "./PostContent.scss";
 
 const PostContent = ({ post }: clickedPostTypeProps) => {
+  console.log(post);
   return (
     <div className="PostContent">
       <div className="PostContent__author">
-        <UserPhoto size="44px" />
+        <UserPhoto size="44px" userProfileImage={post.userProfileImage} />
       </div>
       <UserComment post={post} />
     </div>
