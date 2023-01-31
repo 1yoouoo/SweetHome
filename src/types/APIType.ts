@@ -14,6 +14,7 @@ export type logInType = {
 export type postType = {
   postId?: number | string;
   content?: string;
+  formData?: any;
 };
 export type likeType = {
   postId: number;

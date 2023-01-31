@@ -5,18 +5,24 @@ import TextArea from "../../Views/TextArea/TextArea";
 import UploadPhotos from "../../Views/UploadPhotos/UploadPhotos";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
 import "./CreatePost.scss";
-
+export interface FormdataType {
+  imageFileList: [];
+  newPostContent: string;
+}
 export interface CreatePostTypeProps {
-  setInputValue: Dispatch<SetStateAction<string>>;
-  inputValue: string;
+  setFormData: Dispatch<SetStateAction<any>>;
+  formData: any;
 }
 
 const CreatePost = () => {
-  const [inputValue, setInputValue] = useState<string>("");
+  const [formData, setFormData] = useState({
+    imageFileList: [],
+    newPostContent: "",
+  });
 
   const onClickSharing = async () => {
     const response = await API.createPost({
-      content: inputValue,
+      formData: formData,
     });
     // 성공
     if (response?.data.error === null) {
@@ -35,7 +41,7 @@ const CreatePost = () => {
       />
       <form className="CreatePost">
         <UploadPhotos />
-        <TextArea setInputValue={setInputValue} inputValue={inputValue} />
+        <TextArea />
       </form>
       <Nav />
     </>

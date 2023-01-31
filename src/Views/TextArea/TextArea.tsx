@@ -1,9 +1,13 @@
-import { CreatePostTypeProps } from "../../Pages/CreatePost/CreatePost";
+import { useRecoilState } from "recoil";
+import { FormdataType } from "../../Pages/CreatePost/CreatePost";
+import { formDataState } from "../../recoil/snsState";
 import "./TextArea.scss";
 
-const TextArea = ({ setInputValue, inputValue }: CreatePostTypeProps) => {
+const TextArea = () => {
+  const [formData, setFormData] = useRecoilState<FormdataType>(formDataState);
   const onChangeValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setInputValue(e.currentTarget.value);
+    setFormData({ ...formData, newPostContent: e.target.value });
+    console.log(formData);
   };
   return (
     <>
@@ -11,7 +15,7 @@ const TextArea = ({ setInputValue, inputValue }: CreatePostTypeProps) => {
         <textarea
           className="TextArea__input"
           placeholder="문구 입력..."
-          value={inputValue}
+          value={formData.newPostContent}
           onChange={(e) => onChangeValue(e)}
         />
       </div>

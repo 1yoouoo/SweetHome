@@ -4,7 +4,6 @@ import UserComment from "../UserComment/UserComment";
 import "./PostContent.scss";
 
 const PostContent = ({ post }: clickedPostTypeProps) => {
-  console.log(post);
   return (
     <div className="PostContent">
       <div className="PostContent__author">
