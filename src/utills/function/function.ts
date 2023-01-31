@@ -1,3 +1,4 @@
+import { CommentsListType } from "./../../types/snsType";
 export function timeFormat(now: any) {
   const today = new Date();
   const currentTime = new Date(now);
@@ -31,13 +32,16 @@ export function getNickName() {
 }
 
 export const newCommentId = (datas: any) => {
+  console.log(datas);
+  if (datas.length === 0) {
+    return 1;
+  }
   const newId = datas.slice(-1)[0].commentId + 1;
   return newId;
 };
 
 export const isLogin = () => {
   const token = localStorage.getItem("token");
-  console.log(token);
   if (token) {
     return true;
   } else {

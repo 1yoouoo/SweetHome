@@ -14,3 +14,12 @@ export type ButtonTypeProps = {
 export interface SvgPropTypes {
   size: string;
 }
+
+export interface CommentsListType {
+  commentResponses: any;
+  nickName: string;
+  postContent: string;
+  postId: number;
+  updatedAt: string;
+  userProfileImage: string;
+}

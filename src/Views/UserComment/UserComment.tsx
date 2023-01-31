@@ -15,7 +15,7 @@ const UserComment = ({ post }: clickedPostTypeProps) => {
           {timeFormat(post?.updatedAt)}
         </span>
       </div>
-      <div className="UserComment__text">{post?.content}</div>
+      <div className="UserComment__text">{post?.postContent}</div>
       <div className="UserComment__comment">
         <span className="UserComment__comment--like">좋아요</span>
         <span className="UserComment__comment--recomment">답글달기</span>

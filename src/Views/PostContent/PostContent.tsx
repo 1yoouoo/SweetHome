@@ -8,7 +8,7 @@ const PostContent = ({ post }: clickedPostTypeProps) => {
   return (
     <div className="PostContent">
       <div className="PostContent__author">
-        <UserPhoto size="44px" userProfileImage={post.userProfileImage} />
+        <UserPhoto size="44px" userProfileImage={post?.userProfileImage} />
       </div>
       <UserComment post={post} />
     </div>
