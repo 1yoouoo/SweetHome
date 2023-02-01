@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import API from "../../API/API";
 import Nav from "../../Views/Nav/Nav";
 import TextArea from "../../Views/TextArea/TextArea";
@@ -33,17 +33,24 @@ const CreatePost = () => {
       formDataToServer.append(`image`, formData[i].image_file);
       console.log("formDataToServer", formDataToServer);
     }
-    formDataToServer.append(`content`, content);
-
-    const response = await API.createPost({
-      formDataToServer,
-    });
-    if (response?.data.error === null) {
-      alert(response.data.data.message);
+    if (formData.length == 0) {
+      alert("파일을 첨부해 주세요");
     } else {
-      alert(response.data.error.message);
+      formDataToServer.append(`content`, content);
+      const response = await API.createPost({
+        formDataToServer,
+      });
+      if (response?.data.error === null) {
+        alert(response.data.data.message);
+      } else {
+        alert(response.data.error.message);
+      }
     }
   };
+  useEffect(() => {
+    console.log("createPost Mount!");
+    console.log(formData);
+  }, [formData]);
   return (
     <>
       <CurrentHeader

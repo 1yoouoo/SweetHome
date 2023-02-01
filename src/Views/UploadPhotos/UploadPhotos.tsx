@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { FormdataType } from "../../Pages/CreatePost/CreatePost";
 import { formDataState } from "../../recoil/snsState";
@@ -22,8 +22,10 @@ const UploadPhotos = () => {
         { image_file: e.target.files[0], preview_URL: fileReader.result },
       ]);
     };
-    setFormData(previewImgList);
   };
+  useEffect(() => {
+    setFormData(previewImgList);
+  }, [previewImgList]);
   return (
     <>
       <div className="UploadPhotos">
@@ -49,7 +51,6 @@ const UploadPhotos = () => {
         <input
           className="UploadPhotos__input"
           onChange={saveImage}
-          multiple
           accept="image/jpg,image/png,image/jpeg,image/gif"
           ref={inputRef}
           type="file"
