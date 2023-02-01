@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const API_base = "http://192.168.35.126:80";
+const token = localStorage.getItem("token");
 
 const axiosApi = ({ options }: any) => {
   const instance = axios.create({
@@ -34,6 +35,9 @@ const axiosAuthApi = ({ options }: any) => {
   const instance = axios.create({
     baseURL: "http://192.168.35.126:80/",
     ...options,
+    headers: {
+      token: token,
+    },
   });
   instance.interceptors.response.use(
     function (response) {
@@ -48,10 +52,7 @@ const axiosAuthApi = ({ options }: any) => {
   instance.interceptors.request.use(
     function (request) {
       console.log("interceptor > request", request);
-      const token = localStorage.getItem("token");
-      if (token) {
-        request.headers["token"] = token;
-      }
+
       return request;
     },
     function (error) {
@@ -94,7 +95,6 @@ const axiosFormDataApi = ({ options }: any) => {
 };
 
 const axiosAuthFormDataApi = ({ options }: any) => {
-  const token = localStorage.getItem("token");
   const instance = axios.create({
     baseURL: "http://192.168.35.126:80/",
     ...options,

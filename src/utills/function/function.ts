@@ -1,3 +1,4 @@
+import API from "../../API/API";
 import { CommentsListType } from "./../../types/snsType";
 export function timeFormat(now: any) {
   const today = new Date();
@@ -49,6 +50,21 @@ export const isLogin = () => {
   }
 };
 
-// export const updateComment = () => {
+export const logOut = async () => {
+  const response = await API.logOut();
+  if (response?.data.error === null) {
+    alert(response?.data.data.message);
+    window.location.reload();
+    localStorage.removeItem("token");
+  } else {
+    alert(response?.data.error.message);
+  }
+};
+// import { redirect } from "react-router-dom";
 
-// }
+// const loader = async () => {
+//   const user = await getUser();
+//   if (!user) {
+//     return redirect("/login");
+//   }
+// };

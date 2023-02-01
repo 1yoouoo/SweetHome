@@ -32,7 +32,9 @@ const LoginForm = () => {
       const token = response?.headers.token;
       localStorage.setItem("token", token);
       alert(response.data.data.message);
-      navigate("/home");
+      window.location.reload();
+
+      // navigate("/home");
     } else {
       alert(response?.data.error.message);
       setInputValue({ email: "", password: "" });

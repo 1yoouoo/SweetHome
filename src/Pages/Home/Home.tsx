@@ -1,4 +1,3 @@
-import { useState } from "react";
 import HomeHeader from "../../Views/HomeHeader/HomeHeader";
 import Nav from "../../Views/Nav/Nav";
 
