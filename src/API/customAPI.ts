@@ -66,6 +66,9 @@ const axiosFormDataApi = ({ options }: any) => {
   const instance = axios.create({
     baseURL: "http://192.168.35.126:80/",
     ...options,
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
   });
   instance.interceptors.response.use(
     function (response) {
@@ -80,7 +83,39 @@ const axiosFormDataApi = ({ options }: any) => {
   instance.interceptors.request.use(
     function (request) {
       console.log("interceptor > request", request);
-      request.headers["Content-Type"] = "multipart/form-data";
+      return request;
+    },
+    function (error) {
+      console.log("interceptor > error", error);
+      return Promise.reject(error);
+    }
+  );
+  return instance;
+};
+
+const axiosAuthFormDataApi = ({ options }: any) => {
+  const token = localStorage.getItem("token");
+  const instance = axios.create({
+    baseURL: "http://192.168.35.126:80/",
+    ...options,
+    headers: {
+      token: token,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  instance.interceptors.response.use(
+    function (response) {
+      console.log("interceptor > response", response);
+      return response;
+    },
+    function (error) {
+      console.log("interceptor > error", error);
+      return Promise.reject(error);
+    }
+  );
+  instance.interceptors.request.use(
+    function (request) {
+      console.log("interceptor > request", request);
       return request;
     },
     function (error) {
@@ -94,3 +129,4 @@ const axiosFormDataApi = ({ options }: any) => {
 export const defaultInstance = axiosApi(API_base);
 export const authInstance = axiosAuthApi(API_base);
 export const formDataInstance = axiosFormDataApi(API_base);
+export const authFormDataInstance = axiosAuthFormDataApi(API_base);

@@ -4,9 +4,9 @@ import { formDataState } from "../../recoil/snsState";
 import "./TextArea.scss";
 
 const TextArea = () => {
-  const [formData, setFormData] = useRecoilState<FormdataType>(formDataState);
+  const [formData, setFormData] = useRecoilState<any>(formDataState);
   const onChangeValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setFormData({ ...formData, newPostContent: e.target.value });
+    setFormData({ ...formData, content: e.target.value });
     console.log(formData);
   };
   return (
@@ -15,7 +15,7 @@ const TextArea = () => {
         <textarea
           className="TextArea__input"
           placeholder="문구 입력..."
-          value={formData.newPostContent}
+          value={formData.content}
           onChange={(e) => onChangeValue(e)}
         />
       </div>

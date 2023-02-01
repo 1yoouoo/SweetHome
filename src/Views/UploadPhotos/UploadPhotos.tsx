@@ -1,50 +1,53 @@
 import { useRef, useState } from "react";
+import { useRecoilState } from "recoil";
+import API from "../../API/API";
+import { FormdataType } from "../../Pages/CreatePost/CreatePost";
+import { formDataState } from "../../recoil/snsState";
 import "./UploadPhotos.scss";
 
-export interface imageType {
-  image_file: string;
-  preview_URL: string | ArrayBuffer | null;
-}
 const UploadPhotos = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [image, setImage] = useState<imageType>({
-    image_file: "",
-    preview_URL: "",
-  });
-  const saveImage = (e: any) => {
-    e.preventDefault();
-    const fileReader = new FileReader();
+  const [formData, setFormData] = useRecoilState<FormdataType>(formDataState);
 
-    if (e.target.files[0]) {
-      fileReader.readAsDataURL(e.target.files[0]);
-    }
-    fileReader.onload = () => {
-      setImage({
-        image_file: e.target.files[0],
-        preview_URL: fileReader.result,
-      });
-    };
-  };
-  const deleteImage = () => {
-    setImage({
-      image_file: "",
-      preview_URL: "img/default_image.png",
-    });
-  };
+  // const saveImage = (e: any) => {
+  //   e.preventDefault();
+  //   for (let i = 0; i < e.target.files.length; i++) {
+  //     const fileReader = new FileReader();
+  //     fileReader.readAsDataURL(e.target.files[i]);
+  //     // fileReader.onload = () => {
+  //     //   const fileURLs[i] = fileReader.result
+
+  //     //   setPreviewImage([...fileURLs])
+  //     //   console.log(formData);
+  //     // };
+  //     setFormData({
+  //       ...formData,
+  //       image: e.target.files[i],
+  //     });
+  //   }
+  //   console.log(formData);
+
   return (
-    <div className="UploadPhotos">
-      <span
-        className="UploadPhotos__add"
-        onClick={() => inputRef.current?.click()}
-      >
-        +
-      </span>
-      <input
-        className="UploadPhotos__input"
-        onClick={() => console.log("input click")}
-        ref={inputRef}
-      />
-    </div>
+    <>
+      {/* {formData && formData.imageFileList[0].name} */}
+      <div className="UploadPhotos">
+        <span
+          className="UploadPhotos__add"
+          onClick={() => inputRef.current?.click()}
+        >
+          +
+        </span>
+        <input
+          className="UploadPhotos__input"
+          // onChange={saveImage}
+          multiple
+          accept="image/jpg,image/png,image/jpeg,image/gif"
+          ref={inputRef}
+          type="file"
+        />
+        <span onClick={() => console.log(formData)}>test</span>
+      </div>
+    </>
   );
 };
 
