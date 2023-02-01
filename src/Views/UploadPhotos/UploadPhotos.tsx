@@ -1,8 +1,6 @@
 import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
-import API from "../../API/API";
 import { FormdataType } from "../../Pages/CreatePost/CreatePost";
-import defaultProfile from "/Users/blanc/Documents/Project/sns/src/Assets/default_profile.png";
 import { formDataState } from "../../recoil/snsState";
 import "./UploadPhotos.scss";
 
@@ -30,7 +28,7 @@ const UploadPhotos = () => {
     <>
       <div className="UploadPhotos">
         {previewImgList &&
-          previewImgList.map((preview: any) => {
+          previewImgList.map((preview: { preview_URL: string }) => {
             return (
               <span className="UploadPhotos__preview" key={preview.preview_URL}>
                 <img

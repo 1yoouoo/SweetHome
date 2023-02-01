@@ -1,10 +1,8 @@
-import { useRecoilState } from "recoil";
-import { FormdataType } from "../../Pages/CreatePost/CreatePost";
-import { formDataState } from "../../recoil/snsState";
+import { Dispatch, SetStateAction } from "react";
 import "./TextArea.scss";
 interface TextAreaTypeProps {
-  content?: string;
-  setContent?: any;
+  content: string;
+  setContent: Dispatch<SetStateAction<string>>;
 }
 const TextArea = ({ content, setContent }: TextAreaTypeProps) => {
   const onChangeValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

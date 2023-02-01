@@ -45,7 +45,7 @@ const EditPost = () => {
       />
       <form className="EditPost">
         <UploadPhotos />
-        <TextArea />
+        {/* <TextArea /> */}
       </form>
       <Nav />
     </>
