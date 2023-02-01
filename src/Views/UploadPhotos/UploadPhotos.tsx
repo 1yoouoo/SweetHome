@@ -2,35 +2,46 @@ import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import API from "../../API/API";
 import { FormdataType } from "../../Pages/CreatePost/CreatePost";
+import defaultProfile from "/Users/blanc/Documents/Project/sns/src/Assets/default_profile.png";
 import { formDataState } from "../../recoil/snsState";
 import "./UploadPhotos.scss";
 
 const UploadPhotos = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [formData, setFormData] = useRecoilState<FormdataType>(formDataState);
+  const [formData, setFormData] = useRecoilState<FormdataType[]>(formDataState);
+  const [previewImgList, setPreviewImgList] = useState<any>([]);
 
-  // const saveImage = (e: any) => {
-  //   e.preventDefault();
-  //   for (let i = 0; i < e.target.files.length; i++) {
-  //     const fileReader = new FileReader();
-  //     fileReader.readAsDataURL(e.target.files[i]);
-  //     // fileReader.onload = () => {
-  //     //   const fileURLs[i] = fileReader.result
+  const saveImage = (e: any) => {
+    e.preventDefault();
+    const fileReader = new FileReader();
 
-  //     //   setPreviewImage([...fileURLs])
-  //     //   console.log(formData);
-  //     // };
-  //     setFormData({
-  //       ...formData,
-  //       image: e.target.files[i],
-  //     });
-  //   }
-  //   console.log(formData);
-
+    if (e.target.files[0]) {
+      fileReader.readAsDataURL(e.target.files[0]);
+    }
+    fileReader.onload = () => {
+      setPreviewImgList([
+        ...previewImgList,
+        { image_file: e.target.files[0], preview_URL: fileReader.result },
+      ]);
+    };
+    setFormData(previewImgList);
+  };
   return (
     <>
-      {/* {formData && formData.imageFileList[0].name} */}
       <div className="UploadPhotos">
+        {previewImgList &&
+          previewImgList.map((preview: any) => {
+            return (
+              <span className="UploadPhotos__preview" key={preview.preview_URL}>
+                <img
+                  className="UploadPhotos__preview--img"
+                  src={preview.preview_URL}
+                  alt=""
+                />
+              </span>
+            );
+          })}
+
         <span
           className="UploadPhotos__add"
           onClick={() => inputRef.current?.click()}
@@ -39,7 +50,7 @@ const UploadPhotos = () => {
         </span>
         <input
           className="UploadPhotos__input"
-          // onChange={saveImage}
+          onChange={saveImage}
           multiple
           accept="image/jpg,image/png,image/jpeg,image/gif"
           ref={inputRef}

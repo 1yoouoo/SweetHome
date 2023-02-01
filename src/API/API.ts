@@ -1,12 +1,18 @@
 import {
   commentsType,
+  createPostType,
   followType,
   likeType,
   logInType,
   postType,
 } from "./../types/APIType";
 import { signUpType } from "../types/APIType";
-import { authInstance, defaultInstance, formDataInstance } from "./customAPI";
+import {
+  authFormDataInstance,
+  authInstance,
+  defaultInstance,
+  formDataInstance,
+} from "./customAPI";
 const API = {
   signUp: async ({ formData }: signUpType) => {
     const response = await formDataInstance.post(`signup`, formData);
@@ -30,10 +36,8 @@ const API = {
     return response;
   },
 
-  createPost: async ({ content }: postType) => {
-    const response = await authInstance.post(`post`, {
-      content: content,
-    });
+  createPost: async ({ formDataToServer }: createPostType) => {
+    const response = await authFormDataInstance.post(`post`, formDataToServer);
     return response;
   },
 

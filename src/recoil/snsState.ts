@@ -62,11 +62,7 @@ export const commentState = atom<CommentType[]>({
   default: [],
 });
 
-export const formDataState = atom<FormdataType>({
+export const formDataState = atom<FormdataType[]>({
   key: "formData",
-  default: {
-    image: "",
-    preview_URL: "",
-    content: "",
-  },
+  default: [],
 });

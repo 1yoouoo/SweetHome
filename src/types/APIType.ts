@@ -11,6 +11,9 @@ export type logInType = {
   email: string;
   password: string;
 };
+export type createPostType = {
+  formDataToServer: object;
+};
 export type postType = {
   postId?: number | string;
   content?: string;

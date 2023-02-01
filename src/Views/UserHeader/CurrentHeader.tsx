@@ -5,7 +5,7 @@ import "./CurrentHeader.scss";
 interface CurrentHeaderTypeProps {
   current: string;
   createPost?: boolean;
-  onClickSharing?: () => void;
+  onClickSharing?: (e: any) => Promise<void>;
 }
 
 const CurrentHeader = ({

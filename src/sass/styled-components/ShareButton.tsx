@@ -15,7 +15,7 @@ const StyledPostingButton = styled.div`
 `;
 interface postingButtonTypeProps {
   text: string;
-  onClickSharing?: () => void;
+  onClickSharing?: (e: any) => Promise<void>;
 }
 const PostingButton = ({ text, onClickSharing }: postingButtonTypeProps) => {
   return (

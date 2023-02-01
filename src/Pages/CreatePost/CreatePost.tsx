@@ -9,15 +9,14 @@ import "./CreatePost.scss";
 import { useRecoilState } from "recoil";
 import { formDataState } from "../../recoil/snsState";
 export interface FormdataType {
-  image: string;
+  image_file: string;
   preview_URL: any;
-  content: string | ArrayBuffer | null;
 }
+
 export interface CreatePostTypeProps {
   setFormData: Dispatch<
     SetStateAction<{
       image: string;
-      content: string | ArrayBuffer | null;
       preview_URL: any;
     }>
   >;
@@ -25,40 +24,37 @@ export interface CreatePostTypeProps {
 }
 
 const CreatePost = () => {
-  const [formData, setFormData] = useRecoilState<FormdataType>(formDataState);
-
-  // const onClickSharing = async (e: any) => {
-  //   e.preventDefault();
-  //   for (let i = 0; i < e.target.files.length; i++) {
-  //     const formDataToServer = new FormData();
-  //     formDataToServer.append(`image_${i}`, formData.image);
-  //     const fileReader = new FileReader();
-  //     if (e.target.files[i]) {
-  //       fileReader.readAsDataURL(e.target.files[i]);
-  //     }
-  //     fileReader.onload = () => {
-  //       setFormData({
-  //         ...formData,
-  //         image: e.target.files[i],
-  //         preview_URL: fileReader.result,
-  //       });
-  //     };
-  //     formDataToServer.append("content", formData.content);
-  //     const response = await API.createPost({
-  //       formData,
-  //     });
-  //   }
-  // };
+  const [formData, setFormData] = useRecoilState<any>(formDataState);
+  const [content, setContent] = useState("");
+  const onClickSharing = async (e: any) => {
+    e.preventDefault();
+    console.log("click");
+    console.log("formData", formData);
+    const formDataToServer = new FormData();
+    for (let i = 0; i < formData.length; i++) {
+      formDataToServer.append(`image`, formData[i].image_file);
+      console.log("formDataToServer", formDataToServer);
+    }
+    formDataToServer.append(`content`, content);
+    const response = await API.createPost({
+      formDataToServer,
+    });
+    if (response?.data.error === null) {
+      alert(response.data.data.message);
+    } else {
+      alert(response.data.error.message);
+    }
+  };
   return (
     <>
       <CurrentHeader
         current="새 게시물"
         createPost={true}
-        // onClickSharing={onClickSharing}
+        onClickSharing={onClickSharing}
       />
       <form className="CreatePost">
         <UploadPhotos />
-        <TextArea />
+        <TextArea content={content} setContent={setContent} />
       </form>
       <Nav />
     </>
