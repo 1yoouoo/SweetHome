@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
@@ -10,18 +9,17 @@ import PostContent from "../../Views/PostContent/PostContent";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
 import "./PostDetail.scss";
 export interface postType {
-  nickName?: string;
-  postContent?: string;
-  updatedAt?: string;
-  userProfileImage?: string;
+  nickName: string;
+  postContent: string;
+  updatedAt: string;
+  userProfileImage: string;
 }
 export interface clickedPostTypeProps {
-  post: any | null;
-  setPost?: any;
+  post: postType | null;
 }
 const PostDetail = () => {
   const { postId } = useParams<string>();
-  const [post, setPost] = useState<AxiosResponse | postType>({
+  const [post, setPost] = useState<postType>({
     nickName: "",
     postContent: "",
     updatedAt: "",

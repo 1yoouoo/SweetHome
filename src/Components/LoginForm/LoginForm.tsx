@@ -4,14 +4,12 @@ import "./LoginForm.scss";
 import InputBox from "../../Views/InputBox/InputBox";
 import { useState } from "react";
 import API from "../../API/API";
-import { useNavigate } from "react-router-dom";
 // type
 interface inputValueType {
   email: string;
   password: string;
 }
 const LoginForm = () => {
-  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState<inputValueType>({
     email: "",
     password: "",
@@ -33,8 +31,6 @@ const LoginForm = () => {
       localStorage.setItem("token", token);
       alert(response.data.data.message);
       window.location.reload();
-
-      // navigate("/home");
     } else {
       alert(response?.data.error.message);
       setInputValue({ email: "", password: "" });

@@ -2,7 +2,9 @@ import axios from "axios";
 
 const API_base = "http://192.168.35.126:80";
 const token = localStorage.getItem("token");
-
+interface requestType {
+  options: Request | string;
+}
 const axiosApi = ({ options }: any) => {
   const instance = axios.create({
     baseURL: "http://192.168.35.126:80/",

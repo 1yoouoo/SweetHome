@@ -3,6 +3,7 @@ import { postItemState } from "../../recoil/snsState";
 import { CommentType } from "../../Components/AddComment/AddComment";
 import PostItem from "../PostItem/PostItem";
 import "./PostList.scss";
+import { useEffect, useState } from "react";
 
 export interface PostItemType {
   postId: number;
@@ -16,14 +17,13 @@ export interface PostItemType {
   postComments: CommentType[];
 }
 
-const PostList = () => {
-  const postItems = useRecoilValue<PostItemType[]>(postItemState);
+const PostList = ({ dummyList }: any) => {
+  // const postItems = useRecoilValue<PostItemType[]>(postItemState);
 
-  console.log("postList", postItems);
   return (
     <main className="PostList">
-      {postItems &&
-        postItems.map((postItem: PostItemType) => {
+      {dummyList &&
+        dummyList.map((postItem: PostItemType) => {
           return <PostItem postItem={postItem} key={postItem.postId} />;
         })}
     </main>

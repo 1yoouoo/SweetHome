@@ -7,8 +7,10 @@ import "./UploadPhotos.scss";
 const UploadPhotos = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [formData, setFormData] = useRecoilState<FormdataType[]>(formDataState);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [previewImgList, setPreviewImgList] = useState<any>([]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const saveImage = (e: any) => {
     e.preventDefault();
     const fileReader = new FileReader();

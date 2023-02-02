@@ -10,7 +10,7 @@ import UploadProfilePhoto from "../../Views/UploadProfilePhoto/UploadProfilePhot
 // type
 interface inputValueType {
   image_file: string | Blob;
-  preview_URL: any;
+  preview_URL: string | ArrayBuffer | null;
   email: string;
   name: string;
   nickName: string;
@@ -53,6 +53,7 @@ const SignUpForm = () => {
       alert(response.data.error.message);
     }
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const saveImage = (e: any) => {
     e.preventDefault();
     const fileReader = new FileReader();
