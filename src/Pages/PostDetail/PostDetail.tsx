@@ -1,8 +1,11 @@
-import { AxiosResponse } from "axios";
 import { SetStateAction, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import API from "../../API/API";
-import AddComment from "../../Components/AddComment/AddComment";
+import AddComment, {
+  CommentType,
+} from "../../Components/AddComment/AddComment";
+import { commentState } from "../../recoil/snsState";
 import PostComments from "../../Views/PostComments/PostComments";
 import PostContent from "../../Views/PostContent/PostContent";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
@@ -30,7 +33,7 @@ const PostDetail = () => {
     updatedAt: "",
     userProfileImage: "",
   });
-  const [comments, setComments] = useState<AxiosResponse>();
+  const setComments = useSetRecoilState<CommentType[]>(commentState);
   const [inputValue, setInputValue] = useState<string>("");
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,7 +77,7 @@ const PostDetail = () => {
       <div className="PostDetail">
         <CurrentHeader current="댓글" />
         <PostContent post={post} />
-        <PostComments comments={comments} />
+        <PostComments />
         <AddComment onSubmit={onSubmit} onChangeValue={onChangeValue} />
       </div>
     </>

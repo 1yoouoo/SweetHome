@@ -1,4 +1,3 @@
-import blanc from "/Users/blanc/Documents/Project/sns/src/Assets/blanc.jpeg";
 import styled from "styled-components";
 
 interface UserPhotoPropTypes {

@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import API from "../../API/API";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import { getNickName } from "../../utills/function/function";
 import InputBox from "../../Views/InputBox/InputBox";
@@ -11,8 +9,12 @@ export interface CommentType {
   updatedAt: string | Date;
   userProfileImage?: string;
 }
+interface AddCommentTypeProps {
+  onSubmit: React.FormEventHandler<HTMLFormElement> | undefined;
+  onChangeValue: ((e: React.ChangeEvent<HTMLInputElement>) => void) | undefined;
+}
 
-const AddComment = ({ onSubmit, onChangeValue }: any) => {
+const AddComment = ({ onSubmit, onChangeValue }: AddCommentTypeProps) => {
   return (
     <form className="AddComment" onSubmit={onSubmit}>
       <span className="AddComment__user">

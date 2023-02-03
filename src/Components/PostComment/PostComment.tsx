@@ -6,14 +6,15 @@ import { CommentType } from "../AddComment/AddComment";
 import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
 import { useState } from "react";
 import API from "../../API/API";
-import { deleteCommentStateTypeProps } from "../../Views/PostComments/PostComments";
 import { timeFormat } from "../../utills/function/function";
+import { useRecoilState } from "recoil";
+import { commentState } from "../../recoil/snsState";
 interface PostCommentTypeProps {
   comment: CommentType;
-  deleteCommentState: ({ commentId }: deleteCommentStateTypeProps) => void;
 }
 
-const PostComment = ({ comment, deleteCommentState }: PostCommentTypeProps) => {
+const PostComment = ({ comment }: PostCommentTypeProps) => {
+  const [comments, setComments] = useRecoilState<CommentType[]>(commentState);
   const [commentItem, setCommentItem] = useState(comment);
   const [dotToggle, setDotToggle] = useState(false);
   const [editable, setEditable] = useState(false);
@@ -29,7 +30,9 @@ const PostComment = ({ comment, deleteCommentState }: PostCommentTypeProps) => {
     const success = response?.data.data != null;
     if (success) {
       alert(response?.data.data.message);
-      deleteCommentState({ commentId: comment.commentId });
+      setComments(
+        comments.filter((item) => item.commentId !== comment.commentId)
+      );
     } else {
       alert(response?.data.error.message);
     }

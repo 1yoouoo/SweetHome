@@ -1,9 +1,6 @@
-import { useRecoilValue } from "recoil";
-import { postItemState } from "../../recoil/snsState";
 import { CommentType } from "../../Components/AddComment/AddComment";
 import PostItem from "../PostItem/PostItem";
 import "./PostList.scss";
-import { useEffect, useState } from "react";
 
 export interface PostItemType {
   postId: number;
