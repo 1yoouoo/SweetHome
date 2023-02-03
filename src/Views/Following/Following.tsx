@@ -3,13 +3,14 @@ import UserPhoto from "../../sass/styled-components/UserPhoto";
 import StyledButton from "../StyledButton/StyledButton";
 import "./Following.scss";
 
-const Following = () => {
+const Following = ({ following }: any) => {
+  console.log(following);
   return (
     <>
       <li className="Following">
         <span className="Following__user">
-          <UserPhoto size="55px" />
-          <span className="Follower__user--nickname">nickName</span>
+          <UserPhoto size="55px" userProfileImage={following.userImg} />
+          <span className="Follower__user--nickname">{following.nickName}</span>
         </span>
         <span className="Following__action">
           <StyledButton

@@ -1,15 +1,14 @@
 import LinkUser from "../../sass/styled-components/LinkUser";
 import "./UserSummary.scss";
-const UserSummary = () => {
+const UserSummary = ({ userDetail }: any) => {
   const tagedId = "@blanc";
   return (
     <div className="UserSummary">
       <div>
-        <b>슬기 Seulgi</b>
+        <b>{userDetail.contentTitle}</b>
       </div>
-      <div>끄적끄적 취미 공간 👀</div>
+      <div>{userDetail.contentTitle}</div>
       <LinkUser tagedId={tagedId} />
-      <div>youtu.be/Ut1OzEVUiM4</div>
     </div>
   );
 };

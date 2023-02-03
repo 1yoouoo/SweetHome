@@ -3,18 +3,20 @@ import UserPhoto from "../../sass/styled-components/UserPhoto";
 import StyledButton from "../StyledButton/StyledButton";
 import "./UserInfo.scss";
 
-const UserInfo = () => {
+const UserInfo = ({ userDetail }: any) => {
   const isUser = true;
   return (
     <>
       <div className="UserInfo">
         <span className="UserInfo__photo">
-          <UserPhoto size="88px" />
+          <UserPhoto size="88px" userProfileImage={userDetail.userImg} />
         </span>
 
         <div className="UserInfo__name">
           <div className="UserInfo__name--top">
-            <span className="UserInfo__name--top--id">blanc</span>
+            <span className="UserInfo__name--top--id">
+              {userDetail.nickName}
+            </span>
             {isUser ? <></> : <EllipsisSvg />}
           </div>
           <div className="UserInfo__name--bottom">
