@@ -1,5 +1,4 @@
 import { useRecoilState } from "recoil";
-import { commentState } from "../../recoil/snsState";
 import { CommentType } from "../../Components/AddComment/AddComment";
 import PostComment from "../../Components/PostComment/PostComment";
 import "./PostComments.scss";
@@ -8,10 +7,10 @@ export interface deleteCommentStateTypeProps {
   commentId: number;
 }
 
-const PostComments = () => {
-  const [comments, setComments] = useRecoilState<CommentType[]>(commentState);
+const PostComments = ({ comments }: any) => {
+  // const [comments, setComments] = useRecoilState<CommentType[]>(commentState);
   const deleteCommentState = ({ commentId }: deleteCommentStateTypeProps) => {
-    setComments(comments.filter((comment) => comment.commentId !== commentId));
+    // setComments(comments.filter((comment) => comment.commentId !== commentId));
   };
   return (
     <ul className="PostComments">

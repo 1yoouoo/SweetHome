@@ -57,11 +57,6 @@ export const postItemState = atom<PostItemType[]>({
   ],
 });
 
-export const commentState = atom<CommentType[]>({
-  key: "comments",
-  default: [],
-});
-
 export const formDataState = atom<FormdataType[]>({
   key: "formData",
   default: [],

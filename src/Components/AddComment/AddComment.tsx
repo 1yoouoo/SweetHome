@@ -1,10 +1,7 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useEffect, useState } from "react";
 import API from "../../API/API";
-import { commentState } from "../../recoil/snsState";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
-import { newCommentId, getNickName } from "../../utills/function/function";
+import { getNickName } from "../../utills/function/function";
 import InputBox from "../../Views/InputBox/InputBox";
 import "./AddComment.scss";
 export interface CommentType {
@@ -14,36 +11,8 @@ export interface CommentType {
   updatedAt: string | Date;
   userProfileImage?: string;
 }
-const AddComment = () => {
-  const { postId } = useParams<string>();
-  const [inputValue, setInputValue] = useState<string>("");
-  const [comments, setComments] = useRecoilState<CommentType[]>(commentState);
 
-  const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.currentTarget.value);
-  };
-  const createComment = async () => {
-    const response = await API.createComment({
-      content: inputValue,
-      postId: postId,
-    });
-    setComments([
-      {
-        commentContent: inputValue,
-        commentId: newCommentId(comments), // FIXME 정렬된 리스트가 필요함
-        nickName: getNickName(),
-        updatedAt: new Date(),
-      },
-      ...comments,
-    ]);
-    console.log(newCommentId(comments));
-    return response;
-  };
-  const onSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    // Api 호출
-    createComment();
-  };
+const AddComment = ({ onSubmit, onChangeValue }: any) => {
   return (
     <form className="AddComment" onSubmit={onSubmit}>
       <span className="AddComment__user">
