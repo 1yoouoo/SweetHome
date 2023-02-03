@@ -5,6 +5,7 @@ import API from "../../API/API";
 import AddComment, {
   CommentType,
 } from "../../Components/AddComment/AddComment";
+import IsLoding from "../../Components/IsLoding/IsLoding";
 import { commentState } from "../../recoil/snsState";
 import PostComments from "../../Views/PostComments/PostComments";
 import PostContent from "../../Views/PostContent/PostContent";
@@ -16,6 +17,12 @@ export interface postType {
   updatedAt: string;
   userProfileImage: string;
 }
+
+interface userSimpleResponse {
+  nickName: string;
+  userId: number;
+  userProfileImageUrl: string;
+}
 export interface clickedPostTypeProps {
   post: postType | null;
 }
@@ -23,10 +30,11 @@ interface getCommentsType {
   postSummaryResponse: postType;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   commentResponses: SetStateAction<any> | undefined;
-  userSimpleResponse: any;
+  userSimpleResponse: userSimpleResponse;
 }
 
 const PostDetail = () => {
+  const [isLoding, setIsLoding] = useState<boolean>(true);
   const { postId } = useParams<string>();
   const [post, setPost] = useState<postType>({
     nickName: "",
@@ -34,7 +42,7 @@ const PostDetail = () => {
     updatedAt: "",
     userProfileImage: "",
   });
-  const [getUserProfile, setGetUserProfile] = useState();
+  const [getUserProfile, setGetUserProfile] = useState<userSimpleResponse>();
   const setComments = useSetRecoilState<CommentType[]>(commentState);
   const [inputValue, setInputValue] = useState<string>("");
 
@@ -56,6 +64,7 @@ const PostDetail = () => {
     });
     setComments(response?.commentResponses);
     setGetUserProfile(response?.userSimpleResponse);
+    setIsLoding(false);
   };
   const createComment = async () => {
     const response = await API.createComment({
@@ -79,13 +88,19 @@ const PostDetail = () => {
     <>
       <div className="PostDetail">
         <CurrentHeader current="댓글" />
-        <PostContent post={post} />
-        <PostComments />
-        <AddComment
-          onSubmit={onSubmit}
-          onChangeValue={onChangeValue}
-          getUserProfile={getUserProfile}
-        />
+        {isLoding ? (
+          <IsLoding />
+        ) : (
+          <>
+            <PostContent post={post} />
+            <PostComments />
+            <AddComment
+              onSubmit={onSubmit}
+              onChangeValue={onChangeValue}
+              getUserProfile={getUserProfile}
+            />
+          </>
+        )}
       </div>
     </>
   );
