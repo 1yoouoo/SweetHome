@@ -800,19 +800,33 @@ const Home = () => {
       ],
     },
   ];
+  const [throttle, setThrottle] = useState(false);
+  const [isLoding, setIsLoding] = useState(true);
+  const isThrottle = () => {
+    if (throttle) return console.log("대기 !");
+    if (!throttle) {
+      setThrottle(true);
+      console.log("dummyList", dummyList);
+      setDummyList([...dummyList, ...API_response(currentPage, dummy)]);
+      setIsLoding(false);
+      setTimeout(async () => {
+        setThrottle(false);
+      }, 3000);
+    }
+  };
   const [currentPage, setCurrentPage] = useState(0);
   const API_response = (page: any, data: any) => {
     setCurrentPage(currentPage + 1);
     return data.slice(page * 5, (page + 1) * 5);
   };
   const [dummyList, setDummyList] = useState<any>([]);
-  console.log("dummyList", dummyList);
   const areAlmostEndPoint = () => {
     const { scrollTop, offsetHeight, scrollHeight } = document.documentElement;
-    console.log(scrollHeight, scrollTop + offsetHeight + 200);
     if (scrollHeight <= scrollTop + offsetHeight + 200) {
       // get api call
-      setDummyList([...dummyList, ...API_response(currentPage, dummy)]);
+      isThrottle();
+      console.log(scrollHeight, scrollTop + offsetHeight + 100);
+      // throttle
     }
   };
   useEffect(() => {
@@ -826,8 +840,9 @@ const Home = () => {
   return (
     <div className="Home">
       <HomeHeader />
-      <PostList dummyList={dummyList} />
+      <PostList dummyList={dummyList} isLoding={isLoding} />
       <Nav />
+      <div className="Home__NavGap"></div>
     </div>
   );
 };

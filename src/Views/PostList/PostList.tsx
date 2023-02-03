@@ -1,4 +1,5 @@
 import { CommentType } from "../../Components/AddComment/AddComment";
+import IsLoding from "../../Components/IsLoding/IsLoding";
 import PostItem from "../PostItem/PostItem";
 import "./PostList.scss";
 
@@ -13,17 +14,23 @@ export interface PostItemType {
   postContent: string;
   postComments: CommentType[];
 }
+interface PostListTypeProps {
+  dummyList: PostItemType[];
+  isLoding: boolean;
+}
 
-const PostList = ({ dummyList }: any) => {
-  // const postItems = useRecoilValue<PostItemType[]>(postItemState);
-
+const PostList = ({ dummyList, isLoding }: any) => {
+  console.log(isLoding);
   return (
-    <main className="PostList">
-      {dummyList &&
-        dummyList.map((postItem: PostItemType) => {
-          return <PostItem postItem={postItem} key={postItem.postId} />;
-        })}
-    </main>
+    <>
+      <main className="PostList">
+        {dummyList &&
+          dummyList.map((postItem: PostItemType) => {
+            return <PostItem postItem={postItem} key={postItem.postId} />;
+          })}
+      </main>
+      {isLoding && <IsLoding height="20" />}
+    </>
   );
 };
 

@@ -1,4 +1,7 @@
 .loading_spinner_box {
+  position: relative;
+  width: 500px;
+  height: 100vh;
   .loading_spinner {
     position: absolute;
     right: 0;

@@ -64,7 +64,7 @@ const PostDetail = () => {
     });
     setComments(response?.commentResponses);
     setGetUserProfile(response?.userSimpleResponse);
-    setIsLoding(false);
+    await setIsLoding(false);
   };
   const createComment = async () => {
     const response = await API.createComment({
