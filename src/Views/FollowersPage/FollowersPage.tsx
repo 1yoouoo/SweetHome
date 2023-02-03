@@ -1,13 +1,10 @@
-import { slideTypeProps } from "../../Pages/UserPage/UserPage";
+import { GreetingPropTypes } from "../../Pages/UserPage/UserPage";
 import Follower from "../Follower/Follower";
 import "./FollowersPage.scss";
 
-const FollowersPage = ({ slide }: slideTypeProps) => {
+const FollowersPage = ({ followers }: GreetingPropTypes) => {
   return (
-    <ul
-      className="FollowersPage"
-      style={{ transform: `translateX(-${slide * 500}px)` }}
-    >
+    <ul className="FollowersPage">
       <Follower />
     </ul>
   );

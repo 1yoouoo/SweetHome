@@ -823,10 +823,8 @@ const Home = () => {
   const areAlmostEndPoint = () => {
     const { scrollTop, offsetHeight, scrollHeight } = document.documentElement;
     if (scrollHeight <= scrollTop + offsetHeight + 200) {
-      // get api call
       isThrottle();
-      console.log(scrollHeight, scrollTop + offsetHeight + 100);
-      // throttle
+      // console.log(scrollHeight, scrollTop + offsetHeight + 100);
     }
   };
   useEffect(() => {

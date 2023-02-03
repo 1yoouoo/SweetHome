@@ -1,22 +1,22 @@
 import { slideTypeProps } from "../../Pages/UserPage/UserPage";
 import "./UserNav.scss";
 
-const UserNav = ({ slide, setSlide }: slideTypeProps) => {
+const UserNav = ({ selectedNav, setSelectedNav }: slideTypeProps) => {
   // onClick. 트리거로 비동기 처리해야함
   const onClickPosts = () => {
-    setSlide?.(0);
+    setSelectedNav?.(0);
   };
   const onClickFollowers = () => {
-    setSlide?.(1);
+    setSelectedNav?.(1);
   };
   const onClickFollowing = () => {
-    setSlide?.(2);
+    setSelectedNav?.(2);
   };
   return (
     <ul className="UserNav">
       <li
         className="UserNav__slideborder"
-        style={{ transform: `translateX(${slide * 166}px)` }}
+        style={{ transform: `translateX(${selectedNav * 166}px)` }}
       ></li>
       <li className="UserNav__posts" onClick={onClickPosts}>
         <span>668</span>
