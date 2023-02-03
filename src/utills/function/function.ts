@@ -27,11 +27,6 @@ export function timeFormat(now: any) {
   return `${Math.floor(betweenTimeDay / 365)}년 전`;
 }
 
-export function getNickName() {
-  const nickName = "blanc";
-  return nickName;
-}
-
 export const newCommentId = (datas: any) => {
   console.log(datas);
   if (datas.length === 0) {

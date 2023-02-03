@@ -28,11 +28,12 @@ const LoginForm = () => {
     });
     if (response?.data.error === null) {
       const token = response?.headers.token;
+      response.data.data.userLoginResponse;
       localStorage.setItem("token", token);
-      alert(response.data.data.message);
+      console.log(response);
       window.location.reload();
     } else {
-      alert(response?.data.error.message);
+      alert(response.data.error.message);
       setInputValue({ email: "", password: "" });
     }
   };

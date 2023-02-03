@@ -1,5 +1,4 @@
 import UserPhoto from "../../sass/styled-components/UserPhoto";
-import { getNickName } from "../../utills/function/function";
 import InputBox from "../../Views/InputBox/InputBox";
 import "./AddComment.scss";
 export interface CommentType {
@@ -12,17 +11,25 @@ export interface CommentType {
 interface AddCommentTypeProps {
   onSubmit: React.FormEventHandler<HTMLFormElement> | undefined;
   onChangeValue: ((e: React.ChangeEvent<HTMLInputElement>) => void) | undefined;
+  getUserProfile: any;
 }
 
-const AddComment = ({ onSubmit, onChangeValue }: AddCommentTypeProps) => {
+const AddComment = ({
+  onSubmit,
+  onChangeValue,
+  getUserProfile,
+}: AddCommentTypeProps) => {
   return (
     <form className="AddComment" onSubmit={onSubmit}>
       <span className="AddComment__user">
-        <UserPhoto size="44px" />
+        <UserPhoto
+          size="44px"
+          userProfileImage={getUserProfile.userProfileImageUrl}
+        />
       </span>
       <span className="AddComment__input">
         <InputBox
-          placeholder={`${getNickName()}(으)로 댓글 달기...`}
+          placeholder={`${getUserProfile.nickName}(으)로 댓글 달기...`}
           type="text"
           name="commentContent"
           onChangeValue={onChangeValue}

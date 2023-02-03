@@ -23,6 +23,7 @@ interface getCommentsType {
   postSummaryResponse: postType;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   commentResponses: SetStateAction<any> | undefined;
+  userSimpleResponse: any;
 }
 
 const PostDetail = () => {
@@ -33,6 +34,7 @@ const PostDetail = () => {
     updatedAt: "",
     userProfileImage: "",
   });
+  const [getUserProfile, setGetUserProfile] = useState();
   const setComments = useSetRecoilState<CommentType[]>(commentState);
   const [inputValue, setInputValue] = useState<string>("");
 
@@ -53,6 +55,7 @@ const PostDetail = () => {
       userProfileImage: response?.postSummaryResponse.userProfileImage,
     });
     setComments(response?.commentResponses);
+    setGetUserProfile(response?.userSimpleResponse);
   };
   const createComment = async () => {
     const response = await API.createComment({
@@ -78,7 +81,11 @@ const PostDetail = () => {
         <CurrentHeader current="댓글" />
         <PostContent post={post} />
         <PostComments />
-        <AddComment onSubmit={onSubmit} onChangeValue={onChangeValue} />
+        <AddComment
+          onSubmit={onSubmit}
+          onChangeValue={onChangeValue}
+          getUserProfile={getUserProfile}
+        />
       </div>
     </>
   );
