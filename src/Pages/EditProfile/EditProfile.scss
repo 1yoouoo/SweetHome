@@ -19,7 +19,18 @@
     align-items: center;
     &--username {
       font-size: 18px;
+    }
+    &--wrapper {
       margin-left: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+    &--button {
+      color: $input-background;
+      cursor: pointer;
+    }
+    &--photo {
+      display: none;
     }
   }
   &__name {
