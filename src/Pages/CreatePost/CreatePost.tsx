@@ -55,6 +55,7 @@ const CreatePost = () => {
     <>
       <CurrentHeader
         current="새 게시물"
+        backwards={true}
         createPost={true}
         onClickSharing={onClickSharing}
       />

@@ -87,7 +87,7 @@ const PostDetail = () => {
   return (
     <>
       <div className="PostDetail">
-        <CurrentHeader current="댓글" />
+        <CurrentHeader current="댓글" backwards={true} />
         {isLoding ? (
           <IsLoding />
         ) : (

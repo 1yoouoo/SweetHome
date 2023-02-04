@@ -41,6 +41,7 @@ const EditPost = () => {
       <CurrentHeader
         current="게시물 수정"
         createPost={true}
+        backwards={true}
         onClickSharing={onClickSharing}
       />
       <form className="EditPost">

@@ -101,15 +101,15 @@ const UserPage = () => {
   }, []);
   return (
     <div className="UserPage">
-      <CurrentHeader current={current} />
+      <CurrentHeader current={current} setting={true} />
       <UserDetail userDetail={userPageResponse.userDetail} />
       <UserNav selectedNav={selectedNav} setSelectedNav={setSelectedNav} />
       <div className="UserPage__nav">
         <Greeting
           selectedNav={selectedNav}
-          posts={userPageResponse.posts}
-          followers={userPageResponse.followers}
-          followings={userPageResponse.followings}
+          posts={posts}
+          followers={followers}
+          followings={followings}
         />
       </div>
       <Nav />

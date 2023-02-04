@@ -1,0 +1,68 @@
+@import "/src/sass/abstracts/variables";
+.EditProfile {
+  background-color: $background-color-bright;
+  min-height: 90vh;
+  padding: 45px 0 49px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Form {
+  background-color: #000;
+  margin-top: 20px;
+  width: 450px;
+  height: 580px;
+  border: 1px solid $border-color;
+  &__user {
+    display: flex;
+    margin: 5%;
+    align-items: center;
+    &--username {
+      font-size: 18px;
+      margin-left: 10px;
+    }
+  }
+  &__name {
+    margin: 5%;
+    &--label {
+      font-size: 16px;
+      font-weight: 800;
+    }
+    input {
+      width: 90%;
+    }
+  }
+  &__username {
+    margin: 5%;
+    &--label {
+      font-size: 16px;
+      font-weight: 800;
+    }
+    input {
+      width: 90%;
+    }
+  }
+  &__email {
+    margin: 5%;
+    &--label {
+      font-size: 16px;
+      font-weight: 800;
+    }
+    input {
+      width: 90%;
+    }
+  }
+  &__phonenumber {
+    margin: 5%;
+    &--label {
+      font-size: 16px;
+      font-weight: 800;
+    }
+    input {
+      width: 90%;
+    }
+  }
+  &__button {
+    margin: 5%;
+  }
+}

@@ -1,10 +1,8 @@
-import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import StyledButton from "../StyledButton/StyledButton";
 import "./UserInfo.scss";
 
 const UserInfo = ({ userDetail }: any) => {
-  const isUser = true;
   return (
     <>
       <div className="UserInfo">
@@ -17,7 +15,6 @@ const UserInfo = ({ userDetail }: any) => {
             <span className="UserInfo__name--top--id">
               {userDetail.nickName}
             </span>
-            {isUser ? <></> : <EllipsisSvg />}
           </div>
           <div className="UserInfo__name--bottom">
             <span style={{ marginRight: "10px" }}>
