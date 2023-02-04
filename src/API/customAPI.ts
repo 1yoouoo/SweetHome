@@ -30,6 +30,7 @@ const axiosApi = ({ options }: any) => {
       return Promise.reject(error);
     }
   );
+  instance.defaults.timeout = 2500;
   return instance;
 };
 
@@ -62,6 +63,7 @@ const axiosAuthApi = ({ options }: any) => {
       return Promise.reject(error);
     }
   );
+  instance.defaults.timeout = 2500;
   return instance;
 };
 
@@ -93,6 +95,7 @@ const axiosFormDataApi = ({ options }: any) => {
       return Promise.reject(error);
     }
   );
+  instance.defaults.timeout = 2500;
   return instance;
 };
 
@@ -125,6 +128,7 @@ const axiosAuthFormDataApi = ({ options }: any) => {
       return Promise.reject(error);
     }
   );
+  instance.defaults.timeout = 2500;
   return instance;
 };
 
