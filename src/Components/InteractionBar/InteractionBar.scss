@@ -1,0 +1,41 @@
+@import "/src/sass/abstracts/variables";
+
+.InteractionBar {
+  display: flex;
+  justify-content: space-between;
+  &__left {
+    display: flex;
+    .HeartSvg {
+      svg {
+        padding: 12px 6px 0 0 !important;
+      }
+      :hover {
+        fill: $font-color-pointer;
+      }
+    }
+    .HeartActivedSvg {
+      svg {
+        animation: beat 0.3s;
+        animation-iteration-count: 1;
+        @keyframes beat {
+          20% {
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
+
+    .CommentsSvg {
+      svg {
+        padding: 12px;
+      }
+    }
+  }
+  &__right {
+    .BookMarkSvg {
+      svg {
+        padding: 12px 0;
+      }
+    }
+  }
+}

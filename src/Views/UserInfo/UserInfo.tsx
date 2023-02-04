@@ -1,23 +1,20 @@
-import BookMarkSvg from "../../Assets/SVG/BookMarkSvg";
-import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
-import Setting from "../../Assets/SVG/Setting";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import StyledButton from "../StyledButton/StyledButton";
 import "./UserInfo.scss";
 
-const UserInfo = () => {
-  const isUser = true;
+const UserInfo = ({ userDetail }: any) => {
   return (
     <>
       <div className="UserInfo">
         <span className="UserInfo__photo">
-          <UserPhoto size="88px" />
+          <UserPhoto size="88px" userProfileImage={userDetail.userImg} />
         </span>
 
         <div className="UserInfo__name">
           <div className="UserInfo__name--top">
-            <span className="UserInfo__name--top--id">blanc</span>
-            {isUser ? <></> : <EllipsisSvg />}
+            <span className="UserInfo__name--top--id">
+              {userDetail.nickName}
+            </span>
           </div>
           <div className="UserInfo__name--bottom">
             <span style={{ marginRight: "10px" }}>

@@ -1,5 +1,6 @@
 @import "/src/sass/abstracts/variables";
 
+// Nav ---------
 .MessageSvg {
   svg {
     fill: $font-color;
@@ -11,20 +12,11 @@
   }
 }
 
-.EllipsisSvg {
-  svg {
-    fill: $font-color;
-    display: block;
-    width: 24px;
-    height: 24px;
-    padding: 12px;
-    cursor: pointer;
-  }
-}
 .HomeSvg {
   svg {
     fill: $font-color;
     display: block;
+
     width: 24px;
     height: 24px;
     padding: 12px;
@@ -72,6 +64,25 @@
     transform: scaleX(-1);
     cursor: pointer;
   }
+  :hover {
+    fill: $font-color-pointer;
+  }
+}
+// --------- Nav
+
+// interaction bar --------
+.EllipsisSvg {
+  svg {
+    fill: $font-color;
+    display: block;
+    width: 24px;
+    height: 24px;
+    padding: 12px;
+    cursor: pointer;
+  }
+  :hover {
+    fill: $font-color-pointer;
+  }
 }
 
 .BookMarkSvg {
@@ -82,6 +93,9 @@
     height: 24px;
     padding: 12px;
     cursor: pointer;
+  }
+  :hover {
+    fill: $font-color-pointer;
   }
 }
 
@@ -97,7 +111,11 @@
     height: 24px;
     cursor: pointer;
   }
+  :hover {
+    fill: $font-color-pointer;
+  }
 }
+// interaction bar --------
 
 .Setting {
   position: fixed;
@@ -111,6 +129,9 @@
     height: 24px;
     cursor: pointer;
   }
+  :hover {
+    fill: $font-color-pointer;
+  }
 }
 
 .SingleDotSvg {
@@ -120,6 +141,9 @@
     width: 2px;
     height: 2px;
     cursor: pointer;
+  }
+  :hover {
+    fill: $font-color-pointer;
   }
 }
 .CircleCheckSvg {
@@ -141,6 +165,15 @@
     width: 24px;
     height: 24px;
     padding: 12px;
+    cursor: pointer;
+  }
+}
+.CirclePlus {
+  svg {
+    fill: $font-color-pointer;
+    display: block;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
   }
 }

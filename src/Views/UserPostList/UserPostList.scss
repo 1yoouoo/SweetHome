@@ -1,9 +1,15 @@
 .UserPostList {
+  transition: all 1s ease-out;
+  width: 500px;
   display: flex;
   flex-wrap: wrap;
   height: 100%;
   &__item {
+    cursor: pointer;
     display: flex;
+    &:hover {
+      filter: opacity(80%);
+    }
     &--img {
       margin: 0;
       > img {

@@ -1,27 +1,29 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
+import UserNickName from "../../sass/styled-components/UserNickName";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import { timeFormat } from "../../utills/function/function";
-import InteractionBar from "../InteractionBar/InteractionBar";
-import { dataType } from "../PostList/PostList";
+import InteractionBar from "../../Components/InteractionBar/InteractionBar";
+import { PostItemType } from "../PostList/PostList";
 import "./PostItem.scss";
 import sample from "/Users/blanc/Documents/Project/sns/src/Assets/sample.png";
 
 // type
-interface dataTypeProps {
-  data: dataType;
+interface postItemTypeProps {
+  postItem: PostItemType;
 }
-const PostItem = ({ data }: dataTypeProps) => {
-  const [likes, setLikes] = useState(data.likes);
+const PostItem = ({ postItem }: postItemTypeProps) => {
+  const [likes, setLikes] = useState<number>(postItem.likes);
+  const navigate = useNavigate();
 
-  console.log("postItem", data);
   return (
     <>
       <section className="PostItem">
         <div className="PostItem__top">
           <span className="PostItem__top--left">
             <UserPhoto size="44px" />
-            <span>{data.nickName}</span>
+            <UserNickName nickName={postItem.nickName} />
           </span>
           <span className="PostItem__top--right">
             <EllipsisSvg />
@@ -31,17 +33,23 @@ const PostItem = ({ data }: dataTypeProps) => {
           <img src={sample} alt="sample" />
         </div>
         <div className="PostItem__bottom">
-          <InteractionBar likes={likes} setLikes={setLikes} />
+          <InteractionBar
+            likes={likes}
+            setLikes={setLikes}
+            postId={postItem.postId}
+          />
           <div className="PostItem__bottom--likes">{likes} likes</div>
           <div className="PostItem__bottom--content">
-            <span>{data.nickName}</span>
-            <span>{data.text}</span>
+            <span>{postItem.nickName}</span>
+            <span>{postItem.postContent}</span>
           </div>
           <div className="PostItem__bottom--comments">
-            View all {data.commentsNumber} comments
+            <span onClick={() => navigate(`/post/${postItem.postId}`)}>
+              View all {postItem.commentsNumber} comments
+            </span>
           </div>
           <div className="PostItem__bottom--posted-at">
-            {timeFormat(data.postedAt)}
+            {timeFormat(postItem?.postedAt)}
           </div>
         </div>
       </section>

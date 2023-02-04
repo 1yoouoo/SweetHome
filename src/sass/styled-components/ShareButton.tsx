@@ -13,8 +13,13 @@ const StyledPostingButton = styled.div`
   padding: 4px 5px;
   margin: 8px;
 `;
-
-const PostingButton = ({ text }: any) => {
-  return <StyledPostingButton>{text}</StyledPostingButton>;
+interface postingButtonTypeProps {
+  text: string;
+  onClickSharing?: (e: { preventDefault: () => void }) => Promise<void>;
+}
+const PostingButton = ({ text, onClickSharing }: postingButtonTypeProps) => {
+  return (
+    <StyledPostingButton onClick={onClickSharing}>{text}</StyledPostingButton>
+  );
 };
 export default PostingButton;

@@ -5,4 +5,7 @@
   font-size: 14px;
   font-weight: 800;
   border-radius: 7px;
+  &:hover {
+    filter: brightness(110%) contrast(70%);
+  }
 }

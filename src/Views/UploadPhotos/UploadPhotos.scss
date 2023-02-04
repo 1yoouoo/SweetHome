@@ -3,6 +3,20 @@
 .UploadPhotos {
   display: flex;
   height: 80px;
+  &__preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 55px;
+    margin: 0 2.5px;
+    background-color: $background-color-brigter;
+    border: 1px solid $border-color;
+    &--img {
+      width: 55px;
+      height: 100%;
+    }
+  }
   &__add {
     display: flex;
     justify-content: center;
@@ -12,5 +26,10 @@
     margin: 0 2.5px;
     background-color: $background-color-brigter;
     border: 1px solid $border-color;
+    cursor: pointer;
+  }
+
+  &__input {
+    display: none;
   }
 }

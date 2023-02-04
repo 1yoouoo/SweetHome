@@ -1,8 +1,9 @@
-import StyledButton from "../StyledButton/StyledButton";
-import Logo from "../Logo/Logo";
+import StyledButton from "../../Views/StyledButton/StyledButton";
+import Logo from "../../Views/Logo/Logo";
 import "./LoginForm.scss";
-import InputBox from "../InputBox/InputBox";
+import InputBox from "../../Views/InputBox/InputBox";
 import { useState } from "react";
+import API from "../../API/API";
 // type
 interface inputValueType {
   email: string;
@@ -19,9 +20,22 @@ const LoginForm = () => {
       [e.currentTarget.name]: e.currentTarget.value,
     });
   };
-  const onSubmit = (e: React.SyntheticEvent) => {
+  const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log(inputValue);
+    const response = await API.logIn({
+      email: inputValue.email,
+      password: inputValue.password,
+    });
+    if (response?.data.error === null) {
+      const token = response?.headers.token;
+      response.data.data.userLoginResponse;
+      localStorage.setItem("token", token);
+      console.log(response);
+      window.location.reload();
+    } else {
+      alert(response.data.error.message);
+      setInputValue({ email: "", password: "" });
+    }
   };
   return (
     <>
@@ -37,6 +51,7 @@ const LoginForm = () => {
           <InputBox
             placeholder="Password"
             name="password"
+            type="password"
             value={inputValue.password}
             onChangeValue={onChangeValue}
           />

@@ -1,15 +1,15 @@
 import "./SVG.scss";
 import styled from "styled-components";
-import { onClickHeartTypeProps } from "../../Views/InteractionBar/InteractionBar";
+import { onClickHeartTypeProps } from "../../Components/InteractionBar/InteractionBar";
 
 const StyledHeartActivedSvg = styled.span`
   .HeartActivedSvg {
     svg {
-      fill: #ff0000;
+      fill: rgb(237, 73, 86);
       display: block;
       width: 24px;
       height: 24px;
-      padding: 12px;
+      padding: 12px 6px 0 0;
       cursor: pointer;
     }
   }

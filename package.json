@@ -21,6 +21,7 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "lint": "npx eslint src/*.tsx src/*.ts",
+    "deploy": "aws s3 sync ./build s3://mullae.com --profile=mullae",
     "test": "echo 'true'"
   },
   "eslintConfig": {
@@ -45,6 +46,7 @@
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
+    "axios": "^1.2.4",
     "eslint": "^8.31.0",
     "react-router-dom": "^6.6.2",
     "recoil": "^0.7.6",

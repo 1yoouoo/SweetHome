@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
+import API from "../../API/API";
 import BookMarkSvg from "../../Assets/SVG/BookMarkSvg";
 import CommentsSvg from "../../Assets/SVG/Comments";
 import HeartActivedSvg from "../../Assets/SVG/HeartActivedSvg";
@@ -12,17 +13,39 @@ export interface onClickHeartTypeProps {
 interface InteractionBarTypeProps {
   likes: number;
   setLikes: Dispatch<SetStateAction<number>>;
+  postId: number;
 }
-const InteractionBar = ({ likes, setLikes }: InteractionBarTypeProps) => {
+const InteractionBar = ({
+  likes,
+  setLikes,
+  postId,
+}: InteractionBarTypeProps) => {
   const [heartToggle, setHeartToggle] = useState(true);
-
-  const onClickHeart = () => {
-    setHeartToggle(!heartToggle);
-    if (heartToggle == true) {
-      setLikes(likes + 1);
+  // 게시글 리스트 조회 후 좋아요 여부에 따라 로직 달라질 거
+  const like = async () => {
+    const response = await API.clickedLike({
+      postId: postId,
+    });
+    if (response?.data.error === null) {
+      setHeartToggle(!heartToggle);
+      setLikes(heartToggle ? likes - 1 : likes + 1);
     } else {
-      setLikes(likes - 1);
+      alert(response?.data.error.message);
     }
+  };
+  const unLike = async () => {
+    const response = await API.clickedUnLike({
+      postId: postId,
+    });
+    if (response?.data.error === null) {
+      setHeartToggle(!heartToggle);
+      setLikes(heartToggle ? likes - 1 : likes + 1);
+    } else {
+      alert(response?.data.error.message);
+    }
+  };
+  const onClickHeart = async () => {
+    heartToggle ? like() : unLike();
   };
   return (
     <>
@@ -33,7 +56,7 @@ const InteractionBar = ({ likes, setLikes }: InteractionBarTypeProps) => {
           ) : (
             <HeartSvg onClickHeart={onClickHeart} />
           )}
-          <CommentsSvg />
+          <CommentsSvg postId={postId} />
         </span>
         <span className="InteractionBar__right">
           <BookMarkSvg />

@@ -1,22 +1,21 @@
 import SingleDotSvg from "../../Assets/SVG/SingleDotSvg";
+import { clickedPostTypeProps } from "../../Pages/PostDetail/PostDetail";
+import { timeFormat } from "../../utills/function/function";
 import "./UserComment.scss";
 
-const UserComment = () => {
+const UserComment = ({ post }: clickedPostTypeProps) => {
   return (
     <div className="UserComment">
       <div className="UserComment__wrapper">
-        <span className="UserComment__username">username</span>
+        <span className="UserComment__username">{post?.nickName}</span>
         <span className="UserComment__dot">
           <SingleDotSvg />
         </span>
-        <span className="UserComment__created-at">1시간</span>
+        <span className="UserComment__created-at">
+          {timeFormat(post?.updatedAt)}
+        </span>
       </div>
-      <div className="UserComment__text">
-        어쩌구저쩌구 ㅁㄴㅇㅁㄴ 1214-- ㄴㅁ 어쩌구저쩌구 ㅁㄴㅇㅁㄴ 1214-- ㄴㅁ
-        어쩌구저쩌구 ㅁㄴㅇㅁㄴ 1214-- ㄴㅁ 어쩌구저쩌구 ㅁㄴㅇㅁㄴ 1214-- ㄴㅁ
-        어쩌구저쩌구 ㅁㄴㅇㅁㄴ 1214-- ㄴㅁ 어쩌구저쩌구 ㅁㄴㅇㅁㄴ 1214-- ㄴㅁ
-        어쩌구저쩌구 ㅁㄴㅇㅁㄴ 1214-- ㄴㅁ
-      </div>
+      <div className="UserComment__text">{post?.postContent}</div>
       <div className="UserComment__comment">
         <span className="UserComment__comment--like">좋아요</span>
         <span className="UserComment__comment--recomment">답글달기</span>

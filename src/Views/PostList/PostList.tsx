@@ -1,31 +1,36 @@
-import { useState } from "react";
-import { useRecoilState } from "recoil";
-import { datasState } from "../../recoil/snsState";
+import { CommentType } from "../../Components/AddComment/AddComment";
+import IsLoding from "../../Components/IsLoding/IsLoding";
 import PostItem from "../PostItem/PostItem";
 import "./PostList.scss";
 
-export interface dataType {
+export interface PostItemType {
   postId: number;
   postImg: string;
   likes: number;
   nickName: string;
-  text: string;
   commentsNumber: number;
-  postedAt: string;
+  postedAt?: Date | string | undefined;
   userImg: string;
+  postContent: string;
+  postComments: CommentType[];
+}
+interface PostListTypeProps {
+  dummyList: PostItemType[];
+  isLoding: boolean;
 }
 
-const PostList = () => {
-  const [datas, setDatas] = useRecoilState<dataType[]>(datasState);
-
-  console.log("postList", datas);
+const PostList = ({ dummyList, isLoding }: any) => {
+  console.log(isLoding);
   return (
-    <main className="PostList">
-      {datas &&
-        datas.map((data: dataType) => {
-          return <PostItem data={data} key={data.postId} />;
-        })}
-    </main>
+    <>
+      <main className="PostList">
+        {dummyList &&
+          dummyList.map((postItem: PostItemType) => {
+            return <PostItem postItem={postItem} key={postItem.postId} />;
+          })}
+      </main>
+      {isLoding && <IsLoding height="20" />}
+    </>
   );
 };
 
