@@ -7,7 +7,6 @@ interface TextAreaTypeProps {
 const TextArea = ({ content, setContent }: TextAreaTypeProps) => {
   const onChangeValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
-    console.log(content);
   };
   return (
     <>

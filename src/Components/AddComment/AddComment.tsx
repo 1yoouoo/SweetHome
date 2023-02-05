@@ -15,11 +15,9 @@ interface AddCommentTypeProps {
   getUserProfile?: CommentType | undefined;
 }
 
-const AddComment = ({
-  onSubmit,
-  onChangeValue,
-  getUserProfile,
-}: AddCommentTypeProps) => {
+const AddComment = (props: AddCommentTypeProps) => {
+  const { onSubmit, onChangeValue, getUserProfile }: AddCommentTypeProps =
+    props;
   return (
     <form className="AddComment" onSubmit={onSubmit}>
       <span className="AddComment__user">

@@ -1,9 +1,15 @@
 import Followers from "../../Views/Followers/Followers";
 import FollowingPage from "../../Views/Followings/Followings";
 import UserPostList from "../../Views/UserPostList/UserPostList";
-
-const Greeting = ({ selectedNav, posts, followers, followings }: any): any => {
-  console.log(followings);
+interface GreetingPropTypes {
+  selectedNav?: any;
+  posts?: any;
+  followers?: any;
+  followings?: any;
+}
+const Greeting = (props: GreetingPropTypes): any => {
+  const { selectedNav, posts, followers, followings }: GreetingPropTypes =
+    props;
   if (selectedNav == 0) {
     return <UserPostList posts={posts} />;
   }

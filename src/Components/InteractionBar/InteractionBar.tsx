@@ -15,11 +15,8 @@ interface InteractionBarTypeProps {
   setLikes: Dispatch<SetStateAction<number>>;
   postId: number;
 }
-const InteractionBar = ({
-  likes,
-  setLikes,
-  postId,
-}: InteractionBarTypeProps) => {
+const InteractionBar = (props: InteractionBarTypeProps) => {
+  const { likes, setLikes, postId }: InteractionBarTypeProps = props;
   const [heartToggle, setHeartToggle] = useState(true);
   // 게시글 리스트 조회 후 좋아요 여부에 따라 로직 달라질 거
   const like = async () => {

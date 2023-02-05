@@ -19,7 +19,7 @@ interface PostListTypeProps {
   isLoding: boolean;
 }
 
-const PostList = ({ dummyList, isLoding }: any) => {
+const PostList = ({ dummyList, isLoding }: PostListTypeProps) => {
   return (
     <>
       <main className="PostList">

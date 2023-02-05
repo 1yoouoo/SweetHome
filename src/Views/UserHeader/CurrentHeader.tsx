@@ -10,13 +10,14 @@ interface CurrentHeaderTypeProps {
   onClickSharing?: (e: { preventDefault: () => void }) => Promise<void>;
 }
 
-const CurrentHeader = ({
-  current,
-  createPost,
-  onClickSharing,
-  setting,
-  backwards,
-}: CurrentHeaderTypeProps) => {
+const CurrentHeader = (props: CurrentHeaderTypeProps) => {
+  const {
+    current,
+    createPost,
+    onClickSharing,
+    setting,
+    backwards,
+  }: CurrentHeaderTypeProps = props;
   const isUser = true;
   return (
     <>

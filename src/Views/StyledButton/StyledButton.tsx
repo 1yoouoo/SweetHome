@@ -1,13 +1,9 @@
 import "./StyledButton.scss";
 import { ButtonTypeProps } from "../../types/snsType";
 
-const StyledButton = ({
-  width,
-  height,
-  backgroundColor,
-  content,
-  color,
-}: ButtonTypeProps) => {
+const StyledButton = (props: ButtonTypeProps) => {
+  const { width, height, backgroundColor, content, color }: ButtonTypeProps =
+    props;
   return (
     <>
       <button

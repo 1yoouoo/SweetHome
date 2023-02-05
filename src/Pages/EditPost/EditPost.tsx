@@ -2,7 +2,6 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../../API/API";
 import Nav from "../../Views/Nav/Nav";
-import TextArea from "../../Views/TextArea/TextArea";
 import UploadPhotos from "../../Views/UploadPhotos/UploadPhotos";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
 import "./EditPost.scss";

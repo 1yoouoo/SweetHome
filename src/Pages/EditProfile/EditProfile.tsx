@@ -36,7 +36,10 @@ const EditProfile = () => {
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     console.log(inputValue);
+    // api call
+    // navigate
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const saveImage = (e: any) => {
     e.preventDefault();
     const fileReader = new FileReader();
