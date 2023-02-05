@@ -20,7 +20,6 @@ interface PostListTypeProps {
 }
 
 const PostList = ({ dummyList, isLoding }: any) => {
-  console.log(isLoding);
   return (
     <>
       <main className="PostList">

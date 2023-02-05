@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import InputBox from "../../Views/InputBox/InputBox";
 import StyledButton from "../../Views/StyledButton/StyledButton";
+import TextBox from "../../Views/TextBox/TextBox";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
 import "./EditProfile.scss";
 
@@ -10,8 +11,7 @@ const testData = {
   preview_URL: require(`${"/Users/blanc/Documents/Project/sns/src/Assets/blanc.jpeg"}`),
   name: "이지윤",
   userName: "blanc",
-  email: "1yoouoo@gmail.com",
-  phoneNumber: "01064882739",
+  content: "",
 };
 
 const EditProfile = () => {
@@ -21,10 +21,13 @@ const EditProfile = () => {
     preview_URL: testData.preview_URL,
     name: testData.name,
     userName: testData.userName,
-    email: testData.email,
-    phoneNumber: testData.phoneNumber,
+    content: testData.content,
   });
-  const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeValue = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setInputValue({
       ...inputValue,
       [e.currentTarget.name]: e.currentTarget.value,
@@ -90,19 +93,11 @@ const EditProfile = () => {
               onChangeValue={onChangeValue}
             />
           </div>
-          <div className="Form__email">
-            <span className="Form__email--label">Email</span>
-            <InputBox
-              name="email"
-              value={inputValue.email}
-              onChangeValue={onChangeValue}
-            />
-          </div>
-          <div className="Form__phonenumber">
-            <span className="Form__phonenumber--label">PhoneNumber</span>
-            <InputBox
-              name="phoneNumber"
-              value={inputValue.phoneNumber}
+          <div className="Form__content">
+            <span className="Form__content--label">Content</span>
+            <TextBox
+              name="content"
+              value={inputValue.content}
               onChangeValue={onChangeValue}
             />
           </div>

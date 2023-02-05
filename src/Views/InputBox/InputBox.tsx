@@ -1,4 +1,5 @@
 import "./InputBox.scss";
+
 // type
 interface InputBoxTypeProps {
   placeholder?: string;

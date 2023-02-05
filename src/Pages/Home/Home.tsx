@@ -806,25 +806,29 @@ const Home = () => {
     if (throttle) return console.log("대기 !");
     if (!throttle) {
       setThrottle(true);
-      console.log("dummyList", dummyList);
       setDummyList([...dummyList, ...API_response(currentPage, dummy)]);
-      setIsLoding(false);
-      setTimeout(async () => {
+      setTimeout(() => {
+        setIsLoding(false);
+        console.log("Data provided");
         setThrottle(false);
       }, 3000);
     }
   };
   const [currentPage, setCurrentPage] = useState(0);
   const API_response = (page: any, data: any) => {
+    console.log(page);
     setCurrentPage(currentPage + 1);
+
     return data.slice(page * 5, (page + 1) * 5);
   };
   const [dummyList, setDummyList] = useState<any>([]);
   const areAlmostEndPoint = () => {
     const { scrollTop, offsetHeight, scrollHeight } = document.documentElement;
-    if (scrollHeight <= scrollTop + offsetHeight + 200) {
+    // console.log(scrollHeight, scrollTop + offsetHeight + 200);
+    if (scrollHeight <= scrollTop + offsetHeight) {
+      setIsLoding(true);
+
       isThrottle();
-      // console.log(scrollHeight, scrollTop + offsetHeight + 100);
     }
   };
   useEffect(() => {
@@ -832,7 +836,7 @@ const Home = () => {
   }, []);
   useEffect(() => {
     window.addEventListener("scroll", areAlmostEndPoint);
-    console.log("Home Mount!");
+    // console.log("Home Mount!");
     return () => window.removeEventListener("scroll", areAlmostEndPoint);
   });
   return (
