@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import InputBox from "../../Views/InputBox/InputBox";
 import StyledButton from "../../Views/StyledButton/StyledButton";
@@ -16,12 +16,12 @@ const testData = {
 
 const EditProfile = () => {
   const [userData, setUserData] = useState<any>();
+  const contentRef = useRef<HTMLTextAreaElement>(null);
   const [inputValue, setInputValue] = useState<any>({
     image_file: "",
     preview_URL: testData.preview_URL,
     name: testData.name,
     userName: testData.userName,
-    content: testData.content,
   });
   const onChangeValue = (
     e:
@@ -36,6 +36,7 @@ const EditProfile = () => {
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     console.log(inputValue);
+    console.log(contentRef.current?.value);
     // api call
     // navigate
   };
@@ -98,11 +99,7 @@ const EditProfile = () => {
           </div>
           <div className="Form__content">
             <span className="Form__content--label">Content</span>
-            <TextBox
-              name="content"
-              value={inputValue.content}
-              onChangeValue={onChangeValue}
-            />
+            <TextBox name="content" inputRef={contentRef} />
           </div>
 
           <div className="Form__button">

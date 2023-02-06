@@ -1,23 +1,20 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../../API/API";
 import Nav from "../../Views/Nav/Nav";
+import TextArea from "../../Views/TextArea/TextArea";
 import UploadPhotos from "../../Views/UploadPhotos/UploadPhotos";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
 import "./EditPost.scss";
 
-export interface EditPostTypeProps {
-  setInputValue: Dispatch<SetStateAction<string>>;
-  inputValue: string;
-}
-
 const EditPost = () => {
-  const [inputValue, setInputValue] = useState<string>("");
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const [inputValue, setInputValue] = useState();
   const { postId } = useParams<string>();
 
   const onClickSharing = async () => {
     const response = await API.editPost({
-      content: inputValue,
+      content: inputRef.current?.value,
     });
     const success = response?.data.error === null;
     if (success) {
@@ -26,13 +23,13 @@ const EditPost = () => {
       alert(response.data.error.message);
     }
   };
+  const getUserApi = async () => {
+    const response = await API.getPost({ postId });
+    console.log("check", response?.data.data);
+    setInputValue(response.data.data.postDetailResponse.content);
+  };
+  console.log();
   useEffect(() => {
-    const getUserApi = async () => {
-      const response = await API.getPost({ postId });
-      console.log("check", response?.data.data);
-      setInputValue(response?.data.data.postDetailResponse.content);
-    };
-    console.log();
     getUserApi();
   }, []);
   return (
@@ -45,7 +42,7 @@ const EditPost = () => {
       />
       <form className="EditPost">
         <UploadPhotos />
-        {/* <TextArea /> */}
+        <TextArea inputRef={inputRef} inputValue={inputValue} />
       </form>
       <Nav />
     </>

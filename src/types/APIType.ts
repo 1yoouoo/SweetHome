@@ -2,8 +2,8 @@ export type signUpType = {
   formData: object;
 };
 export type logInType = {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
 };
 export type createPostType = {
   formDataToServer: object;

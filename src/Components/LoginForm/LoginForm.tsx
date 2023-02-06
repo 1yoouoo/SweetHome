@@ -2,29 +2,17 @@ import StyledButton from "../../Views/StyledButton/StyledButton";
 import Logo from "../../Views/Logo/Logo";
 import "./LoginForm.scss";
 import InputBox from "../../Views/InputBox/InputBox";
-import { useState } from "react";
+import { useRef } from "react";
 import API from "../../API/API";
 // type
-interface inputValueType {
-  email: string;
-  password: string;
-}
 const LoginForm = () => {
-  const [inputValue, setInputValue] = useState<inputValueType>({
-    email: "",
-    password: "",
-  });
-  const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue({
-      ...inputValue,
-      [e.currentTarget.name]: e.currentTarget.value,
-    });
-  };
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     const response = await API.logIn({
-      email: inputValue.email,
-      password: inputValue.password,
+      email: emailRef.current?.value,
+      password: passwordRef.current?.value,
     });
     if (response?.data.error === null) {
       const token = response?.headers.token;
@@ -34,7 +22,6 @@ const LoginForm = () => {
       window.location.reload();
     } else {
       alert(response.data.error.message);
-      setInputValue({ email: "", password: "" });
     }
   };
   return (
@@ -42,18 +29,11 @@ const LoginForm = () => {
       <form className="LoginForm" onSubmit={onSubmit}>
         <Logo width="175px" height="51px" />
         <section className="LoginForm__input-section">
-          <InputBox
-            placeholder="Email"
-            name="email"
-            value={inputValue.email}
-            onChangeValue={onChangeValue}
-          />
+          <InputBox placeholder="Email" inputRef={emailRef} />
           <InputBox
             placeholder="Password"
-            name="password"
+            inputRef={passwordRef}
             type="password"
-            value={inputValue.password}
-            onChangeValue={onChangeValue}
           />
           <div style={{ margin: "20px 0" }}>
             <StyledButton
