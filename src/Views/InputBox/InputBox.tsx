@@ -7,11 +7,18 @@ interface InputBoxTypeProps {
   value?: string;
   type?: string;
   onChangeValue?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  inputRef?: any;
 }
 
 const InputBox = (props: InputBoxTypeProps) => {
-  const { placeholder, name, value, type, onChangeValue }: InputBoxTypeProps =
-    props;
+  const {
+    placeholder,
+    name,
+    value,
+    type,
+    onChangeValue,
+    inputRef,
+  }: InputBoxTypeProps = props;
   return (
     <>
       <label className="InputBox__label">
@@ -22,6 +29,7 @@ const InputBox = (props: InputBoxTypeProps) => {
           onChange={(e) => onChangeValue?.(e)}
           type={type}
           required
+          ref={inputRef}
           // onBlur={() => console.log("focus out!")}
         />
         <span className="InputBox__label--input--placeholder">

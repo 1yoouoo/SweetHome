@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from "react";
+import { SetStateAction, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import API from "../../API/API";
@@ -44,11 +44,7 @@ const PostDetail = () => {
   });
   const [getUserProfile, setGetUserProfile] = useState<userSimpleResponse>();
   const setComments = useSetRecoilState<CommentType[]>(commentState);
-  const [inputValue, setInputValue] = useState<string>("");
-
-  const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.currentTarget.value);
-  };
+  const inputRef = useRef<HTMLInputElement>(null);
   const fetchComments = async () => {
     const response = await API.getComments({ postId });
     return response.data.data.postAndCommentsResponse;
@@ -68,7 +64,7 @@ const PostDetail = () => {
   };
   const createComment = async () => {
     const response = await API.createComment({
-      content: inputValue,
+      content: inputRef.current?.value,
       postId: postId,
     });
     console.log("create Comments !", response);
@@ -96,7 +92,7 @@ const PostDetail = () => {
             <PostComments />
             <AddComment
               onSubmit={onSubmit}
-              onChangeValue={onChangeValue}
+              inputRef={inputRef}
               getUserProfile={getUserProfile}
             />
           </>

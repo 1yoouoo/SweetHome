@@ -9,15 +9,14 @@ export interface CommentType {
   userProfileImage?: string;
   userProfileImageUrl?: string;
 }
-interface AddCommentTypeProps {
+interface AddCommentPropsType {
   onSubmit: React.FormEventHandler<HTMLFormElement> | undefined;
-  onChangeValue: ((e: React.ChangeEvent<HTMLInputElement>) => void) | undefined;
+  inputRef: React.RefObject<HTMLInputElement>;
   getUserProfile?: CommentType | undefined;
 }
 
-const AddComment = (props: AddCommentTypeProps) => {
-  const { onSubmit, onChangeValue, getUserProfile }: AddCommentTypeProps =
-    props;
+const AddComment = (props: AddCommentPropsType) => {
+  const { onSubmit, inputRef, getUserProfile }: AddCommentPropsType = props;
   return (
     <form className="AddComment" onSubmit={onSubmit}>
       <span className="AddComment__user">
@@ -30,8 +29,7 @@ const AddComment = (props: AddCommentTypeProps) => {
         <InputBox
           placeholder={`${getUserProfile?.nickName}(으)로 댓글 달기...`}
           type="text"
-          name="commentContent"
-          onChangeValue={onChangeValue}
+          inputRef={inputRef}
         />
         <button className="AddComment__input--button">게시</button>
       </span>
