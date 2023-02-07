@@ -7,7 +7,10 @@ const UserInfo = ({ userDetail }: any) => {
     <>
       <div className="UserInfo">
         <span className="UserInfo__photo">
-          <UserPhoto size="88px" userProfileImage={userDetail.userImg} />
+          <UserPhoto
+            size="88px"
+            userProfileImage={userDetail.userProfileImageUrl}
+          />
         </span>
 
         <div className="UserInfo__name">

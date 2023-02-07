@@ -7,12 +7,12 @@ const UserPostList = ({ posts }: GreetingPropTypes) => {
       {posts &&
         posts.map((post: any) => {
           return (
-            <li className="UserPostList__item" key={post.id}>
+            <li className="UserPostList__item" key={post.postImageId}>
               <span className="UserPostList__item--img">
                 <img
                   // src={require(`/Users/blanc/Documents/Project/sns/src/Assets/cat${item.id}.png`)}
-                  src={post.img}
-                  alt=""
+                  src={post.postImageUrl}
+                  alt="post"
                 />
               </span>
             </li>

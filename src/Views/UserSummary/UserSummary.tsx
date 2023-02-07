@@ -4,10 +4,7 @@ const UserSummary = ({ userDetail }: any) => {
   const tagedId = "@blanc";
   return (
     <div className="UserSummary">
-      <div>
-        <b>{userDetail.contentTitle}</b>
-      </div>
-      <div>{userDetail.contentTitle}</div>
+      <div>{userDetail.content}</div>
       <LinkUser tagedId={tagedId} />
     </div>
   );

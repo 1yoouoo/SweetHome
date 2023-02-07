@@ -5,10 +5,12 @@ import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
 import Nav from "../../Views/Nav/Nav";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Greeting from "../../Components/Greeting/Greeting";
+import API from "../../API/API";
 
 export interface slideTypeProps {
   selectedNav: number;
   setSelectedNav: Dispatch<SetStateAction<number>>;
+  userInfo?: any;
 }
 export interface GreetingPropTypes {
   selectedNav?: number | undefined;
@@ -87,33 +89,53 @@ const userPageResponse = {
 };
 const UserPage = () => {
   const [selectedNav, setSelectedNav] = useState<number>(0);
+  const [userInfo, setUserInfo] = useState<any>();
   const [posts, setPosts] = useState<any>();
   const [followers, setFollowers] = useState<any>();
   const [followings, setFollowings] = useState<any>();
   const current = "blanc";
 
+  const getUser = async () => {
+    const response = await API.getUser({
+      userId: 1,
+      page: 0,
+    });
+    setUserInfo(response.data.data.profileResponse.userDetailResponse);
+    setPosts(response.data.data.profileResponse.postSlice);
+
+    return response;
+  };
+
   useEffect(() => {
-    setPosts(userPageResponse?.posts);
+    getUser();
     setFollowers(userPageResponse?.followers);
     setFollowings(userPageResponse?.followings);
     console.log("UserPage Mount!");
     //posts default Api호출
   }, []);
   return (
-    <div className="UserPage">
-      <CurrentHeader current={current} setting={true} />
-      <UserDetail userDetail={userPageResponse.userDetail} />
-      <UserNav selectedNav={selectedNav} setSelectedNav={setSelectedNav} />
-      <div className="UserPage__nav">
-        <Greeting
-          selectedNav={selectedNav}
-          posts={posts}
-          followers={followers}
-          followings={followings}
-        />
-      </div>
-      <Nav />
-    </div>
+    <>
+      {posts && userInfo && (
+        <div className="UserPage">
+          <CurrentHeader current={userInfo.nickName} setting={true} />
+          <UserDetail userDetail={userInfo} />
+          <UserNav
+            selectedNav={selectedNav}
+            setSelectedNav={setSelectedNav}
+            userInfo={userInfo}
+          />
+          <div className="UserPage__nav">
+            <Greeting
+              selectedNav={selectedNav}
+              posts={posts}
+              followers={followers}
+              followings={followings}
+            />
+          </div>
+          <Nav />
+        </div>
+      )}
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
 import { slideTypeProps } from "../../Pages/UserPage/UserPage";
 import "./UserNav.scss";
 
-const UserNav = ({ selectedNav, setSelectedNav }: slideTypeProps) => {
+const UserNav = ({ selectedNav, setSelectedNav, userInfo }: slideTypeProps) => {
   // onClick. 트리거로 비동기 처리해야함
   const onClickPosts = () => {
     setSelectedNav?.(0);
@@ -19,15 +19,15 @@ const UserNav = ({ selectedNav, setSelectedNav }: slideTypeProps) => {
         style={{ transform: `translateX(${selectedNav * 166}px)` }}
       ></li>
       <li className="UserNav__posts" onClick={onClickPosts}>
-        <span>668</span>
+        <span>{userInfo.postSize}</span>
         <span>posts</span>
       </li>
       <li className="UserNav__followers" onClick={onClickFollowers}>
-        <span>12.6M</span>
+        <span>{userInfo.followerSize}</span>
         <span>followers</span>
       </li>
       <li className="UserNav__following" onClick={onClickFollowing}>
-        <span>19</span>
+        <span>{userInfo.followingSize}</span>
         <span>following</span>
       </li>
     </ul>
