@@ -6,12 +6,18 @@ interface GreetingPropTypes {
   posts?: any;
   followers?: any;
   followings?: any;
+  isLoding?: any;
 }
 const Greeting = (props: GreetingPropTypes): any => {
-  const { selectedNav, posts, followers, followings }: GreetingPropTypes =
-    props;
+  const {
+    selectedNav,
+    posts,
+    followers,
+    followings,
+    isLoding,
+  }: GreetingPropTypes = props;
   if (selectedNav == 0) {
-    return <UserPostList posts={posts} />;
+    return <UserPostList posts={posts} isLoding={isLoding} />;
   }
   if (selectedNav == 1) {
     return <Followers followers={followers} />;

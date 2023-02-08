@@ -16,8 +16,9 @@ const LoginForm = () => {
     });
     if (response?.data.error === null) {
       const token = response?.headers.token;
-      response.data.data.userLoginResponse;
+      const userId = response?.data.data.userLoginResponse.userId;
       localStorage.setItem("token", token);
+      localStorage.setItem("userId", userId);
       console.log(response);
       window.location.reload();
     } else {
@@ -27,7 +28,7 @@ const LoginForm = () => {
   return (
     <>
       <form className="LoginForm" onSubmit={onSubmit}>
-        {/* {/* <Logo width="175px" height="51px" /> */}
+        <Logo width="175px" height="51px" />
         <section className="LoginForm__input-section">
           <InputBox placeholder="Email" inputRef={emailRef} />
           <InputBox

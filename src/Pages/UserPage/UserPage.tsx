@@ -17,6 +17,7 @@ export interface GreetingPropTypes {
   posts?: any;
   followers?: any;
   followings?: any;
+  isLoding?: any;
 }
 const userPageResponse = {
   userDetail: {
@@ -93,25 +94,61 @@ const UserPage = () => {
   const [posts, setPosts] = useState<any>();
   const [followers, setFollowers] = useState<any>();
   const [followings, setFollowings] = useState<any>();
-  const current = "blanc";
+  const [currentPage, setCurrentPage] = useState(0);
+  const [isLastPage, setIsLastPage] = useState(true);
 
-  const getUser = async () => {
+  const [throttle, setThrottle] = useState(false);
+  const [isLoding, setIsLoding] = useState(true);
+  const isThrottle = (response: any) => {
+    if (throttle) return console.log("대기 !");
+    if (!throttle) {
+      setThrottle(true);
+      setTimeout(() => {
+        setIsLoding(false);
+        console.log("Data provided");
+        setPosts([...posts, ...response.data.data.profileResponse.postSlice]);
+        setThrottle(false);
+      }, 1000);
+    }
+  };
+  const firstGetUser = async () => {
     const response = await API.getUser({
-      userId: 1,
+      userId: localStorage.getItem("userId"),
       page: 0,
     });
     setUserInfo(response.data.data.profileResponse.userDetailResponse);
     setPosts(response.data.data.profileResponse.postSlice);
-
+    setIsLastPage(!response.data.data.profileResponse.hasNext);
+    setCurrentPage(1);
     return response;
   };
-
+  const getUser = async (page: number) => {
+    const response = await API.getUser({
+      userId: localStorage.getItem("userId"),
+      page: page,
+    });
+    setIsLastPage(!response.data.data.profileResponse.hasNext);
+    setCurrentPage(page + 1);
+    await isThrottle(response);
+    return response;
+  };
+  const areAlmostEndPoint = () => {
+    const { scrollTop, offsetHeight, scrollHeight } = document.documentElement;
+    if (scrollHeight <= scrollTop + offsetHeight && !isLastPage) {
+      console.log("touched!");
+      getUser(currentPage);
+      setIsLoding(true);
+    }
+  };
   useEffect(() => {
-    getUser();
+    window.addEventListener("scroll", areAlmostEndPoint);
+    return () => window.removeEventListener("scroll", areAlmostEndPoint);
+  });
+  useEffect(() => {
+    console.log("first userPage Mount!");
+    firstGetUser();
     setFollowers(userPageResponse?.followers);
     setFollowings(userPageResponse?.followings);
-    console.log("UserPage Mount!");
-    //posts default Api호출
   }, []);
   return (
     <>
@@ -130,6 +167,7 @@ const UserPage = () => {
               posts={posts}
               followers={followers}
               followings={followings}
+              isLoding={isLoding}
             />
           </div>
           <Nav />

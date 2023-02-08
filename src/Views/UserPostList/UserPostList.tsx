@@ -1,7 +1,8 @@
+import IsLoding from "../../Components/IsLoding/IsLoding";
 import { GreetingPropTypes } from "../../Pages/UserPage/UserPage";
 import "./UserPostList.scss";
 
-const UserPostList = ({ posts }: GreetingPropTypes) => {
+const UserPostList = ({ posts, isLoding }: GreetingPropTypes) => {
   return (
     <ul className="UserPostList">
       {posts &&
@@ -18,6 +19,7 @@ const UserPostList = ({ posts }: GreetingPropTypes) => {
             </li>
           );
         })}
+      {isLoding && <IsLoding height="20" />}
     </ul>
   );
 };
