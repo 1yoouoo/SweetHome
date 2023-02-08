@@ -27,7 +27,7 @@ const LoginForm = () => {
   return (
     <>
       <form className="LoginForm" onSubmit={onSubmit}>
-        <Logo width="175px" height="51px" />
+        {/* {/* <Logo width="175px" height="51px" /> */}
         <section className="LoginForm__input-section">
           <InputBox placeholder="Email" inputRef={emailRef} />
           <InputBox

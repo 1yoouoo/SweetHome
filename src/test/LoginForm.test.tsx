@@ -1,17 +1,24 @@
-import React from "react";
+import * as React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import LoginForm from "../Components/LoginForm/LoginForm";
 
 describe("<LoginForm /> test", () => {
-  it("matches snapshopt", () => {
+  it("matches snapshot", () => {
     const utils = render(<LoginForm />);
     expect(utils.container).toMatchSnapshot(); // snapshot match
   });
+  // test("test child component", () => {
+  //   const { getByText } = render(<LoginForm />);
+  //   expect(getByText(/Logo/i)).toBeInTheDocument();
+  // });
 
-  // it("has input and a button", () => {
-  //   const { getByText, getByPlaceholderText } = render(<LoginForm />);
-  //   getByPlaceholderText("할 일을 입력하세요"); // input 이 있는지 확인
-  //   getByText("등록"); // button이 있는지 확인
+  // it("screen test", () => {
+  //   const utils = render(<LoginForm />);
+
+  //   const h2 = utils.container.querySelectorAll("h2"); // h2태그 DOM 가져오기
+  //   console.log(h2);
+  //   h2 && expect(h2[0].innerHTML).toBe("Hello. Jest!!"); // h2의 innerHTML이 Hello, Jest!! 인지 테스트
+  //   h2 && expect(h2[1].innerHTML).toBe("hihihia"); // h2의 innerHTML이 Hello, Jest!! 인지 테스트
   // });
 
   // it("button test", () => {
