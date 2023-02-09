@@ -5,6 +5,7 @@ import API from "../../API/API";
 import AddComment, {
   CommentType,
 } from "../../Components/AddComment/AddComment";
+import ErrorView from "../../Components/ErrorView/ErrorView";
 import IsLoding from "../../Components/IsLoding/IsLoding";
 import { commentState } from "../../recoil/snsState";
 import PostComments from "../../Views/PostComments/PostComments";
@@ -35,6 +36,7 @@ interface getCommentsType {
 
 const PostDetail = () => {
   const [isLoding, setIsLoding] = useState<boolean>(true);
+  const [error, setError] = useState<any>(null);
   const { postId } = useParams<string>();
   const [post, setPost] = useState<postType>({
     nickName: "",
@@ -51,24 +53,31 @@ const PostDetail = () => {
   };
 
   const getComments = async () => {
-    const response: getCommentsType = await fetchComments();
-    setPost({
-      nickName: response?.postSummaryResponse.nickName,
-      postContent: response?.postSummaryResponse.postContent,
-      updatedAt: response?.postSummaryResponse.updatedAt,
-      userProfileImage: response?.postSummaryResponse.userProfileImage,
-    });
-    setComments(response?.commentResponses);
-    setGetUserProfile(response?.userSimpleResponse);
-    await setIsLoding(false);
+    try {
+      const response: getCommentsType = await fetchComments();
+      setPost({
+        nickName: response?.postSummaryResponse.nickName,
+        postContent: response?.postSummaryResponse.postContent,
+        updatedAt: response?.postSummaryResponse.updatedAt,
+        userProfileImage: response?.postSummaryResponse.userProfileImage,
+      });
+      setComments(response?.commentResponses);
+      setGetUserProfile(response?.userSimpleResponse);
+      await setIsLoding(false);
+    } catch (error) {
+      setError(error);
+    }
   };
   const createComment = async () => {
-    const response = await API.createComment({
-      content: inputRef.current?.value,
-      postId: postId,
-    });
-    console.log("create Comments !", response);
-    return response;
+    try {
+      const response = await API.createComment({
+        content: inputRef.current?.value,
+        postId: postId,
+      });
+      console.log("create Comments !", response);
+    } catch (error) {
+      console.log(error);
+    }
   };
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -82,22 +91,26 @@ const PostDetail = () => {
 
   return (
     <>
-      <div className="PostDetail">
-        <CurrentHeader current="댓글" backwards={true} />
-        {isLoding ? (
-          <IsLoding />
-        ) : (
-          <>
-            <PostContent post={post} />
-            <PostComments />
-            <AddComment
-              onSubmit={onSubmit}
-              inputRef={inputRef}
-              getUserProfile={getUserProfile}
-            />
-          </>
-        )}
-      </div>
+      {error ? (
+        <ErrorView />
+      ) : (
+        <div className="PostDetail">
+          <CurrentHeader current="댓글" backwards={true} />
+          {isLoding ? (
+            <IsLoding />
+          ) : (
+            <>
+              <PostContent post={post} />
+              <PostComments />
+              <AddComment
+                onSubmit={onSubmit}
+                inputRef={inputRef}
+                getUserProfile={getUserProfile}
+              />
+            </>
+          )}
+        </div>
+      )}
     </>
   );
 };

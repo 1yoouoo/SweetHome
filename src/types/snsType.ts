@@ -9,6 +9,7 @@ export type ButtonTypeProps = {
   backgroundColor: string;
   color: string;
   content: string;
+  onClick?: any;
 };
 
 export interface SvgPropTypes {
