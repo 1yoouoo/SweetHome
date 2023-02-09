@@ -2,27 +2,30 @@ import StyledButton from "../../Views/StyledButton/StyledButton";
 import Logo from "../../Views/Logo/Logo";
 import "./LoginForm.scss";
 import InputBox from "../../Views/InputBox/InputBox";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import API from "../../API/API";
+import ErrorView from "../ErrorView/ErrorView";
 // type
 const LoginForm = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const onSubmit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    const response = await API.logIn({
-      email: emailRef.current?.value,
-      password: passwordRef.current?.value,
-    });
-    if (response?.data.error === null) {
-      const token = response?.headers.token;
-      const userId = response?.data.data.userLoginResponse.userId;
-      localStorage.setItem("token", token);
-      localStorage.setItem("userId", userId);
-      console.log(response);
-      window.location.reload();
-    } else {
-      alert(response.data.error.message);
+    try {
+      e.preventDefault();
+      const response = await API.logIn({
+        email: emailRef.current?.value,
+        password: passwordRef.current?.value,
+      });
+      if (response?.data.error === null) {
+        const token = response?.headers.token;
+        const userId = response?.data.data.userLoginResponse.userId;
+        localStorage.setItem("token", token);
+        localStorage.setItem("userId", userId);
+        console.log(response);
+        window.location.reload();
+      }
+    } catch (error: any) {
+      alert(error?.message);
     }
   };
   return (

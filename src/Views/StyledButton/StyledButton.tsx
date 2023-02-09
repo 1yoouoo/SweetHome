@@ -1,5 +1,6 @@
 import "./StyledButton.scss";
 import { ButtonTypeProps } from "../../types/snsType";
+import { useNavigate } from "react-router-dom";
 
 const StyledButton = (props: ButtonTypeProps) => {
   const {
@@ -10,11 +11,15 @@ const StyledButton = (props: ButtonTypeProps) => {
     color,
     onClick,
   }: ButtonTypeProps = props;
+  const onClickReload = (e: any) => {
+    e.preventDefault();
+    window.location.reload();
+  };
   return (
     <>
       <button
         className="StyledButton"
-        onClick={() => console.log("재시도 로직")}
+        // onClick={onClickReload}
         style={{
           width: `${width}`,
           height: `${height}`,

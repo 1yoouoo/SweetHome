@@ -57,7 +57,6 @@ const UploadPhotos = () => {
           ref={inputRef}
           type="file"
         />
-        <span onClick={() => console.log(formData)}>test</span>
       </div>
     </>
   );

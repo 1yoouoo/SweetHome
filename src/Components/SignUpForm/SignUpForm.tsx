@@ -17,28 +17,29 @@ const SignUpForm = () => {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement[]>([]);
   const [inputValue, setInputValue] = useState<inputValueType>({
-    image_file: "",
+    image_file: "", // default 이미지 파일로 넣어놓기
     preview_URL: defaultProfile,
   });
   const onSubmit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    const formData = new FormData();
-    console.log(inputValue.image_file);
-    formData.append("image", inputValue.image_file);
-    formData.append("email", inputRef.current[0].value);
-    formData.append("name", inputRef.current[1].value);
-    formData.append("nickName", inputRef.current[2].value);
-    formData.append("password", inputRef.current[3].value);
-    const response = await API.signUp({
-      formData,
-    });
-    // 성공
-    if (response?.data.error === null) {
-      alert(response.data.data.message);
-      navigate("/login");
-      // 실패
-    } else {
-      alert(response.data.error.message);
+    try {
+      e.preventDefault();
+      const formData = new FormData();
+      console.log(inputValue.image_file);
+      formData.append("image", inputValue.image_file);
+      formData.append("email", inputRef.current[0].value);
+      formData.append("name", inputRef.current[1].value);
+      formData.append("nickName", inputRef.current[2].value);
+      formData.append("password", inputRef.current[3].value);
+      const response = await API.signUp({
+        formData,
+      });
+      // 성공
+      if (response?.data.error === null) {
+        alert(response.data.data.message);
+        navigate("/login");
+      }
+    } catch (error: any) {
+      alert(error?.message);
     }
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
