@@ -110,6 +110,12 @@ const API = {
     });
     return response;
   },
+  getFollowers: async ({ userId, page }: any) => {
+    const response = await authInstance.get(`/user/${userId}/follower`, {
+      params: { page: page },
+    });
+    return response;
+  },
 };
 
 export default API;
