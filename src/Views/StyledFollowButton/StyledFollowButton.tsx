@@ -6,7 +6,7 @@ export interface followButtonProps {
   isFollowing: boolean;
   setIsFollowing: Dispatch<SetStateAction<boolean>>;
 }
-const StyledFollowButton = (props: any) => {
+const StyledFollowButton = (props: followButtonProps) => {
   const { userId, isFollowing, setIsFollowing }: followButtonProps = props;
   const follow = async () => {
     const response = await API.follow({

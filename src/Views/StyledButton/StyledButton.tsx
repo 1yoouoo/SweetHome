@@ -3,20 +3,12 @@ import { ButtonTypeProps } from "../../types/snsType";
 import { useNavigate } from "react-router-dom";
 
 const StyledButton = (props: ButtonTypeProps) => {
-  const {
-    width,
-    height,
-    backgroundColor,
-    content,
-    color,
-    onClickFollow,
-  }: ButtonTypeProps = props;
-  console.log(onClickFollow);
+  const { width, height, backgroundColor, content, color }: ButtonTypeProps =
+    props;
   return (
     <>
       <button
         className="StyledButton"
-        onClick={onClickFollow}
         style={{
           width: `${width}`,
           height: `${height}`,
