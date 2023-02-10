@@ -1,25 +1,40 @@
+import { useState } from "react";
 import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
-import StyledButton from "../StyledButton/StyledButton";
+import StyledFollowButton from "../StyledFollowButton/StyledFollowButton";
+import StyledUnFollowButton from "../StyledFollowButton/StyledUnFollowButton";
 import "./Following.scss";
 
 const Following = ({ following }: any) => {
-  console.log(following);
+  const userId = following.userId;
+  const [isFollowing, setIsFollowing] = useState<boolean>(
+    following?.isFollowing
+  );
   return (
     <>
       <li className="Following">
         <span className="Following__user">
-          <UserPhoto size="55px" userProfileImage={following.userImg} />
+          <UserPhoto
+            size="55px"
+            userProfileImage={following.userProfileImageUrl}
+          />
           <span className="Follower__user--nickname">{following.nickName}</span>
         </span>
         <span className="Following__action">
-          <StyledButton
-            width="100px"
-            height="34px"
-            backgroundColor="#262626"
-            content="팔로잉"
-            color="#fff"
-          />
+          {isFollowing ? (
+            <StyledUnFollowButton
+              userId={userId}
+              setIsFollowing={setIsFollowing}
+              isFollowing={isFollowing}
+            />
+          ) : (
+            <StyledFollowButton
+              userId={userId}
+              setIsFollowing={setIsFollowing}
+              isFollowing={isFollowing}
+            />
+          )}
+
           <EllipsisSvg />
         </span>
       </li>

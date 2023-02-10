@@ -104,6 +104,12 @@ const API = {
     });
     return response;
   },
+  getFollowings: async ({ userId, page }: any) => {
+    const response = await authInstance.get(`/user/${userId}/following`, {
+      params: { page: page },
+    });
+    return response;
+  },
 };
 
 export default API;

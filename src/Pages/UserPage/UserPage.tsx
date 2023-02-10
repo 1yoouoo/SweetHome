@@ -93,7 +93,6 @@ const UserPage = () => {
   const [userInfo, setUserInfo] = useState<any>();
   const [posts, setPosts] = useState<any>();
   const [followers, setFollowers] = useState<any>();
-  const [followings, setFollowings] = useState<any>();
   const [currentPage, setCurrentPage] = useState(0);
   const [isLastPage, setIsLastPage] = useState(true);
 
@@ -148,7 +147,6 @@ const UserPage = () => {
     console.log("first userPage Mount!");
     firstGetUser();
     setFollowers(userPageResponse?.followers);
-    setFollowings(userPageResponse?.followings);
   }, []);
   return (
     <>
@@ -166,7 +164,6 @@ const UserPage = () => {
               selectedNav={selectedNav}
               posts={posts}
               followers={followers}
-              followings={followings}
               isLoding={isLoding}
             />
           </div>

@@ -4,12 +4,15 @@ export type LogoTypeProps = {
 };
 
 export type ButtonTypeProps = {
-  width: string;
-  height: string;
+  width?: string;
+  height?: string;
   backgroundColor: string;
-  color: string;
+  color?: string;
   content: string;
-  onClick?: any;
+  onClickFollow?: any;
+  userId?: any;
+  isFollowing?: any;
+  setIsFollowing?: React.Dispatch<any> | undefined;
 };
 
 export interface SvgPropTypes {

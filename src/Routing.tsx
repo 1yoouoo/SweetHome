@@ -22,8 +22,8 @@ const Routing: React.FC = (): JSX.Element => (
       ></Route>
       <Route
         path="/edit-profile"
-        // element={isLogin() ? <EditProfile /> : <LoginPage />}
-        element={<EditProfile />}
+        element={isLogin() ? <EditProfile /> : <LoginPage />}
+        // element={<EditProfile />}
       ></Route>
 
       <Route

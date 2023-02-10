@@ -1,0 +1,14 @@
+@import "/src/sass/abstracts/variables";
+
+.StyledFollowButton {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  border-radius: 7px;
+  width: 100px;
+  height: 34px;
+  color: #fff;
+  &:hover {
+    filter: brightness(110%) contrast(70%);
+  }
+}

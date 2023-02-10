@@ -9,17 +9,14 @@ const StyledButton = (props: ButtonTypeProps) => {
     backgroundColor,
     content,
     color,
-    onClick,
+    onClickFollow,
   }: ButtonTypeProps = props;
-  const onClickReload = (e: any) => {
-    e.preventDefault();
-    window.location.reload();
-  };
+  console.log(onClickFollow);
   return (
     <>
       <button
         className="StyledButton"
-        // onClick={onClickReload}
+        onClick={onClickFollow}
         style={{
           width: `${width}`,
           height: `${height}`,
