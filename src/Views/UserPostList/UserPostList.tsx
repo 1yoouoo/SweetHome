@@ -1,12 +1,13 @@
+import React from "react";
 import IsLoding from "../../Components/IsLoding/IsLoding";
-import { GreetingPropTypes } from "../../Pages/UserPage/UserPage";
+import { GreetingPropTypes, post } from "../../Pages/UserPage/UserPage";
 import "./UserPostList.scss";
 
 const UserPostList = ({ posts, isLoding }: GreetingPropTypes) => {
   return (
     <ul className="UserPostList">
       {posts &&
-        posts.map((post: any) => {
+        posts.map((post: post) => {
           return (
             <li className="UserPostList__item" key={post.postId}>
               <span className="UserPostList__item--img">
@@ -24,4 +25,4 @@ const UserPostList = ({ posts, isLoding }: GreetingPropTypes) => {
   );
 };
 
-export default UserPostList;
+export default React.memo(UserPostList);

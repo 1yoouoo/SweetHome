@@ -1,3 +1,4 @@
+import React, { useCallback } from "react";
 import CompassSvg from "../../Assets/SVG/CompassSvg";
 import HeartSvg from "../../Assets/SVG/HeartSvg";
 import HomeSvg from "../../Assets/SVG/HomeSvg";
@@ -23,4 +24,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default React.memo(Nav);

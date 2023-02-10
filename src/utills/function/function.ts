@@ -55,17 +55,3 @@ export const logOut = async () => {
     alert(response?.data.error.message);
   }
 };
-
-export const follow = async (userId: any) => {
-  const response = await API.follow({
-    userId: userId,
-  });
-  console.log(response);
-};
-
-export const unFollow = async (userId: any) => {
-  const response = await API.unFollow({
-    userId: userId,
-  });
-  console.log(response);
-};

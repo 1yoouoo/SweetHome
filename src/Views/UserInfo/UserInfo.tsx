@@ -3,9 +3,10 @@ import UserPhoto from "../../sass/styled-components/UserPhoto";
 import StyledButton from "../StyledButton/StyledButton";
 import StyledFollowButton from "../StyledFollowButton/StyledFollowButton";
 import StyledUnFollowButton from "../StyledFollowButton/StyledUnFollowButton";
+import { userDetailProps } from "../UserDetail/UserDetail";
 import "./UserInfo.scss";
 
-const UserInfo = ({ userDetail }: any) => {
+const UserInfo = ({ userDetail }: userDetailProps) => {
   const [isFollowing, setIsFollowing] = useState<boolean>(
     userDetail?.isFollowing
   );

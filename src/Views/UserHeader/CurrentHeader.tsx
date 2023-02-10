@@ -1,3 +1,4 @@
+import React from "react";
 import ChevronLeftSvg from "../../Assets/SVG/ChevronLeftSvg";
 import Setting from "../../Assets/SVG/Setting";
 import PostingButton from "../../sass/styled-components/ShareButton";
@@ -18,21 +19,18 @@ const CurrentHeader = (props: CurrentHeaderTypeProps) => {
     setting,
     backwards,
   }: CurrentHeaderTypeProps = props;
-  const isUser = true;
   return (
     <>
       <div className="CurrentHeader">
         {setting && <Setting />}
         {backwards && <ChevronLeftSvg />}
         <span className="CurrentHeader__user-id">{current}</span>
-        {createPost ? (
+        {createPost && (
           <PostingButton text="공유" onClickSharing={onClickSharing} />
-        ) : (
-          <></>
         )}
       </div>
     </>
   );
 };
 
-export default CurrentHeader;
+export default React.memo(CurrentHeader);

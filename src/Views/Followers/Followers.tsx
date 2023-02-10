@@ -1,17 +1,23 @@
 import { useEffect } from "react";
-import { GreetingPropTypes } from "../../Pages/UserPage/UserPage";
 import Follower from "../Follower/Follower";
 import "./Followers.scss";
-
-const Followers = ({ followers }: GreetingPropTypes) => {
+export interface followerType {
+  followId: number;
+  isFollowing: boolean;
+  nickName: string;
+  userId: number;
+  userName: string;
+  userProfileImageUrl: string;
+}
+const Followers = () => {
   useEffect(() => {
     console.log("followers mount");
   }, []);
   return (
     <ul className="Followers">
-      {followers?.map((follower: any) => {
+      {/* {followers?.map((follower: followerType) => {
         return <Follower follower={follower} key={follower.followerId} />;
-      })}
+      })} */}
     </ul>
   );
 };

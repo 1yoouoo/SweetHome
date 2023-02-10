@@ -1,32 +1,41 @@
-import { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import API from "../../API/API";
-import { GreetingPropTypes } from "../../Pages/UserPage/UserPage";
 import Following from "../Following/Following";
 import "./Followings.scss";
+export interface followingType {
+  followId: number;
+  isFollowing: boolean;
+  nickName: string;
+  userId: number;
+  userName: string;
+  userProfileImageUrl: string;
+}
 
 const Followings = () => {
-  const [followings, setFollowings] = useState<any>(null);
-  const getFollowings = async (page: number) => {
-    console.log("?!");
-    const response = await API.getFollowings({
-      userId: localStorage.getItem("userId"),
-      page: page,
-    });
-    setFollowings(
-      response.data.data.followingListResponse.followingUserListResponseList
-    );
-  };
+  const [followings, setFollowings] = useState<followingType[]>();
+  const getFollowings = useCallback(
+    async (page: number) => {
+      const response = await API.getFollowings({
+        userId: localStorage.getItem("userId"),
+        page: page,
+      });
+      setFollowings(
+        response.data.data.followingListResponse.followingUserListResponseList
+      );
+    },
+    [followings]
+  );
   useEffect(() => {
     console.log("following mount !");
     getFollowings(0);
   }, []);
   return (
     <ul className="Followings">
-      {followings?.map((following: any) => {
+      {followings?.map((following: followingType) => {
         return <Following following={following} key={following.followId} />;
       })}
     </ul>
   );
 };
 
-export default Followings;
+export default React.memo(Followings);

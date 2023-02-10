@@ -1,11 +1,14 @@
 import { useState } from "react";
 import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
+import { followingType } from "../Followings/Followings";
 import StyledFollowButton from "../StyledFollowButton/StyledFollowButton";
 import StyledUnFollowButton from "../StyledFollowButton/StyledUnFollowButton";
 import "./Following.scss";
-
-const Following = ({ following }: any) => {
+interface FollowingProps {
+  following: followingType;
+}
+const Following = ({ following }: FollowingProps) => {
   const userId = following.userId;
   const [isFollowing, setIsFollowing] = useState<boolean>(
     following?.isFollowing

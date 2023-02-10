@@ -1,17 +1,17 @@
+import React, { useCallback } from "react";
 import { slideTypeProps } from "../../Pages/UserPage/UserPage";
 import "./UserNav.scss";
 
 const UserNav = ({ selectedNav, setSelectedNav, userInfo }: slideTypeProps) => {
-  // onClick. 트리거로 비동기 처리해야함
-  const onClickPosts = () => {
+  const onClickPosts = useCallback(() => {
     setSelectedNav?.(0);
-  };
-  const onClickFollowers = () => {
+  }, [selectedNav]);
+  const onClickFollowers = useCallback(() => {
     setSelectedNav?.(1);
-  };
-  const onClickFollowing = () => {
+  }, [selectedNav]);
+  const onClickFollowing = useCallback(() => {
     setSelectedNav?.(2);
-  };
+  }, [selectedNav]);
   return (
     <ul className="UserNav">
       <li
@@ -34,4 +34,4 @@ const UserNav = ({ selectedNav, setSelectedNav, userInfo }: slideTypeProps) => {
   );
 };
 
-export default UserNav;
+export default React.memo(UserNav);
