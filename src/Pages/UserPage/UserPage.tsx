@@ -51,10 +51,10 @@ const UserPage = () => {
   const [userInfo, setUserInfo] = useState<userInfoType>();
   const [posts, setPosts] = useState<any>();
   const [currentPage, setCurrentPage] = useState(0);
-  const [isLastPage, setIsLastPage] = useState(true);
+  const [isLastPage, setIsLastPage] = useState(false);
 
   const [throttle, setThrottle] = useState(false);
-  const [isLoding, setIsLoding] = useState(true);
+  const [isLoding, setIsLoding] = useState(false);
   const isThrottle = (response: AxiosResponse) => {
     if (throttle) return console.log("대기 !");
     if (!throttle) {

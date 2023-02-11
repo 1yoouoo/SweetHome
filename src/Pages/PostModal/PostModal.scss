@@ -51,15 +51,23 @@
       font-weight: 800;
     }
     &--content {
-      > div {
-        background-color: red;
+      :nth-child(1) {
+        & b {
+          display: inline;
+        }
         width: 370px;
         font-size: 16px;
         overflow: hidden;
         text-overflow: ellipsis;
-        // display: -webkit-box; // 얘가 핵심
+        word-break: break-all;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
+      }
+      :nth-child(2) {
+        color: $font-color-link;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 800;
       }
     }
     &--comments {

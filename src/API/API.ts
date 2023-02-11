@@ -49,7 +49,7 @@ const API = {
   },
 
   deletePost: async ({ postId }: postType) => {
-    const response = await authInstance.delete(`comment/${postId}`);
+    const response = await authInstance.delete(`post/${postId}`);
     return response;
   },
 

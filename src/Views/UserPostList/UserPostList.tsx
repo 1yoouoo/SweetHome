@@ -1,16 +1,20 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import IsLoding from "../../Components/IsLoding/IsLoding";
 import PostModal from "../../Pages/PostModal/PostModal";
 import { GreetingPropTypes, post } from "../../Pages/UserPage/UserPage";
 import "./UserPostList.scss";
 
 const UserPostList = ({ posts, isLoding }: GreetingPropTypes) => {
-  const navigate = useNavigate();
   const [postModal, setPostModal] = useState(false);
+  const [postId, setPostId] = useState(1);
   const toggleModal = () => {
     setPostModal(!postModal);
     console.log("toggleModal", postModal);
+  };
+  const onClickPost = (postId: number) => {
+    setPostId(postId);
+    console.log(postId);
+    toggleModal();
   };
   const onClickOutside = (e: any) => {
     e.stopPropagation();
@@ -20,7 +24,7 @@ const UserPostList = ({ posts, isLoding }: GreetingPropTypes) => {
   };
   return (
     <ul className="UserPostList">
-      {postModal && <PostModal toggleModal={onClickOutside} />}
+      {postModal && <PostModal toggleModal={onClickOutside} postId={postId} />}
       {posts &&
         posts.map((post: post) => {
           return (
@@ -28,7 +32,7 @@ const UserPostList = ({ posts, isLoding }: GreetingPropTypes) => {
               className="UserPostList__item"
               key={post.postId}
               onClick={() => {
-                toggleModal();
+                onClickPost(post.postId);
               }}
             >
               <span className="UserPostList__item--img">

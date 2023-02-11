@@ -53,6 +53,7 @@ const StyledUserPhoto = styled.div<UserPhotoPropTypes>`
 `;
 
 const UserPhoto = ({ size, userProfileImage }: UserPhotoPropTypes) => {
+  console.log(userProfileImage);
   return (
     <StyledUserPhoto size={size}>
       <div className="UserPhoto">
