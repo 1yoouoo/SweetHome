@@ -63,7 +63,7 @@ const PostDetail = () => {
       });
       setComments(response?.commentResponses);
       setGetUserProfile(response?.userSimpleResponse);
-      await setIsLoding(false);
+      setIsLoding(false);
     } catch (error) {
       setError(error);
     }

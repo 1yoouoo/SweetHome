@@ -36,8 +36,6 @@ const Routing: React.FC = (): JSX.Element => (
         element={isLogin() ? <EditPost /> : <LoginPage />}
       ></Route>
       <Route path="/post-detail/:postId" element={<PostDetail />}></Route>
-
-      <Route path="/post/:postId" element={<PostPage />}></Route>
     </Routes>
   </BrowserRouter>
 );

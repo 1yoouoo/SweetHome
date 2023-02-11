@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
 import UserNickName from "../../sass/styled-components/UserNickName";
@@ -22,12 +22,18 @@ const testList = {
 // interface PostModalTypeProps {
 //   testList: PostModalType;
 // }
-const PostModal = () => {
+const PostModal = ({ toggleModal }: any) => {
   const [likes, setLikes] = useState<number>(testList.likes);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    console.log("modal");
+    return () => {
+      console.log("화면에 사라짐", open);
+    };
+  }, [open]);
   return (
-    <>
+    <div className="background" onClick={(e: any) => toggleModal(e)}>
       <section className="PostModal">
         <div className="PostModal__top">
           <span className="PostModal__top--left">
@@ -63,7 +69,7 @@ const PostModal = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
