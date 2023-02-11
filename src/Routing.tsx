@@ -9,6 +9,7 @@ import SignUpPage from "./Pages/SignUpPage/SignUpPage";
 import { isLogin } from "./utills/function/function";
 import EditPost from "./Pages/EditPost/EditPost";
 import EditProfile from "./Pages/EditProfile/EditProfile";
+import PostPage from "./Pages/PostModal/PostModal";
 
 const Routing: React.FC = (): JSX.Element => (
   <BrowserRouter>
@@ -34,7 +35,9 @@ const Routing: React.FC = (): JSX.Element => (
         path="/edit-post/:postId"
         element={isLogin() ? <EditPost /> : <LoginPage />}
       ></Route>
-      <Route path="/post/:postId" element={<PostDetail />}></Route>
+      <Route path="/post-detail/:postId" element={<PostDetail />}></Route>
+
+      <Route path="/post/:postId" element={<PostPage />}></Route>
     </Routes>
   </BrowserRouter>
 );

@@ -44,7 +44,7 @@ const PostItem = ({ postItem }: postItemTypeProps) => {
             <span>{postItem.postContent}</span>
           </div>
           <div className="PostItem__bottom--comments">
-            <span onClick={() => navigate(`/post/${postItem.postId}`)}>
+            <span onClick={() => navigate(`/post-detail/${postItem.postId}`)}>
               View all {postItem.commentsNumber} comments
             </span>
           </div>
