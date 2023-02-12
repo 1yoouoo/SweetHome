@@ -10,6 +10,8 @@ import PostComments from "../../Views/PostComments/PostComments";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { commentsType } from "../../types/APIType";
 import { commentState } from "../../recoil/snsState";
+import AddComment from "../../Components/AddComment/AddComment";
+import { userSimpleResponse } from "../PostDetail/PostDetail";
 
 interface PostModalProps {
   toggleModal: (e: any) => void;
@@ -39,9 +41,11 @@ export const useIsOverflow = (ref: any, callback: any) => {
 const PostModal = ({ toggleModal, postId }: PostModalProps) => {
   const [likes, setLikes] = useState<number>(0);
   const [postItem, setPostItem] = useState<any>();
+  const [getUserProfile, setGetUserProfile] = useState<userSimpleResponse>();
   const [viewComments, setViewComments] = useState(false);
   const [comments, setComments] = useRecoilState<any>(commentState);
   const ref = useRef();
+  const inputRef = useRef<HTMLInputElement>(null);
   const isOverflow = useIsOverflow(ref, (isOverflowFromCallback: any) => {
     console.log(isOverflowFromCallback);
   });
@@ -58,10 +62,32 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
       alert(error?.message);
     }
   };
-  const onClickComments = async () => {
+  const fetchComments = async () => {
     const response = await API.getComments({ postId });
+    return response.data.data.postAndCommentsResponse;
+  };
+  const onClickComments = async () => {
+    const response = await fetchComments();
     setViewComments(!viewComments);
-    setComments(response.data.data.postAndCommentsResponse.commentResponses);
+    setGetUserProfile(response.userSimpleResponse);
+    setComments(response.commentResponses);
+  };
+  const createComment = async () => {
+    try {
+      const response = await API.createComment({
+        content: inputRef.current?.value,
+        postId: postId,
+      });
+      console.log("create Comments !", response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const onSubmit = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    await createComment();
+    const response = await fetchComments();
+    setComments(response.commentResponses);
   };
   useEffect(() => {
     console.log("modal");
@@ -119,7 +145,16 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
                 <span onClick={onClickComments}>
                   View all {postItem.commentSize} comments
                 </span>
-                {viewComments && <PostComments />}
+                {viewComments && (
+                  <div className="PostModal__comments">
+                    <PostComments />
+                    <AddComment
+                      onSubmit={onSubmit}
+                      inputRef={inputRef}
+                      getUserProfile={getUserProfile}
+                    />
+                  </div>
+                )}
               </div>
               <div className="PostModal__bottom--posted-at">
                 {timeFormat(postItem?.updatedAt)}

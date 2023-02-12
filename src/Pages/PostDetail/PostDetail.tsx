@@ -19,7 +19,7 @@ export interface postType {
   userProfileImage: string;
 }
 
-interface userSimpleResponse {
+export interface userSimpleResponse {
   nickName: string;
   userId: number;
   userProfileImageUrl: string;

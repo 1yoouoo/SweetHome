@@ -31,6 +31,12 @@ const API = {
     const response = await authInstance.post(`logout`);
     return response;
   },
+  getPosts: async ({ page }: any) => {
+    const response = await authInstance.get(`posts`, {
+      params: { page: page },
+    });
+    return response;
+  },
   getPost: async ({ postId }: postType) => {
     const response = await authInstance.get(`post/${postId}`);
     return response;
