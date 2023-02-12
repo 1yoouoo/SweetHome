@@ -10,6 +10,10 @@
   background-color: rgba(0, 0, 0, 0.598);
 }
 .PostModal {
+  display: block;
+  z-index: 1000;
+  overflow-y: auto;
+  height: 90vh;
   position: relative;
   background-color: $background-color-bright;
   margin: auto;

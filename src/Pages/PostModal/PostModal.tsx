@@ -12,7 +12,7 @@ interface PostModalProps {
   postId: number;
 }
 export const useIsOverflow = (ref: any, callback: any) => {
-  const [isOverflow, setIsOverflow] = useState<boolean>(false);
+  const [isOverflow, setIsOverflow] = useState<any>(undefined);
 
   useLayoutEffect(() => {
     const { current } = ref;
@@ -51,7 +51,9 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
   useEffect(() => {
     console.log("modal");
     getPost();
+    document.body.style.cssText = `overflow-y: hidden`;
     return () => {
+      document.body.style.cssText = `overflow-y: auto`;
       console.log("화면에 사라짐", open);
     };
   }, [open]);
