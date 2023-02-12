@@ -54,13 +54,13 @@ const API = {
   },
 
   clickedLike: async ({ postId }: likeType) => {
-    const response = await authInstance.post(`${postId}/like`, {
+    const response = await authInstance.post(`post/${postId}/like`, {
       postId: postId,
     });
     return response;
   },
   clickedUnLike: async ({ postId }: likeType) => {
-    const response = await authInstance.delete(`${postId}/unlike`);
+    const response = await authInstance.delete(`post/${postId}/unlike`);
     return response;
   },
   getComments: async ({ postId }: commentsType) => {

@@ -6,6 +6,10 @@ import { timeFormat } from "../../utills/function/function";
 import InteractionBar from "../../Components/InteractionBar/InteractionBar";
 import "./PostModal.scss";
 import API from "../../API/API";
+import PostComments from "../../Views/PostComments/PostComments";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { commentsType } from "../../types/APIType";
+import { commentState } from "../../recoil/snsState";
 
 interface PostModalProps {
   toggleModal: (e: any) => void;
@@ -35,6 +39,8 @@ export const useIsOverflow = (ref: any, callback: any) => {
 const PostModal = ({ toggleModal, postId }: PostModalProps) => {
   const [likes, setLikes] = useState<number>(0);
   const [postItem, setPostItem] = useState<any>();
+  const [viewComments, setViewComments] = useState(false);
+  const [comments, setComments] = useRecoilState<any>(commentState);
   const ref = useRef();
   const isOverflow = useIsOverflow(ref, (isOverflowFromCallback: any) => {
     console.log(isOverflowFromCallback);
@@ -46,14 +52,25 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
     setLikes(response?.data.data.postDetailResponse.postLikeSize);
   };
   const deletePost = async () => {
-    const response = await API.deletePost({ postId });
+    try {
+      const response = await API.deletePost({ postId });
+    } catch (error: any) {
+      alert(error?.message);
+    }
+  };
+  const onClickComments = async () => {
+    const response = await API.getComments({ postId });
+    setViewComments(!viewComments);
+    setComments(response.data.data.postAndCommentsResponse.commentResponses);
   };
   useEffect(() => {
     console.log("modal");
     getPost();
     document.body.style.cssText = `overflow-y: hidden`;
+    console.log(comments);
     return () => {
       document.body.style.cssText = `overflow-y: auto`;
+      setComments([]);
       console.log("화면에 사라짐", open);
     };
   }, [open]);
@@ -99,9 +116,10 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
                 )}
               </div>
               <div className="PostModal__bottom--comments">
-                <span onClick={() => console.log("댓글 창 클릭 !")}>
+                <span onClick={onClickComments}>
                   View all {postItem.commentSize} comments
                 </span>
+                {viewComments && <PostComments />}
               </div>
               <div className="PostModal__bottom--posted-at">
                 {timeFormat(postItem?.updatedAt)}
