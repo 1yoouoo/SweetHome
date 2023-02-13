@@ -3,6 +3,7 @@ import styled from "styled-components";
 const StyledAlertModal = styled.div`
   .background {
     background-color: rgba(0, 0, 0, 0.8);
+    cursor: default;
   }
   .AlertModal {
     background-color: #121212;
@@ -36,23 +37,35 @@ const StyledAlertModal = styled.div`
       }
       &--yes {
         color: #fff;
+        cursor: pointer;
         background-color: #ff0000;
       }
       &--no {
+        cursor: pointer;
         color: #000;
       }
     }
   }
 `;
-function AlertModal() {
+function AlertModal({ onPossitiveClick, onNagativeClick }: any) {
   return (
     <StyledAlertModal>
       <div className="background">
         <div className="AlertModal">
           <div className="AlertModal__warning">정말 삭제하시겠습니까 ?</div>
           <div className="AlertModal__button">
-            <button className="AlertModal__button--yes">삭제</button>
-            <button className="AlertModal__button--no">취소</button>
+            <button
+              className="AlertModal__button--yes"
+              onClick={onNagativeClick}
+            >
+              삭제
+            </button>
+            <button
+              className="AlertModal__button--no"
+              onClick={onPossitiveClick}
+            >
+              취소
+            </button>
           </div>
         </div>
       </div>

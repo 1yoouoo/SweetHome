@@ -11,6 +11,7 @@ import { useRecoilState } from "recoil";
 import { commentState } from "../../recoil/snsState";
 import AddComment from "../../Components/AddComment/AddComment";
 import { userSimpleResponse } from "../PostDetail/PostDetail";
+import AlertModal from "../../sass/styled-components/AlertModal";
 
 interface PostModalProps {
   toggleModal: (e: any) => void;
@@ -42,6 +43,7 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
   const [postItem, setPostItem] = useState<any>();
   const [getUserProfile, setGetUserProfile] = useState<userSimpleResponse>();
   const [viewComments, setViewComments] = useState(false);
+  const [activatedAlertModal, setActivatedAlertModal] = useState<any>(false);
   const [comments, setComments] = useRecoilState<any>(commentState);
   const ref = useRef();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -56,7 +58,8 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
   };
   const deletePost = async () => {
     try {
-      const response = await API.deletePost({ postId });
+      await API.deletePost({ postId });
+      window.location.reload();
     } catch (error: any) {
       alert(error?.message);
     }
@@ -67,6 +70,8 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
   };
   const onClickEllipsis = () => {
     //  삭제 모달 띄우기
+    console.log("clicked!");
+    setActivatedAlertModal(!activatedAlertModal);
   };
   const onClickComments = async () => {
     const response = await fetchComments();
@@ -115,7 +120,10 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
                 <UserNickName nickName={postItem.nickName} />
               </span>
               <span className="PostModal__top--right">
-                <EllipsisSvg deletePost={deletePost} />
+                {activatedAlertModal && (
+                  <AlertModal onNagativeClick={deletePost} />
+                )}
+                <EllipsisSvg onClickEvent={onClickEllipsis} />
               </span>
             </div>
             <div className="PostModal__main">
