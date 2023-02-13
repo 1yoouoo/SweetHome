@@ -1,5 +1,9 @@
 @import "/src/sass/abstracts/variables";
-
+.ReplyComment {
+  &__wrapper {
+    margin-left: 40px;
+  }
+}
 .PostComment {
   display: flex;
   justify-content: space-between;

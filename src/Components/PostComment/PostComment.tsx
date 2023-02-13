@@ -10,6 +10,7 @@ import { timeFormat } from "../../utills/function/function";
 import { useRecoilState } from "recoil";
 import { commentState } from "../../recoil/snsState";
 import ReplyCommentView from "../../sass/styled-components/ReplyCommentView";
+import ReplyComments from "../ReplyComments/ReplyComments";
 interface PostCommentTypeProps {
   comment: CommentType;
 }
@@ -17,9 +18,17 @@ interface PostCommentTypeProps {
 const PostComment = ({ comment }: PostCommentTypeProps) => {
   const [comments, setComments] = useRecoilState<CommentType[]>(commentState);
   const [commentItem, setCommentItem] = useState(comment);
+  const [activatedReplyComments, setActivatedReplyComments] =
+    useState<any>(false);
   const [dotToggle, setDotToggle] = useState(false);
   const [editable, setEditable] = useState(false);
-
+  const onToggleActivatedReplyComments = () => {
+    setActivatedReplyComments(!activatedReplyComments);
+  };
+  const onClickViewReplies = () => {
+    console.log("hi");
+    onToggleActivatedReplyComments();
+  };
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCommentItem({ ...commentItem, commentContent: e.target.value });
   };
@@ -118,7 +127,15 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
         </span>
       </li>
       {comment.hasReComment && (
-        <ReplyCommentView replySize={comment.reCommentSize} />
+        <div className="ReplyComment__wrapper">
+          <ReplyCommentView
+            replySize={comment.reCommentSize}
+            onClickViewReplies={onClickViewReplies}
+            onToggleActivatedReplyComments={onToggleActivatedReplyComments}
+            activatedReplyComments={activatedReplyComments}
+          />
+          {activatedReplyComments && <ReplyComments />}
+        </div>
       )}
     </>
   );

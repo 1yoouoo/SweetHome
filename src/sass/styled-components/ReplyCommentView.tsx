@@ -2,10 +2,11 @@ import styled from "styled-components";
 interface ReplyCommentView {
   replySize?: number;
   onClickViewReplies?: () => void;
+  activatedReplyComments?: boolean;
+  onToggleActivatedReplyComments?: () => void;
 }
 const StyledReplyCommentView = styled.div`
   .ReplyCommentView {
-    margin-left: 40px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -20,12 +21,28 @@ const StyledReplyCommentView = styled.div`
     }
   }
 `;
-function ReplyCommentView({ replySize, onClickViewReplies }: ReplyCommentView) {
+function ReplyCommentView({
+  replySize,
+  onClickViewReplies,
+  activatedReplyComments,
+  onToggleActivatedReplyComments,
+}: ReplyCommentView) {
   return (
     <StyledReplyCommentView>
-      <div className="ReplyCommentView" onClick={onClickViewReplies}>
+      <div
+        className="ReplyCommentView"
+        onClick={
+          activatedReplyComments
+            ? onToggleActivatedReplyComments
+            : onClickViewReplies
+        }
+      >
         <span className="ReplyCommentView__border"></span>
-        <span className="ReplyCommentView__text">{`View replies (${replySize})`}</span>
+        {activatedReplyComments ? (
+          <span className="ReplyCommentView__text">{`Hide replies`}</span>
+        ) : (
+          <span className="ReplyCommentView__text">{`View replies (${replySize})`}</span>
+        )}
       </div>
     </StyledReplyCommentView>
   );
