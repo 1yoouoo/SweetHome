@@ -7,8 +7,7 @@ import InteractionBar from "../../Components/InteractionBar/InteractionBar";
 import "./PostModal.scss";
 import API from "../../API/API";
 import PostComments from "../../Views/PostComments/PostComments";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { commentsType } from "../../types/APIType";
+import { useRecoilState } from "recoil";
 import { commentState } from "../../recoil/snsState";
 import AddComment from "../../Components/AddComment/AddComment";
 import { userSimpleResponse } from "../PostDetail/PostDetail";
@@ -90,10 +89,9 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
     setComments(response.commentResponses);
   };
   useEffect(() => {
-    console.log("modal");
+    console.log("mount");
     getPost();
     document.body.style.cssText = `overflow-y: hidden`;
-    console.log(comments);
     return () => {
       document.body.style.cssText = `overflow-y: auto`;
       setComments([]);

@@ -104,7 +104,7 @@ const API = {
     const response = await authInstance.delete(`${userId}/unfollow`);
     return response;
   },
-  getUser: async ({ userId, page }: any) => {
+  getUserProfile: async ({ userId, page }: any) => {
     const response = await authInstance.get(`user/${userId}`, {
       params: { page: page },
     });

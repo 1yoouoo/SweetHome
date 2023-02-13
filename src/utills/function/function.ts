@@ -1,5 +1,4 @@
 import API from "../../API/API";
-import { CommentsListType } from "./../../types/snsType";
 export function timeFormat(now: any) {
   const today = new Date();
   const currentTime = new Date(now);

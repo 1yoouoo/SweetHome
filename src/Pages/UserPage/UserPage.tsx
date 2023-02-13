@@ -13,6 +13,7 @@ import React, {
 import Greeting from "../../Components/Greeting/Greeting";
 import API from "../../API/API";
 import { AxiosResponse } from "axios";
+import ErrorView from "../../Components/ErrorView/ErrorView";
 
 export interface slideTypeProps {
   selectedNav: number;
@@ -43,58 +44,69 @@ export interface post {
   postImageId: number;
   postImageUrl: string;
 }
-// interface posts {
-//   posts?: post[]
-// }
+// 무한 스크롤 2번 씩 됨 .. FIXME
 const UserPage = () => {
   const [selectedNav, setSelectedNav] = useState<number>(0);
   const [userInfo, setUserInfo] = useState<userInfoType>();
+  const [error, setError] = useState<any>(null);
   const [posts, setPosts] = useState<any>();
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false);
-
   const [throttle, setThrottle] = useState(false);
   const [isLoding, setIsLoding] = useState(false);
-  const isThrottle = (response: AxiosResponse) => {
+  const isThrottle = () => {
     if (throttle) return console.log("대기 !");
     if (!throttle) {
       setThrottle(true);
       setTimeout(() => {
         setIsLoding(false);
+        setUserProfile(currentPage);
         console.log("Data provided");
-        setPosts([...posts, ...response.data.data.profileResponse.postSlice]);
         setThrottle(false);
       }, 1000);
     }
   };
-  const firstGetUser = async () => {
-    const response = await API.getUser({
-      userId: localStorage.getItem("userId"),
-      page: 0,
-    });
-    const profileResponse = response.data.data.profileResponse;
+  const fetchUserProfileAtFirstMount = async () => {
+    try {
+      const response = await API.getUserProfile({
+        userId: localStorage.getItem("userId"),
+        page: 0,
+      });
+      return response.data.data.profileResponse;
+    } catch (error: any) {
+      setError(error);
+    }
+  };
+  const setUserProfileAtFirstMount = async () => {
+    const profileResponse = await fetchUserProfileAtFirstMount();
     setUserInfo(profileResponse.userDetailResponse);
     setPosts(profileResponse.postSlice);
     setIsLastPage(!profileResponse.hasNext);
-    setCurrentPage(1);
   };
-  const getUser = useCallback(
-    async (page: number) => {
-      const response = await API.getUser({
+
+  const fetchUserProfile = useCallback(async (page: number) => {
+    try {
+      const response = await API.getUserProfile({
         userId: localStorage.getItem("userId"),
         page: page,
       });
-      setIsLastPage(!response.data.data.profileResponse.hasNext);
-      setCurrentPage(page + 1);
-      isThrottle(response);
-    },
-    [isLastPage, currentPage, throttle]
-  );
+      return response.data.data.profileResponse;
+    } catch (error: any) {
+      setError(error);
+    }
+  }, []);
+  const setUserProfile = async (currentPage: any) => {
+    const profileResponse = await fetchUserProfile(currentPage);
+    setIsLastPage(!profileResponse.hasNext);
+    setCurrentPage(currentPage + 1);
+    setPosts([...posts, ...profileResponse.postSlice]);
+  };
+
   const areAlmostEndPoint = () => {
     const { scrollTop, offsetHeight, scrollHeight } = document.documentElement;
     if (scrollHeight <= scrollTop + offsetHeight && !isLastPage) {
       console.log("touched!");
-      getUser(currentPage);
+      isThrottle();
       setIsLoding(true);
     }
   };
@@ -104,7 +116,7 @@ const UserPage = () => {
   });
   useEffect(() => {
     console.log("first userPage Mount!");
-    firstGetUser();
+    setUserProfileAtFirstMount();
   }, []);
   return (
     <>
@@ -118,11 +130,15 @@ const UserPage = () => {
             userInfo={userInfo}
           />
           <div className="UserPage__nav">
-            <Greeting
-              selectedNav={selectedNav}
-              posts={posts}
-              isLoding={isLoding}
-            />
+            {error ? (
+              <ErrorView />
+            ) : (
+              <Greeting
+                selectedNav={selectedNav}
+                posts={posts}
+                isLoding={isLoding}
+              />
+            )}
           </div>
           <Nav />
         </div>
