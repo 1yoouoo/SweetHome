@@ -65,6 +65,9 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
     const response = await API.getComments({ postId });
     return response.data.data.postAndCommentsResponse;
   };
+  const onClickEllipsis = () => {
+    //  삭제 모달 띄우기
+  };
   const onClickComments = async () => {
     const response = await fetchComments();
     setViewComments(!viewComments);
