@@ -134,7 +134,9 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
             onToggleActivatedReplyComments={onToggleActivatedReplyComments}
             activatedReplyComments={activatedReplyComments}
           />
-          {activatedReplyComments && <ReplyComments />}
+          {activatedReplyComments && (
+            <ReplyComments commentId={comment.commentId} />
+          )}
         </div>
       )}
     </>

@@ -96,6 +96,12 @@ const API = {
     const response = await authInstance.delete(`comment/${commentId}`);
     return response;
   },
+  getReplyComments: async ({ commentId, page }: commentsType) => {
+    const response = await authInstance.get(`comment/${commentId}/recomments`, {
+      params: { page: page },
+    });
+    return response;
+  },
 
   follow: async ({ userId }: followType) => {
     const response = await authInstance.post(`${userId}/follow`);
