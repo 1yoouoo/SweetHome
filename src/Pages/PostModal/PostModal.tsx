@@ -41,14 +41,16 @@ export const useIsOverflow = (ref: any, callback: any) => {
 const PostModal = ({ toggleModal, postId }: PostModalProps) => {
   const [likes, setLikes] = useState<number>(0);
   const [postItem, setPostItem] = useState<any>();
+  const [currentPage, setCurrentPage] = useState(1);
   const [getUserProfile, setGetUserProfile] = useState<userSimpleResponse>();
   const [viewComments, setViewComments] = useState(false);
   const [activatedAlertModal, setActivatedAlertModal] = useState<any>(false);
+  const [isLastPage, setIsLastPage] = useState(false);
   const [comments, setComments] = useRecoilState<any>(commentState);
   const ref = useRef();
   const inputRef = useRef<HTMLInputElement>(null);
   const isOverflow = useIsOverflow(ref, (isOverflowFromCallback: any) => {
-    console.log(isOverflowFromCallback);
+    // console.log(isOverflowFromCallback);
   });
   const [more, setMore] = useState(isOverflow);
   const getPost = async () => {
@@ -64,20 +66,24 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
       alert(error?.message);
     }
   };
-  const fetchComments = async () => {
-    const response = await API.getComments({ postId });
-    return response.data.data.postAndCommentsResponse;
+  const fetchComments = async (page: any) => {
+    const response = await API.getComments({ postId, page });
+    return response.data.data.commentListResponse;
   };
   const onClickEllipsis = () => {
-    //  삭제 모달 띄우기
-    console.log("clicked!");
     setActivatedAlertModal(!activatedAlertModal);
   };
   const onClickComments = async () => {
-    const response = await fetchComments();
+    const response = await fetchComments(0);
     setViewComments(!viewComments);
     setGetUserProfile(response.userSimpleResponse);
-    setComments(response.commentResponses);
+    setComments(response.commentListDetailResponse);
+    setIsLastPage(response.hasNext);
+  };
+  const getMoreComments = async () => {
+    const response = await fetchComments(currentPage);
+    setComments([...comments, ...response.commentListDetailResponse]);
+    setIsLastPage(response.hasNext);
   };
   const createComment = async () => {
     try {
@@ -93,7 +99,7 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     await createComment();
-    const response = await fetchComments();
+    const response = await fetchComments(currentPage);
     setComments(response.commentResponses);
   };
   useEffect(() => {
@@ -156,7 +162,10 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
                 </span>
                 {viewComments && (
                   <div className="PostModal__comments">
-                    <PostComments />
+                    <PostComments
+                      isLastPage={isLastPage}
+                      getMoreComments={getMoreComments}
+                    />
                     <AddComment
                       onSubmit={onSubmit}
                       inputRef={inputRef}

@@ -69,8 +69,10 @@ const API = {
     const response = await authInstance.delete(`post/${postId}/unlike`);
     return response;
   },
-  getComments: async ({ postId }: commentsType) => {
-    const response = await authInstance.get(`post/${postId}/comments`);
+  getComments: async ({ postId, page }: commentsType) => {
+    const response = await authInstance.get(`post/${postId}/comments`, {
+      params: { page: page },
+    });
     return response;
   },
 

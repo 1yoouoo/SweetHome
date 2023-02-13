@@ -11,6 +11,7 @@ import EditPost from "./Pages/EditPost/EditPost";
 import EditProfile from "./Pages/EditProfile/EditProfile";
 import PostPage from "./Pages/PostModal/PostModal";
 import AlertModal from "./sass/styled-components/AlertModal";
+import ReplyCommentView from "./sass/styled-components/ReplyCommentView";
 
 const Routing: React.FC = (): JSX.Element => (
   <BrowserRouter>
@@ -37,7 +38,7 @@ const Routing: React.FC = (): JSX.Element => (
         element={isLogin() ? <EditPost /> : <LoginPage />}
       ></Route>
       <Route path="/post-detail/:postId" element={<PostDetail />}></Route>
-      <Route path="/test" element={<AlertModal />}></Route>
+      <Route path="/test" element={<ReplyCommentView />}></Route>
     </Routes>
   </BrowserRouter>
 );

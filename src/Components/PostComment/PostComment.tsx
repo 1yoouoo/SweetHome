@@ -9,6 +9,7 @@ import API from "../../API/API";
 import { timeFormat } from "../../utills/function/function";
 import { useRecoilState } from "recoil";
 import { commentState } from "../../recoil/snsState";
+import ReplyCommentView from "../../sass/styled-components/ReplyCommentView";
 interface PostCommentTypeProps {
   comment: CommentType;
 }
@@ -63,58 +64,63 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
     console.log(commentItem);
   };
   return (
-    <li className="PostComment">
-      <span className="PostComment__wrapper">
-        <span className="PostComment__left">
-          <UserPhoto
-            size="44px"
-            userProfileImage={commentItem.userProfileImage}
-          />
-        </span>
-        <div className="PostComment__center">
-          <div className="PostComment__center--wrapper">
-            <span className="PostComment__center--wrapper-username">
-              {commentItem.nickName}
-            </span>
-            <span className="PostComment__center--wrapper-dot">
-              <SingleDotSvg />
-            </span>
-            <span className="PostComment__center--wrapper-created-at">
-              {timeFormat(commentItem.updatedAt)}
-            </span>
-          </div>
-          <div className="PostComment__center--text">
-            {editable ? (
-              <span className="PostComment__center--edit">
-                <input
-                  placeholder={commentItem.commentContent}
-                  onChange={(e) => onChangeValue(e)}
-                />
-                <button onClick={editComment}>완료</button>
-              </span>
-            ) : (
-              commentItem.commentContent
-            )}
-          </div>
-          <div className="PostComment__center--comment">
-            <span className="PostComment__center--comment-like">좋아요</span>
-            <span className="PostComment__center--comment-recomment">
-              답글달기
-            </span>
-          </div>
-        </div>
-      </span>
-      <span className="PostComment__right">
-        <SmallHeartSvg />
-        <span className="PostComment__right--dot" onClick={onClickDot}>
-          <span className={dotToggle ? "activated_dot" : "hidden_dot"}>
-            <span onClick={onClickEdit}>수정</span>
-            <span onClick={deleteComment}>삭제</span>
+    <>
+      <li className="PostComment">
+        <span className="PostComment__wrapper">
+          <span className="PostComment__left">
+            <UserPhoto
+              size="44px"
+              userProfileImage={commentItem.userProfileImage}
+            />
           </span>
-          <EllipsisSvg />
+          <div className="PostComment__center">
+            <div className="PostComment__center--wrapper">
+              <span className="PostComment__center--wrapper-username">
+                {commentItem.nickName}
+              </span>
+              <span className="PostComment__center--wrapper-dot">
+                <SingleDotSvg />
+              </span>
+              <span className="PostComment__center--wrapper-created-at">
+                {timeFormat(commentItem.updatedAt)}
+              </span>
+            </div>
+            <div className="PostComment__center--text">
+              {editable ? (
+                <span className="PostComment__center--edit">
+                  <input
+                    placeholder={commentItem.commentContent}
+                    onChange={(e) => onChangeValue(e)}
+                  />
+                  <button onClick={editComment}>완료</button>
+                </span>
+              ) : (
+                commentItem.commentContent
+              )}
+            </div>
+            <div className="PostComment__center--comment">
+              <span className="PostComment__center--comment-like">좋아요</span>
+              <span className="PostComment__center--comment-recomment">
+                답글달기
+              </span>
+            </div>
+          </div>
         </span>
-      </span>
-    </li>
+        <span className="PostComment__right">
+          <SmallHeartSvg />
+          <span className="PostComment__right--dot" onClick={onClickDot}>
+            <span className={dotToggle ? "activated_dot" : "hidden_dot"}>
+              <span onClick={onClickEdit}>수정</span>
+              <span onClick={deleteComment}>삭제</span>
+            </span>
+            <EllipsisSvg />
+          </span>
+        </span>
+      </li>
+      {comment.hasReComment && (
+        <ReplyCommentView replySize={comment.reCommentSize} />
+      )}
+    </>
   );
 };
 

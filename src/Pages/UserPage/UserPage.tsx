@@ -12,7 +12,6 @@ import React, {
 } from "react";
 import Greeting from "../../Components/Greeting/Greeting";
 import API from "../../API/API";
-import { AxiosResponse } from "axios";
 import ErrorView from "../../Components/ErrorView/ErrorView";
 
 export interface slideTypeProps {
@@ -56,8 +55,10 @@ const UserPage = () => {
   const [isLoding, setIsLoding] = useState(false);
   const isThrottle = () => {
     if (throttle) return console.log("대기 !");
+    setIsLoding(true);
     if (!throttle) {
       setThrottle(true);
+      console.log("1");
       setTimeout(() => {
         setIsLoding(false);
         setUserProfile(currentPage);
@@ -107,7 +108,6 @@ const UserPage = () => {
     if (scrollHeight <= scrollTop + offsetHeight && !isLastPage) {
       console.log("touched!");
       isThrottle();
-      setIsLoding(true);
     }
   };
   useEffect(() => {

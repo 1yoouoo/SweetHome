@@ -8,6 +8,8 @@ export interface CommentType {
   updatedAt?: string | Date;
   userProfileImage?: string;
   userProfileImageUrl?: string;
+  hasReComment?: boolean;
+  reCommentSize?: number;
 }
 interface AddCommentPropsType {
   onSubmit: React.FormEventHandler<HTMLFormElement> | undefined;
