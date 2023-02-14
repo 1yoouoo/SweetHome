@@ -7,14 +7,21 @@ import { timeFormat } from "../../utills/function/function";
 import InteractionBar from "../../Components/InteractionBar/InteractionBar";
 import { PostItemType } from "../PostList/PostList";
 import "./PostItem.scss";
+import { useSetRecoilState } from "recoil";
+import { postItemState } from "../../recoil/snsState";
 
 // type
 interface postItemTypeProps {
   postItem: PostItemType;
 }
 const PostItem = ({ postItem }: postItemTypeProps) => {
+  const setPostItemState = useSetRecoilState<any>(postItemState);
   const [likes, setLikes] = useState<number>(postItem.likes);
   const navigate = useNavigate();
+  const onClickViewComments = () => {
+    setPostItemState(postItem);
+    navigate(`/post-detail/${postItem.postId}`);
+  };
   return (
     <>
       <section className="PostItem">
@@ -46,7 +53,7 @@ const PostItem = ({ postItem }: postItemTypeProps) => {
             <span>{postItem.content}</span>
           </div>
           <div className="PostItem__bottom--comments">
-            <span onClick={() => navigate(`/post-detail/${postItem.postId}`)}>
+            <span onClick={onClickViewComments}>
               View all {postItem.commentSize} comments
             </span>
           </div>

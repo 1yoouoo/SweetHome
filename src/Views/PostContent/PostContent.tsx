@@ -3,13 +3,16 @@ import UserPhoto from "../../sass/styled-components/UserPhoto";
 import UserComment from "../UserComment/UserComment";
 import "./PostContent.scss";
 
-const PostContent = ({ post }: clickedPostTypeProps) => {
+const PostContent = ({ postData }: clickedPostTypeProps) => {
   return (
     <div className="PostContent">
       <div className="PostContent__author">
-        <UserPhoto size="44px" userProfileImage={post?.userProfileImage} />
+        <UserPhoto
+          size="44px"
+          userProfileImage={postData?.userProfileImageUrl}
+        />
       </div>
-      <UserComment post={post} />
+      <UserComment postData={postData} />
     </div>
   );
 };

@@ -1,13 +1,13 @@
 import { SetStateAction, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import API from "../../API/API";
 import AddComment, {
   CommentType,
 } from "../../Components/AddComment/AddComment";
 import ErrorView from "../../Components/ErrorView/ErrorView";
 import IsLoding from "../../Components/IsLoding/IsLoding";
-import { commentState } from "../../recoil/snsState";
+import { commentState, postItemState } from "../../recoil/snsState";
 import PostComments from "../../Views/PostComments/PostComments";
 import PostContent from "../../Views/PostContent/PostContent";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
@@ -25,12 +25,12 @@ export interface userSimpleResponse {
   userProfileImageUrl: string;
 }
 export interface clickedPostTypeProps {
-  post: postType | null;
+  postData: any;
 }
 interface getCommentsType {
   postSummaryResponse: postType;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  commentResponses: SetStateAction<any> | undefined;
+  commentListDetailResponse: SetStateAction<any> | undefined;
   userSimpleResponse: userSimpleResponse;
 }
 
@@ -38,30 +38,20 @@ const PostDetail = () => {
   const [isLoding, setIsLoding] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);
   const { postId } = useParams<string>();
-  const [post, setPost] = useState<postType>({
-    nickName: "",
-    postContent: "",
-    updatedAt: "",
-    userProfileImage: "",
-  });
+
   const [getUserProfile, setGetUserProfile] = useState<userSimpleResponse>();
+  const postData = useRecoilValue(postItemState);
   const setComments = useSetRecoilState<CommentType[]>(commentState);
   const inputRef = useRef<HTMLInputElement>(null);
   const fetchComments = async () => {
     const response = await API.getComments({ postId });
-    return response.data.data.postAndCommentsResponse;
+    return response.data.data.commentListResponse;
   };
 
   const getComments = async () => {
     try {
       const response: getCommentsType = await fetchComments();
-      setPost({
-        nickName: response?.postSummaryResponse.nickName,
-        postContent: response?.postSummaryResponse.postContent,
-        updatedAt: response?.postSummaryResponse.updatedAt,
-        userProfileImage: response?.postSummaryResponse.userProfileImage,
-      });
-      setComments(response?.commentResponses);
+      setComments(response?.commentListDetailResponse);
       setGetUserProfile(response?.userSimpleResponse);
       setIsLoding(false);
     } catch (error) {
@@ -87,6 +77,7 @@ const PostDetail = () => {
 
   useEffect(() => {
     getComments();
+    console.log(postData);
   }, []);
 
   return (
@@ -100,7 +91,7 @@ const PostDetail = () => {
             <IsLoding />
           ) : (
             <>
-              <PostContent post={post} />
+              <PostContent postData={postData} />
               <PostComments />
               <AddComment
                 onSubmit={onSubmit}
