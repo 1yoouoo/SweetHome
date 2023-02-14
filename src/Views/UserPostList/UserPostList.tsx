@@ -22,6 +22,7 @@ const UserPostList = ({ posts, isLoding }: GreetingPropTypes) => {
       toggleModal();
     }
   };
+  console.log(posts[0]?.postImageUrl);
   return (
     <ul className="UserPostList">
       {postModal && <PostModal toggleModal={onClickOutside} postId={postId} />}

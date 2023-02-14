@@ -98,6 +98,9 @@
       & span {
         cursor: pointer;
       }
+      & ul {
+        padding: 10px 0;
+      }
     }
     &--posted-at {
       font-size: 10px;

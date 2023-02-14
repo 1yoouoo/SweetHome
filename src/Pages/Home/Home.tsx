@@ -12,7 +12,7 @@ const Home = () => {
   const [throttle, setThrottle] = useState(false);
   const [isLastPage, setIsLastPage] = useState(false);
   const [isLoding, setIsLoding] = useState(false);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [lastId, setLastId] = useState<number>(0);
 
   const isThrottle = (response: AxiosResponse) => {
     if (throttle) return console.log("대기 !");
@@ -33,24 +33,29 @@ const Home = () => {
     const { scrollTop, offsetHeight, scrollHeight } = document.documentElement;
     if (scrollHeight <= scrollTop + offsetHeight && !isLastPage) {
       console.log("touched!");
-      getPosts(currentPage);
+      getPosts(lastId);
       setIsLoding(true);
     }
   };
   const firstGetPosts = async () => {
-    const response = await API.getPosts({
-      userId: localStorage.getItem("userId"),
-      page: 0,
+    const response = await fetchPosts({
+      userId: localStorage.getItem("userId"), // 이거 필요한가 ?
+      lastId: 0,
     });
     const postsResponse = response.data.data.newsFeedListResponse;
     setPosts(postsResponse.postListDetailResponses);
     setIsLastPage(!postsResponse.hasNext);
-    setCurrentPage(1);
+    setLastId(postsResponse.postListDetailResponses[-1]?.postId);
   };
-  const getPosts = async (page: any) => {
-    const response = await API.getPosts(page);
+
+  const fetchPosts = async (lastId: any) => {
+    const response = await API.getPosts(lastId);
+    return response;
+  };
+  const getPosts = async (lastId: any) => {
+    const response = await fetchPosts(lastId);
     setIsLastPage(!response.data.data.newsFeedListResponse.hasNext);
-    setCurrentPage(page + 1);
+    setLastId(lastId + 1);
     isThrottle(response);
     return response.data.data;
   };

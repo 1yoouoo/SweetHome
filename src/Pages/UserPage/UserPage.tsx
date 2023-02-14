@@ -24,7 +24,7 @@ export interface GreetingPropTypes {
   posts?: any;
   followers?: any;
   followings?: any;
-  isLoding?: any;
+  isLoding?: boolean;
 }
 export interface userInfoType {
   content: string;
@@ -47,9 +47,9 @@ export interface post {
 const UserPage = () => {
   const [selectedNav, setSelectedNav] = useState<number>(0);
   const [userInfo, setUserInfo] = useState<userInfoType>();
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<unknown>(null);
   const [posts, setPosts] = useState<any>();
-  const [currentPage, setCurrentPage] = useState(1);
+  const [lastPostId, setLastPostId] = useState(0);
   const [isLastPage, setIsLastPage] = useState(false);
   const [throttle, setThrottle] = useState(false);
   const [isLoding, setIsLoding] = useState(false);
@@ -61,7 +61,7 @@ const UserPage = () => {
       console.log("1");
       setTimeout(() => {
         setIsLoding(false);
-        setUserProfile(currentPage);
+        setUserProfile(lastPostId);
         console.log("Data provided");
         setThrottle(false);
       }, 1000);
@@ -71,10 +71,9 @@ const UserPage = () => {
     try {
       const response = await API.getUserProfile({
         userId: localStorage.getItem("userId"),
-        page: 0,
       });
       return response.data.data.profileResponse;
-    } catch (error: any) {
+    } catch (error: unknown) {
       setError(error);
     }
   };
@@ -83,23 +82,25 @@ const UserPage = () => {
     setUserInfo(profileResponse.userDetailResponse);
     setPosts(profileResponse.postSlice);
     setIsLastPage(!profileResponse.hasNext);
+    setLastPostId(profileResponse.postSlice.at(-1)?.postId);
+    console.log("!!!!!", profileResponse.postSlice.at(-1)?.postId);
   };
 
-  const fetchUserProfile = useCallback(async (page: number) => {
+  const fetchUserProfile = useCallback(async (lastPostId: number) => {
     try {
       const response = await API.getUserProfile({
         userId: localStorage.getItem("userId"),
-        page: page,
+        lastPostId: lastPostId,
       });
       return response.data.data.profileResponse;
-    } catch (error: any) {
+    } catch (error: unknown) {
       setError(error);
     }
   }, []);
-  const setUserProfile = async (currentPage: any) => {
-    const profileResponse = await fetchUserProfile(currentPage);
+  const setUserProfile = async (lastPostId: number) => {
+    const profileResponse = await fetchUserProfile(lastPostId);
     setIsLastPage(!profileResponse.hasNext);
-    setCurrentPage(currentPage + 1);
+    setLastPostId(profileResponse.postSlice.at(-1)?.postId);
     setPosts([...posts, ...profileResponse.postSlice]);
   };
 

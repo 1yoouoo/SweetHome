@@ -31,9 +31,9 @@ const API = {
     const response = await authInstance.post(`logout`);
     return response;
   },
-  getPosts: async ({ page }: any) => {
+  getPosts: async ({ lastPostId }: any) => {
     const response = await authInstance.get(`posts`, {
-      params: { page: page },
+      params: { postId: lastPostId },
     });
     return response;
   },
@@ -112,21 +112,21 @@ const API = {
     const response = await authInstance.delete(`${userId}/unfollow`);
     return response;
   },
-  getUserProfile: async ({ userId, page }: any) => {
+  getUserProfile: async ({ userId, lastPostId }: any) => {
     const response = await authInstance.get(`user/${userId}`, {
-      params: { page: page },
+      params: { postId: lastPostId },
     });
     return response;
   },
-  getFollowings: async ({ userId, page }: any) => {
+  getFollowings: async ({ userId, lastId }: any) => {
     const response = await authInstance.get(`/user/${userId}/following`, {
-      params: { page: page },
+      params: { lastId: lastId },
     });
     return response;
   },
-  getFollowers: async ({ userId, page }: any) => {
+  getFollowers: async ({ userId, lastId }: any) => {
     const response = await authInstance.get(`/user/${userId}/follower`, {
-      params: { page: page },
+      params: { lastId: lastId },
     });
     return response;
   },
