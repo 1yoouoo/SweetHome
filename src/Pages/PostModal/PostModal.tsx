@@ -9,16 +9,18 @@ import API from "../../API/API";
 import PostComments from "../../Views/PostComments/PostComments";
 import { useRecoilState } from "recoil";
 import { commentState } from "../../recoil/snsState";
-import AddComment from "../../Components/AddComment/AddComment";
+import AddComment, {
+  CommentType,
+} from "../../Components/AddComment/AddComment";
 import { getCommentsType, userSimpleResponse } from "../PostDetail/PostDetail";
 import AlertModal from "../../sass/styled-components/AlertModal";
 
 interface PostModalProps {
-  toggleModal: (e: any) => void;
+  toggleModal: (e: unknown) => void;
   postId: number;
 }
 export const useIsOverflow = (ref: any, callback: any) => {
-  const [isOverflow, setIsOverflow] = useState<any>(undefined);
+  const [isOverflow, setIsOverflow] = useState<boolean | undefined>(undefined);
 
   useLayoutEffect(() => {
     const { current } = ref;
@@ -41,12 +43,13 @@ export const useIsOverflow = (ref: any, callback: any) => {
 const PostModal = ({ toggleModal, postId }: PostModalProps) => {
   const [likes, setLikes] = useState<number>(0);
   const [postItem, setPostItem] = useState<any>();
-  const [currentPage, setCurrentPage] = useState(1);
+  const [lastId, setLastId] = useState(0);
   const [getUserProfile, setGetUserProfile] = useState<userSimpleResponse>();
   const [viewComments, setViewComments] = useState(false);
-  const [activatedAlertModal, setActivatedAlertModal] = useState<any>(false);
+  const [activatedAlertModal, setActivatedAlertModal] =
+    useState<boolean>(false);
   const [isLastPage, setIsLastPage] = useState(false);
-  const [comments, setComments] = useRecoilState<any>(commentState);
+  const [comments, setComments] = useRecoilState<CommentType[]>(commentState);
   const ref = useRef();
   const inputRef = useRef<HTMLInputElement>(null);
   const isOverflow = useIsOverflow(ref, (isOverflowFromCallback: any) => {
@@ -62,36 +65,38 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
     try {
       await API.deletePost({ postId });
       window.location.reload();
-    } catch (error: any) {
-      alert(error?.message);
+    } catch (error: unknown) {
+      alert(error);
     }
   };
   const onClickEllipsis = () => {
     setActivatedAlertModal(!activatedAlertModal);
   };
   const onClickComments = async () => {
-    const response = await fetchComments(0);
+    const response = await fetchComments();
     setViewComments(!viewComments);
     setGetUserProfile(response.userSimpleResponse);
     setComments(response.commentListDetailResponse);
+    setLastId(response.commentListDetailResponse.at(-1)?.commentId);
     setIsLastPage(response.hasNext);
   };
   const getMoreComments = async () => {
-    const response = await fetchComments(currentPage);
+    const response = await fetchComments(lastId);
     setComments([...comments, ...response.commentListDetailResponse]);
     setIsLastPage(response.hasNext);
+    setLastId(response.commentListDetailResponse.at(-1)?.commentId);
   };
-  const fetchComments = async (page: any) => {
-    const response = await API.getComments({ postId, page });
+  const fetchComments = async (commentId?: number) => {
+    const response = await API.getComments({ postId, commentId });
     return response.data.data.commentListResponse;
   };
   const getComments = async () => {
     try {
-      const response: getCommentsType = await fetchComments(currentPage);
+      const response: getCommentsType = await fetchComments();
       setComments(response.commentListDetailResponse);
-      setCurrentPage(currentPage + 1);
-    } catch (error: any) {
-      alert(error.message);
+      setLastId(lastId + 1);
+    } catch (error: unknown) {
+      alert(error);
     }
   };
   const createComment = async () => {

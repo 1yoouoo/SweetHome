@@ -20,7 +20,7 @@ export type commentsType = {
   postId?: string | number;
   commentId?: number;
   content?: string;
-  page?: number;
+  reCommentId?: number;
 };
 export type followType = {
   userId: number;

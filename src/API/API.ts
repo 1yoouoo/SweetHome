@@ -69,9 +69,10 @@ const API = {
     const response = await authInstance.delete(`post/${postId}/unlike`);
     return response;
   },
-  getComments: async ({ postId, page }: commentsType) => {
+  // 댓글
+  getComments: async ({ postId, commentId }: commentsType) => {
     const response = await authInstance.get(`post/${postId}/comments`, {
-      params: { page: page },
+      params: { commentId: commentId },
     });
     return response;
   },
@@ -96,9 +97,10 @@ const API = {
     const response = await authInstance.delete(`comment/${commentId}`);
     return response;
   },
-  getReplyComments: async ({ commentId, page }: commentsType) => {
+  // 대댓글
+  getReplyComments: async ({ commentId, reCommentId }: commentsType) => {
     const response = await authInstance.get(`comment/${commentId}/recomments`, {
-      params: { page: page },
+      params: { reCommentId: reCommentId },
     });
     return response;
   },

@@ -18,6 +18,7 @@ const PostComments = ({ isLastPage, getMoreComments }: PostCommentsProps) => {
   const setSelectedComment = useSetRecoilState(selectedCommentState);
   useEffect(() => {
     console.log("post Comments Mount!");
+    console.log(comments);
     return () =>
       setSelectedComment({
         commentId: "",
