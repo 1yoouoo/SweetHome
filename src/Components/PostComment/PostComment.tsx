@@ -7,8 +7,8 @@ import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
 import { useState } from "react";
 import API from "../../API/API";
 import { timeFormat } from "../../utills/function/function";
-import { useRecoilState } from "recoil";
-import { commentState } from "../../recoil/snsState";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { commentState, selectedCommentState } from "../../recoil/snsState";
 import ReplyCommentView from "../../sass/styled-components/ReplyCommentView";
 import ReplyComments from "../ReplyComments/ReplyComments";
 interface PostCommentTypeProps {
@@ -22,6 +22,7 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
     useState<any>(false);
   const [dotToggle, setDotToggle] = useState(false);
   const [editable, setEditable] = useState(false);
+  const setSelectedComment = useSetRecoilState(selectedCommentState);
   const onToggleActivatedReplyComments = () => {
     setActivatedReplyComments(!activatedReplyComments);
   };
@@ -72,6 +73,12 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
     }
     console.log(commentItem);
   };
+  const onClickReply = () => {
+    setSelectedComment({
+      commentId: comment.commentId,
+      nickName: comment.nickName,
+    });
+  };
   return (
     <>
       <li className="PostComment">
@@ -109,7 +116,10 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
             </div>
             <div className="PostComment__center--comment">
               <span className="PostComment__center--comment-like">좋아요</span>
-              <span className="PostComment__center--comment-recomment">
+              <span
+                className="PostComment__center--comment-recomment"
+                onClick={onClickReply}
+              >
                 답글달기
               </span>
             </div>

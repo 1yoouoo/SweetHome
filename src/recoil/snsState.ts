@@ -13,6 +13,14 @@ export const commentState = atom<CommentType[]>({
   default: [],
 });
 
+export const selectedCommentState = atom<any>({
+  key: "selectedComment",
+  default: {
+    commentId: "",
+    nickName: "",
+  },
+});
+
 export const formDataState = atom<FormdataType[]>({
   key: "formData",
   default: [],
