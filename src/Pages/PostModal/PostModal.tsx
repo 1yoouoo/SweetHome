@@ -10,7 +10,7 @@ import PostComments from "../../Views/PostComments/PostComments";
 import { useRecoilState } from "recoil";
 import { commentState } from "../../recoil/snsState";
 import AddComment from "../../Components/AddComment/AddComment";
-import { userSimpleResponse } from "../PostDetail/PostDetail";
+import { getCommentsType, userSimpleResponse } from "../PostDetail/PostDetail";
 import AlertModal from "../../sass/styled-components/AlertModal";
 
 interface PostModalProps {
@@ -66,10 +66,6 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
       alert(error?.message);
     }
   };
-  const fetchComments = async (page: any) => {
-    const response = await API.getComments({ postId, page });
-    return response.data.data.commentListResponse;
-  };
   const onClickEllipsis = () => {
     setActivatedAlertModal(!activatedAlertModal);
   };
@@ -85,13 +81,25 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
     setComments([...comments, ...response.commentListDetailResponse]);
     setIsLastPage(response.hasNext);
   };
+  const fetchComments = async (page: any) => {
+    const response = await API.getComments({ postId, page });
+    return response.data.data.commentListResponse;
+  };
+  const getComments = async () => {
+    try {
+      const response: getCommentsType = await fetchComments(currentPage);
+      setComments(response.commentListDetailResponse);
+      setCurrentPage(currentPage + 1);
+    } catch (error: any) {
+      alert(error.message);
+    }
+  };
   const createComment = async () => {
     try {
-      const response = await API.createComment({
+      await API.createComment({
         content: inputRef.current?.value,
         postId: postId,
       });
-      console.log("create Comments !", response);
     } catch (error) {
       console.log(error);
     }
@@ -99,9 +107,12 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     await createComment();
-    const response = await fetchComments(currentPage);
-    setComments(response.commentResponses);
+    getComments();
   };
+  useEffect(() => {
+    console.log("postModal Mount!");
+    console.log("viewComments", comments);
+  }, []);
   useEffect(() => {
     console.log("mount");
     getPost();

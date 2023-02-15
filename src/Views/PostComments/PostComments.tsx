@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import CirclePlus from "../../Assets/SVG/CirclePlus";
 import { CommentType } from "../../Components/AddComment/AddComment";
@@ -14,6 +15,9 @@ interface PostCommentsProps {
 }
 const PostComments = ({ isLastPage, getMoreComments }: PostCommentsProps) => {
   const comments = useRecoilValue<CommentType[]>(commentState);
+  useEffect(() => {
+    console.log("post Comments Mount!");
+  }, [comments]);
   return (
     <ul className="PostComments">
       {comments?.map((comment: CommentType) => {

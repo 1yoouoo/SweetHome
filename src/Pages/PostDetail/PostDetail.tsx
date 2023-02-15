@@ -27,11 +27,12 @@ export interface userSimpleResponse {
 export interface clickedPostTypeProps {
   postData: any;
 }
-interface getCommentsType {
+export interface getCommentsType {
   postSummaryResponse: postType;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   commentListDetailResponse: SetStateAction<any> | undefined;
   userSimpleResponse: userSimpleResponse;
+  commentResponses: any;
 }
 
 const PostDetail = () => {
