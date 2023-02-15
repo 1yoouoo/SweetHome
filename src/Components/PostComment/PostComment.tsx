@@ -126,7 +126,7 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
           </span>
         </span>
       </li>
-      {comment.hasReComment && (
+      {comment.reCommentSize != 0 && (
         <div className="ReplyComment__wrapper">
           <ReplyCommentView
             replySize={comment.reCommentSize}
