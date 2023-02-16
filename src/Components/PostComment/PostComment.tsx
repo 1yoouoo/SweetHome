@@ -11,6 +11,7 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { commentState, selectedCommentState } from "../../recoil/snsState";
 import ReplyCommentView from "../../sass/styled-components/ReplyCommentView";
 import ReplyComments from "../ReplyComments/ReplyComments";
+import SmallHeartActivedSvg from "../../Assets/SVG/SmallHeartActivedSvg";
 interface PostCommentTypeProps {
   comment: CommentType;
 }
@@ -20,8 +21,10 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
   const [commentItem, setCommentItem] = useState(comment);
   const [activatedReplyComments, setActivatedReplyComments] =
     useState<any>(false);
-  const [dotToggle, setDotToggle] = useState(false);
+  const [dotToggle, setDotToggle] = useState<boolean>(false);
+  const [likes, setLikes] = useState<number>(0);
   const [editable, setEditable] = useState(false);
+  const [heartToggle, setHeartToggle] = useState(false);
   const setSelectedComment = useSetRecoilState(selectedCommentState);
   const onToggleActivatedReplyComments = () => {
     setActivatedReplyComments(!activatedReplyComments);
@@ -78,6 +81,31 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
       isReply: true,
     });
   };
+  const like = async () => {
+    const response = await API.commentLike({
+      commentId: comment.commentId,
+    });
+    if (response?.data.error === null) {
+      setHeartToggle(!heartToggle);
+      setLikes(heartToggle ? likes - 1 : likes + 1);
+    } else {
+      alert(response?.data.error.message);
+    }
+  };
+  const unLike = async () => {
+    const response = await API.commentUnLike({
+      commentId: comment.commentId,
+    });
+    if (response?.data.error === null) {
+      setHeartToggle(!heartToggle);
+      setLikes(heartToggle ? likes - 1 : likes + 1);
+    } else {
+      alert(response?.data.error.message);
+    }
+  };
+  const onClickHeart = async () => {
+    heartToggle ? unLike() : like();
+  };
   useEffect(() => {
     console.log(comment);
     setActivatedReplyComments(false);
@@ -123,12 +151,18 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
               >
                 Reply
               </span>
+              <span className="PostComment__center--comment-ellipsis">
+                <EllipsisSvg />
+              </span>
             </div>
           </div>
         </span>
         <span className="PostComment__right">
-          {/* <EllipsisSvg /> */}
-          <SmallHeartSvg />
+          {heartToggle ? (
+            <SmallHeartActivedSvg onClickHeart={onClickHeart} />
+          ) : (
+            <SmallHeartSvg onClickHeart={onClickHeart} />
+          )}
           <span className="PostComment__right--dot" onClick={onClickDot}>
             <span className={dotToggle ? "activated_dot" : "hidden_dot"}>
               <span onClick={onClickEdit}>수정</span>

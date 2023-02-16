@@ -58,17 +58,16 @@ const API = {
     const response = await authInstance.delete(`post/${postId}`);
     return response;
   },
-
-  clickedLike: async ({ postId }: likeType) => {
-    const response = await authInstance.post(`post/${postId}/like`, {
-      postId: postId,
-    });
+  // 게시물 좋아요
+  postLike: async ({ postId }: likeType) => {
+    const response = await authInstance.post(`post/${postId}/like`);
     return response;
   },
-  clickedUnLike: async ({ postId }: likeType) => {
+  postUnLike: async ({ postId }: likeType) => {
     const response = await authInstance.delete(`post/${postId}/unlike`);
     return response;
   },
+
   // 댓글
   getComments: async ({ postId, commentId }: commentsType) => {
     const response = await authInstance.get(`post/${postId}/comments`, {
@@ -97,6 +96,15 @@ const API = {
     const response = await authInstance.delete(`comment/${commentId}`);
     return response;
   },
+  // 댓글 좋아요
+  commentLike: async ({ commentId }: likeType) => {
+    const response = await authInstance.post(`comment/${commentId}/like`);
+    return response;
+  },
+  commentUnLike: async ({ commentId }: likeType) => {
+    const response = await authInstance.delete(`comment/${commentId}/unlike`);
+    return response;
+  },
   // 대댓글
   getReplyComments: async ({ commentId, reCommentId }: commentsType) => {
     const response = await authInstance.get(`comment/${commentId}/recomments`, {
@@ -111,7 +119,17 @@ const API = {
     });
     return response;
   },
-
+  // 대댓글 좋아요
+  reCommentLike: async ({ reCommentId }: likeType) => {
+    const response = await authInstance.post(`recomment/${reCommentId}/like`);
+    return response;
+  },
+  reCommentUnLike: async ({ reCommentId }: likeType) => {
+    const response = await authInstance.delete(
+      `recomment/${reCommentId}/unlike`
+    );
+    return response;
+  },
   follow: async ({ userId }: followType) => {
     const response = await authInstance.post(`${userId}/follow`);
     return response;

@@ -14,7 +14,9 @@ export type postType = {
   formData?: never;
 };
 export type likeType = {
-  postId: number;
+  postId?: number;
+  commentId?: number;
+  reCommentId?: number;
 };
 export type commentsType = {
   postId?: string | number;

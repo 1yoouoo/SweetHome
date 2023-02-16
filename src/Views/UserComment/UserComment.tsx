@@ -16,10 +16,6 @@ const UserComment = ({ postData }: clickedPostTypeProps) => {
         </span>
       </div>
       <div className="UserComment__text">{postData?.content}</div>
-      <div className="UserComment__comment">
-        <span className="UserComment__comment--like">좋아요</span>
-        <span className="UserComment__comment--recomment">답글달기</span>
-      </div>
     </div>
   );
 };

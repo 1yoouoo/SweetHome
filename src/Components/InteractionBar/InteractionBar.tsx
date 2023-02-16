@@ -21,7 +21,7 @@ const InteractionBar = (props: InteractionBarTypeProps) => {
   const [heartToggle, setHeartToggle] = useState(isLike);
   // 게시글 리스트 조회 후 좋아요 여부에 따라 로직 달라질 거
   const like = async () => {
-    const response = await API.clickedLike({
+    const response = await API.postLike({
       postId: postId,
     });
     if (response?.data.error === null) {
@@ -32,7 +32,7 @@ const InteractionBar = (props: InteractionBarTypeProps) => {
     }
   };
   const unLike = async () => {
-    const response = await API.clickedUnLike({
+    const response = await API.postUnLike({
       postId: postId,
     });
     if (response?.data.error === null) {
