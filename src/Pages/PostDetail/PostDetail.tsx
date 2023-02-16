@@ -1,13 +1,17 @@
 import { SetStateAction, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import API from "../../API/API";
 import AddComment, {
   CommentType,
 } from "../../Components/AddComment/AddComment";
 import ErrorView from "../../Components/ErrorView/ErrorView";
 import IsLoding from "../../Components/IsLoding/IsLoding";
-import { commentState, postItemState } from "../../recoil/snsState";
+import {
+  commentState,
+  postItemState,
+  selectedCommentState,
+} from "../../recoil/snsState";
 import PostComments from "../../Views/PostComments/PostComments";
 import PostContent from "../../Views/PostContent/PostContent";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
@@ -39,7 +43,8 @@ const PostDetail = () => {
   const [isLoding, setIsLoding] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);
   const { postId } = useParams<string>();
-
+  const [selectedComment, setSelectedComment] =
+    useRecoilState(selectedCommentState);
   const [getUserProfile, setGetUserProfile] = useState<userSimpleResponse>();
   const postData = useRecoilValue(postItemState);
   const setComments = useSetRecoilState<CommentType[]>(commentState);
@@ -70,10 +75,27 @@ const PostDetail = () => {
       console.log(error);
     }
   };
+  const createReplyComment = async (commentId: any) => {
+    try {
+      await API.createReplyComment({
+        content: inputRef.current?.value,
+        commentId: commentId,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    await createComment();
+    selectedComment.isReply
+      ? await createReplyComment(selectedComment.commentId)
+      : await createComment();
     getComments();
+    setSelectedComment({
+      commentId: "",
+      nickName: "",
+      isReply: false,
+    });
   };
 
   useEffect(() => {
