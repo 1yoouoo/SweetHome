@@ -10,7 +10,7 @@ export interface PostItemType {
   nickName: string;
   commentSize: number;
   isPostLike: boolean;
-  updatedAt?: Date | string | undefined;
+  updatedAt?: Date | string | any;
   userImg: string;
   content: string;
   postComments: CommentType[];

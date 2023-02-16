@@ -14,6 +14,7 @@ import {
 } from "../../recoil/snsState";
 import PostComments from "../../Views/PostComments/PostComments";
 import PostContent from "../../Views/PostContent/PostContent";
+import { PostItemType } from "../../Views/PostList/PostList";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
 import "./PostDetail.scss";
 export interface postType {
@@ -46,7 +47,7 @@ const PostDetail = () => {
   const [selectedComment, setSelectedComment] =
     useRecoilState(selectedCommentState);
   const [getUserProfile, setGetUserProfile] = useState<userSimpleResponse>();
-  const postData = useRecoilValue(postItemState);
+  const postData = useRecoilValue<any>(postItemState);
   const setComments = useSetRecoilState<CommentType[]>(commentState);
   const inputRef = useRef<HTMLInputElement>(null);
   const fetchComments = async () => {
@@ -101,6 +102,12 @@ const PostDetail = () => {
   useEffect(() => {
     getComments();
     console.log(postData);
+    return () => {
+      localStorage.removeItem("userProfileImageUrl");
+      localStorage.removeItem("nickName");
+      localStorage.removeItem("updatedAt");
+      localStorage.removeItem("content");
+    };
   }, []);
 
   return (
@@ -114,7 +121,7 @@ const PostDetail = () => {
             <IsLoding />
           ) : (
             <>
-              <PostContent postData={postData} />
+              <PostContent />
               <PostComments />
               <AddComment
                 onSubmit={onSubmit}

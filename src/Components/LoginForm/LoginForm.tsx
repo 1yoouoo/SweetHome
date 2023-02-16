@@ -23,9 +23,11 @@ const LoginForm = () => {
         localStorage.setItem("userId", userId);
         console.log(response);
         window.location.reload();
+      } else {
+        alert(response?.data.error?.message);
       }
     } catch (error: any) {
-      alert(error?.message);
+      console.log(error);
     }
   };
   return (

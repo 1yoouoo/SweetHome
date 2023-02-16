@@ -21,6 +21,10 @@ const PostItem = ({ postItem }: postItemTypeProps) => {
   const onClickViewComments = () => {
     setPostItemState(postItem);
     navigate(`/post-detail/${postItem.postId}`);
+    localStorage.setItem("userProfileImageUrl", postItem.userProfileImageUrl);
+    localStorage.setItem("nickName", postItem.nickName);
+    localStorage.setItem("updatedAt", postItem.updatedAt);
+    localStorage.setItem("content", postItem.content);
   };
   return (
     <>

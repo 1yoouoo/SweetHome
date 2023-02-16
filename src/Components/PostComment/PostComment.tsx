@@ -107,7 +107,6 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
     heartToggle ? unLike() : like();
   };
   useEffect(() => {
-    console.log(comment);
     setActivatedReplyComments(false);
   }, [comments]);
   return (
