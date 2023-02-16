@@ -4,7 +4,7 @@ import SmallHeartSvg from "../../Assets/SVG/SmallHeartSvg";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import { CommentType } from "../AddComment/AddComment";
 import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import API from "../../API/API";
 import { timeFormat } from "../../utills/function/function";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -80,6 +80,11 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
       isReply: true,
     });
   };
+  useEffect(() => {
+    console.log("postComment MounT!!!!!");
+    setActivatedReplyComments(false);
+    console.log(activatedReplyComments);
+  }, [comments]);
   return (
     <>
       <li className="PostComment">

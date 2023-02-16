@@ -37,16 +37,12 @@ function ReplyComment({ replyComment }: any) {
           </div>
         </div>
       </span>
-      {/* <span className="PostComment__right">
-    <SmallHeartSvg />
-    <span className="PostComment__right--dot" onClick={onClickDot}>
-      <span className={dotToggle ? "activated_dot" : "hidden_dot"}>
-        <span onClick={onClickEdit}>수정</span>
-        <span onClick={deleteComment}>삭제</span>
+      <span className="PostComment__right">
+        <SmallHeartSvg />
+        <span className="PostComment__right--dot">
+          <EllipsisSvg />
+        </span>
       </span>
-      <EllipsisSvg />
-    </span>
-  </span> */}
     </li>
   );
 }
