@@ -1,9 +1,4 @@
 @import "/src/sass/abstracts/variables";
-.ReplyComment {
-  &__wrapper {
-    margin-left: 40px;
-  }
-}
 .PostComment {
   display: flex;
   justify-content: space-between;
@@ -21,39 +16,19 @@
   &__center {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-top: 8px;
     &--wrapper {
       display: flex;
       justify-content: left;
       align-items: center;
       margin-bottom: 5px;
-      &-dot {
-        position: relative;
-        // border: 1px solid #fff;
-        text-align: center;
-        width: 10px;
-        height: 10px;
-        svg {
-          padding: 4px;
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          margin: auto;
-        }
-      }
-      &-created-at {
-        font-size: 12px;
-        color: $font-color-pointer;
-      }
     }
     &--text {
+      margin-left: 5px;
       overflow-wrap: break-word;
       word-break: break-all;
     }
     &--comment {
-      margin-top: 5px;
       font-size: 14px;
       color: $font-color-pointer;
       &-like {
@@ -62,7 +37,13 @@
       }
       &-recomment {
         margin-right: 5px;
+        font-size: 12px;
         cursor: pointer;
+      }
+      &-created-at {
+        margin-right: 10px;
+        font-size: 12px;
+        color: $font-color-pointer;
       }
     }
     &--edit {

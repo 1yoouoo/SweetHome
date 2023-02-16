@@ -58,7 +58,6 @@ const UserPage = () => {
     setIsLoding(true);
     if (!throttle) {
       setThrottle(true);
-      console.log("1");
       setTimeout(() => {
         setIsLoding(false);
         setUserProfile(lastPostId);
@@ -83,7 +82,6 @@ const UserPage = () => {
     setPosts(profileResponse.postSlice);
     setIsLastPage(!profileResponse.hasNext);
     setLastPostId(profileResponse.postSlice.at(-1)?.postId);
-    console.log("!!!!!", profileResponse.postSlice.at(-1)?.postId);
   };
 
   const fetchUserProfile = useCallback(async (lastPostId: number) => {
@@ -107,7 +105,7 @@ const UserPage = () => {
   const areAlmostEndPoint = () => {
     const { scrollTop, offsetHeight, scrollHeight } = document.documentElement;
     if (scrollHeight <= scrollTop + offsetHeight && !isLastPage) {
-      console.log("touched!");
+      console.log("Touched At end of screen!!!");
       isThrottle();
     }
   };
@@ -116,7 +114,7 @@ const UserPage = () => {
     return () => window.removeEventListener("scroll", areAlmostEndPoint);
   });
   useEffect(() => {
-    console.log("first userPage Mount!");
+    console.log("UserPage Mount!!!");
     setUserProfileAtFirstMount();
   }, []);
   return (

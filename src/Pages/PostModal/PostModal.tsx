@@ -107,7 +107,6 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
         content: inputRef.current?.value,
         postId: postId,
       });
-      console.log("댓글이지");
     } catch (error) {
       console.log(error);
     }
@@ -118,7 +117,6 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
         content: inputRef.current?.value,
         commentId: commentId,
       });
-      console.log("답글이지");
     } catch (error) {
       console.log(error);
     }
@@ -136,18 +134,15 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
     });
   };
   useEffect(() => {
-    console.log("postModal Mount!");
-    console.log("viewComments", comments);
-    console.log(selectedComment.isReply);
+    console.log("PostModal Mount!");
   }, []);
   useEffect(() => {
-    console.log("mount");
     getPost();
     document.body.style.cssText = `overflow-y: hidden`;
     return () => {
       document.body.style.cssText = `overflow-y: auto`;
       setComments([]);
-      console.log("화면에 사라짐", open);
+      console.log("PostModal UnMount!!!", open);
     };
   }, [open]);
   return (

@@ -16,8 +16,7 @@ interface PostCommentsProps {
 const PostComments = ({ isLastPage, getMoreComments }: PostCommentsProps) => {
   const comments = useRecoilValue<CommentType[]>(commentState);
   useEffect(() => {
-    console.log("post Comments Mount!");
-    console.log(comments);
+    console.log("PostComments Mount!");
   }, [comments]);
   return (
     <ul className="PostComments">

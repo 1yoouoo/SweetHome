@@ -9,11 +9,9 @@ const UserPostList = ({ posts, isLoding }: GreetingPropTypes) => {
   const [postId, setPostId] = useState(1);
   const toggleModal = () => {
     setPostModal(!postModal);
-    console.log("toggleModal", postModal);
   };
   const onClickPost = (postId: number) => {
     setPostId(postId);
-    console.log(postId);
     toggleModal();
   };
   const onClickOutside = (e: any) => {
@@ -22,7 +20,6 @@ const UserPostList = ({ posts, isLoding }: GreetingPropTypes) => {
       toggleModal();
     }
   };
-  console.log(posts[0]?.postImageUrl);
   return (
     <ul className="UserPostList">
       {postModal && <PostModal toggleModal={onClickOutside} postId={postId} />}

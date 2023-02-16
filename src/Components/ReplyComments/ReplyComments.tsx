@@ -37,7 +37,7 @@ function ReplyComments({ commentId }: ReplyCommentsProps) {
     // setLastId(response.commentListDetailResponse.at(-1)?.commentId);
   };
   useEffect(() => {
-    console.log("Mount!");
+    console.log("ReplyComments Mount!!!");
     getReplyComments();
     setCurrentPage(currentPage + 1);
   }, []);

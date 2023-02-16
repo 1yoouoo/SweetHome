@@ -27,7 +27,6 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
     setActivatedReplyComments(!activatedReplyComments);
   };
   const onClickViewReplies = () => {
-    console.log("hi");
     onToggleActivatedReplyComments();
   };
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +70,6 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
       });
       setEditable(!editable);
     }
-    console.log(commentItem);
   };
   const onClickReply = () => {
     setSelectedComment({
@@ -81,9 +79,8 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
     });
   };
   useEffect(() => {
-    console.log("postComment MounT!!!!!");
+    console.log(comment);
     setActivatedReplyComments(false);
-    console.log(activatedReplyComments);
   }, [comments]);
   return (
     <>
@@ -97,53 +94,51 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
           </span>
           <div className="PostComment__center">
             <div className="PostComment__center--wrapper">
-              <span className="PostComment__center--wrapper-username">
+              <b className="PostComment__center--wrapper-username">
                 {commentItem.nickName}
-              </span>
-              <span className="PostComment__center--wrapper-dot">
-                <SingleDotSvg />
-              </span>
-              <span className="PostComment__center--wrapper-created-at">
-                {timeFormat(commentItem.updatedAt)}
-              </span>
-            </div>
-            <div className="PostComment__center--text">
-              {editable ? (
-                <span className="PostComment__center--edit">
-                  <input
-                    placeholder={commentItem.commentContent}
-                    onChange={(e) => onChangeValue(e)}
-                  />
-                  <button onClick={editComment}>완료</button>
-                </span>
-              ) : (
-                commentItem.commentContent
-              )}
+              </b>
+              <div className="PostComment__center--text">
+                {editable ? (
+                  <span className="PostComment__center--edit">
+                    <input
+                      placeholder={commentItem.commentContent}
+                      onChange={(e) => onChangeValue(e)}
+                    />
+                    <button onClick={editComment}>완료</button>
+                  </span>
+                ) : (
+                  commentItem.commentContent
+                )}
+              </div>
             </div>
             <div className="PostComment__center--comment">
-              <span className="PostComment__center--comment-like">좋아요</span>
+              {/* {comment.likeSize != 0 && 좋아요 표시} */}
+              {/* <span className="PostComment__center--comment-like">1 Likes</span> */}
+              <span className="PostComment__center--comment-created-at">
+                {timeFormat(commentItem.updatedAt)}
+              </span>
               <span
                 className="PostComment__center--comment-recomment"
                 onClick={onClickReply}
               >
-                답글달기
+                Reply
               </span>
             </div>
           </div>
         </span>
         <span className="PostComment__right">
+          {/* <EllipsisSvg /> */}
           <SmallHeartSvg />
           <span className="PostComment__right--dot" onClick={onClickDot}>
             <span className={dotToggle ? "activated_dot" : "hidden_dot"}>
               <span onClick={onClickEdit}>수정</span>
               <span onClick={deleteComment}>삭제</span>
             </span>
-            <EllipsisSvg />
           </span>
         </span>
       </li>
       {comment.reCommentSize != 0 && (
-        <div className="ReplyComment__wrapper">
+        <div>
           <ReplyCommentView
             replySize={comment.reCommentSize}
             onClickViewReplies={onClickViewReplies}

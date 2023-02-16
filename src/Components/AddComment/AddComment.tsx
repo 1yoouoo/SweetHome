@@ -37,10 +37,8 @@ const AddComment = (props: AddCommentPropsType) => {
       setInputValue(`@${selectedComment.nickName} `);
   }, [selectedComment]);
   useEffect(() => {
-    console.log("??");
     return () => {
       setInputValue("");
-      console.log(selectedComment);
     };
   }, [onSubmit]);
   return (

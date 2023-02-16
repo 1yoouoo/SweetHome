@@ -7,41 +7,31 @@ import { timeFormat } from "../../utills/function/function";
 import "./ReplyComment.scss";
 
 function ReplyComment({ replyComment }: any) {
-  useEffect(() => {
-    console.log(replyComment);
-  }, []);
-
   return (
-    <li className="PostComment">
-      <span className="PostComment__wrapper">
-        <span className="PostComment__left">
+    <li className="ReplyComment">
+      <span className="ReplyComment__wrapper">
+        <span className="ReplyComment__left">
           <UserPhoto
             size="44px"
             userProfileImage={replyComment.userProfileImageUrl}
           />
         </span>
-        <div className="PostComment__center">
-          <div className="PostComment__center--wrapper">
-            <span className="PostComment__center--wrapper-username">
+        <div className="ReplyComment__center">
+          <div className="ReplyComment__center--wrapper">
+            <b className="ReplyComment__center--wrapper-username">
               {replyComment.nickName}
-            </span>
-            <span className="PostComment__center--wrapper-dot">
-              <SingleDotSvg />
-            </span>
-            <span className="PostComment__center--wrapper-created-at">
-              {timeFormat(replyComment.updatedAt)}
-            </span>
+            </b>
+            <div className="ReplyComment__center--text">
+              {replyComment.content}
+            </div>
           </div>
-          <div className="PostComment__center--text">
-            {replyComment.content}
-          </div>
+          <span className="ReplyComment__center--comment-created-at">
+            {timeFormat(replyComment.updatedAt)}
+          </span>
         </div>
       </span>
-      <span className="PostComment__right">
+      <span className="ReplyComment__right">
         <SmallHeartSvg />
-        <span className="PostComment__right--dot">
-          <EllipsisSvg />
-        </span>
       </span>
     </li>
   );
