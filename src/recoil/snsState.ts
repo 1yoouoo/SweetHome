@@ -18,6 +18,7 @@ export const selectedCommentState = atom<any>({
   default: {
     commentId: "",
     nickName: "",
+    isReply: false,
   },
 });
 

@@ -15,15 +15,9 @@ interface PostCommentsProps {
 }
 const PostComments = ({ isLastPage, getMoreComments }: PostCommentsProps) => {
   const comments = useRecoilValue<CommentType[]>(commentState);
-  const setSelectedComment = useSetRecoilState(selectedCommentState);
   useEffect(() => {
     console.log("post Comments Mount!");
     console.log(comments);
-    return () =>
-      setSelectedComment({
-        commentId: "",
-        nickName: "",
-      });
   }, [comments]);
   return (
     <ul className="PostComments">

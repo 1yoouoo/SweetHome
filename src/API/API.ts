@@ -104,6 +104,13 @@ const API = {
     });
     return response;
   },
+  createReplyComment: async ({ content, commentId }: commentsType) => {
+    const response = await authInstance.post(`comment/${commentId}/recomment`, {
+      commentId: commentId,
+      content: content,
+    });
+    return response;
+  },
 
   follow: async ({ userId }: followType) => {
     const response = await authInstance.post(`${userId}/follow`);

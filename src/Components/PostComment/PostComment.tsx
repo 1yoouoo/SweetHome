@@ -77,6 +77,7 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
     setSelectedComment({
       commentId: comment.commentId,
       nickName: comment.nickName,
+      isReply: true,
     });
   };
   return (

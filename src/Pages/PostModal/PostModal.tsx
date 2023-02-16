@@ -8,7 +8,7 @@ import "./PostModal.scss";
 import API from "../../API/API";
 import PostComments from "../../Views/PostComments/PostComments";
 import { useRecoilState } from "recoil";
-import { commentState } from "../../recoil/snsState";
+import { commentState, selectedCommentState } from "../../recoil/snsState";
 import AddComment, {
   CommentType,
 } from "../../Components/AddComment/AddComment";
@@ -46,6 +46,8 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
   const [lastId, setLastId] = useState(0);
   const [getUserProfile, setGetUserProfile] = useState<userSimpleResponse>();
   const [viewComments, setViewComments] = useState(false);
+  const [selectedComment, setSelectedComment] =
+    useRecoilState(selectedCommentState);
   const [activatedAlertModal, setActivatedAlertModal] =
     useState<boolean>(false);
   const [isLastPage, setIsLastPage] = useState(false);
@@ -105,18 +107,38 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
         content: inputRef.current?.value,
         postId: postId,
       });
+      console.log("댓글이지");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const createReplyComment = async (commentId: any) => {
+    try {
+      await API.createReplyComment({
+        content: inputRef.current?.value,
+        commentId: commentId,
+      });
+      console.log("답글이지");
     } catch (error) {
       console.log(error);
     }
   };
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    await createComment();
+    selectedComment.isReply
+      ? await createReplyComment(selectedComment.commentId)
+      : await createComment();
     getComments();
+    setSelectedComment({
+      commentId: "",
+      nickName: "",
+      isReply: false,
+    });
   };
   useEffect(() => {
     console.log("postModal Mount!");
     console.log("viewComments", comments);
+    console.log(selectedComment.isReply);
   }, []);
   useEffect(() => {
     console.log("mount");

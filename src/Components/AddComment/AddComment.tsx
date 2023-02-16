@@ -33,12 +33,15 @@ const AddComment = (props: AddCommentPropsType) => {
     setInputValue(e.target.value);
   };
   useEffect(() => {
-    console.log("selectedComment", selectedComment);
     selectedComment.nickName != "" &&
       setInputValue(`@${selectedComment.nickName} `);
   }, [selectedComment]);
   useEffect(() => {
-    setInputValue("");
+    console.log("??");
+    return () => {
+      setInputValue("");
+      console.log(selectedComment);
+    };
   }, [onSubmit]);
   return (
     <form className="AddComment" onSubmit={onSubmit}>
