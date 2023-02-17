@@ -12,6 +12,7 @@ export interface CommentType {
   userProfileImage?: string;
   userProfileImageUrl?: string;
   hasReComment?: boolean;
+  commentLikeSize?: number | undefined;
   reCommentSize?: number;
 }
 interface AddCommentPropsType {

@@ -15,6 +15,7 @@ export interface PostItemType {
   content: string;
   postComments: CommentType[];
   userProfileImageUrl: string;
+  postLikeSize: number;
 }
 interface PostListTypeProps {
   posts?: PostItemType[];

@@ -22,7 +22,7 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
   const [activatedReplyComments, setActivatedReplyComments] =
     useState<any>(false);
   const [dotToggle, setDotToggle] = useState<boolean>(false);
-  const [likes, setLikes] = useState<number>(0);
+  const [likes, setLikes] = useState<any>(0);
   const [editable, setEditable] = useState(false);
   const [heartToggle, setHeartToggle] = useState(false);
   const setSelectedComment = useSetRecoilState(selectedCommentState);
@@ -108,6 +108,7 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
   };
   useEffect(() => {
     setActivatedReplyComments(false);
+    setLikes(comment?.commentLikeSize);
   }, [comments]);
   return (
     <>
@@ -139,7 +140,6 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
               </div>
             </div>
             <div className="PostComment__center--comment">
-              {/* {comment.likeSize != 0 && 좋아요 표시} */}
               {/* <span className="PostComment__center--comment-like">1 Likes</span> */}
               <span className="PostComment__center--comment-created-at">
                 {timeFormat(commentItem.updatedAt)}
@@ -149,6 +149,11 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
                 onClick={onClickReply}
               >
                 Reply
+              </span>
+              <span className="PostComment__center--comment-likes">
+                {comment.commentLikeSize != 0 && (
+                  <span>{comment.commentLikeSize}likes </span>
+                )}
               </span>
               <span className="PostComment__center--comment-ellipsis">
                 <EllipsisSvg />

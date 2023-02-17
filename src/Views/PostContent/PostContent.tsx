@@ -14,7 +14,6 @@ const PostContent = () => {
         updatedAt: localStorage.getItem("updatedAt"),
         content: localStorage.getItem("content"),
       }),
-
     []
   );
   return (

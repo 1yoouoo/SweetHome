@@ -16,7 +16,7 @@ interface postItemTypeProps {
 }
 const PostItem = ({ postItem }: postItemTypeProps) => {
   const setPostItemState = useSetRecoilState<any>(postItemState);
-  const [likes, setLikes] = useState<number>(postItem.likes);
+  const [likes, setLikes] = useState<number>(postItem.postLikeSize);
   const navigate = useNavigate();
   const onClickViewComments = () => {
     setPostItemState(postItem);
