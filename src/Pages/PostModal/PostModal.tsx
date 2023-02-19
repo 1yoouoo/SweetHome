@@ -19,6 +19,11 @@ interface PostModalProps {
   toggleModal: (e: unknown) => void;
   postId: number;
 }
+export interface selectedCommentType {
+  commentId: number;
+  nickName: string;
+  isReply: boolean;
+}
 export const useIsOverflow = (ref: any, callback: any) => {
   const [isOverflow, setIsOverflow] = useState<boolean | undefined>(undefined);
 
@@ -47,7 +52,7 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
   const [getUserProfile, setGetUserProfile] = useState<userSimpleResponse>();
   const [viewComments, setViewComments] = useState(false);
   const [selectedComment, setSelectedComment] =
-    useRecoilState(selectedCommentState);
+    useRecoilState<selectedCommentType>(selectedCommentState);
   const [activatedAlertModal, setActivatedAlertModal] =
     useState<boolean>(false);
   const [isLastPage, setIsLastPage] = useState(false);
@@ -111,7 +116,7 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
       console.log(error);
     }
   };
-  const createReplyComment = async (commentId: any) => {
+  const createReplyComment = async (commentId: number) => {
     try {
       await API.createReplyComment({
         content: inputRef.current?.value,
@@ -128,7 +133,7 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
       : await createComment();
     getComments();
     setSelectedComment({
-      commentId: "",
+      commentId: 0,
       nickName: "",
       isReply: false,
     });

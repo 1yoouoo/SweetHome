@@ -2,6 +2,7 @@ import { CommentType } from "../Components/AddComment/AddComment";
 import { PostItemType } from "../Views/PostList/PostList";
 import { atom } from "recoil";
 import { FormdataType } from "../Pages/CreatePost/CreatePost";
+import { selectedCommentType } from "../Pages/PostModal/PostModal";
 
 export const postItemState = atom<PostItemType[]>({
   key: "postItems",
@@ -13,10 +14,10 @@ export const commentState = atom<CommentType[]>({
   default: [],
 });
 
-export const selectedCommentState = atom<any>({
+export const selectedCommentState = atom<selectedCommentType>({
   key: "selectedComment",
   default: {
-    commentId: "",
+    commentId: 0,
     nickName: "",
     isReply: false,
   },
