@@ -19,7 +19,7 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "lint": "npx eslint src/*.tsx src/*.ts",
-    "deploy": "aws s3 sync ./build s3://sweeethome --profile=sweeethome",
+    "deploy": "aws s3 sync ./build s3://mullaepro.com --profile=sweeethome",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!your-module-name)/\""
   },
   "eslintConfig": {

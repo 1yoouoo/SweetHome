@@ -25,7 +25,7 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
   const [likes, setLikes] = useState<any>(0);
   const [editable, setEditable] = useState(false);
   const [heartToggle, setHeartToggle] = useState(false);
-  const setSelectedComment = useSetRecoilState(selectedCommentState);
+  const setSelectedComment = useSetRecoilState<any>(selectedCommentState);
   const onToggleActivatedReplyComments = () => {
     setActivatedReplyComments(!activatedReplyComments);
   };

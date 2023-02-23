@@ -45,7 +45,7 @@ const PostDetail = () => {
   const [error, setError] = useState<any>(null);
   const { postId } = useParams<string>();
   const [selectedComment, setSelectedComment] =
-    useRecoilState(selectedCommentState);
+    useRecoilState<any>(selectedCommentState);
   const [getUserProfile, setGetUserProfile] = useState<userSimpleResponse>();
   const postData = useRecoilValue<any>(postItemState);
   const setComments = useSetRecoilState<CommentType[]>(commentState);
