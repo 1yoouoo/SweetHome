@@ -42,6 +42,7 @@ export interface post {
   postId: number;
   postImageId: number;
   postImageUrl: string;
+  postImageUrls: any;
 }
 // 무한 스크롤 2번 씩 됨 .. FIXME
 const UserPage = () => {

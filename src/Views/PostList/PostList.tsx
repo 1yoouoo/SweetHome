@@ -14,6 +14,7 @@ export interface PostItemType {
   userImg: string;
   content: string;
   postComments: CommentType[];
+  postImageUrls: any;
   userProfileImageUrl: string;
   postLikeSize: number;
 }

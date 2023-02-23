@@ -42,7 +42,7 @@ const PostItem = ({ postItem }: postItemTypeProps) => {
           </span>
         </div>
         <div className="PostItem__main">
-          <img src={postItem.postImageUrl1} alt="sample" />
+          <img src={postItem.postImageUrls[0].postImageUrl} alt="sample" />
         </div>
         <div className="PostItem__bottom">
           <InteractionBar

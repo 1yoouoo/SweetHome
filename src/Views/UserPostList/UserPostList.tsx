@@ -34,7 +34,7 @@ const UserPostList = ({ posts, isLoding }: GreetingPropTypes) => {
               }}
             >
               <span className="UserPostList__item--img">
-                <img src={post.postImageUrl} alt="post" />
+                <img src={post.postImageUrls[0].postImageUrl} alt="post" />
               </span>
             </li>
           );
