@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import CirclePlus from "../../Assets/SVG/CirclePlus";
 import { CommentType } from "../../Components/AddComment/AddComment";
 import PostComment from "../../Components/PostComment/PostComment";
-import { commentState, selectedCommentState } from "../../recoil/snsState";
+import { commentState } from "../../recoil/snsState";
 import "./PostComments.scss";
 
 export interface deleteCommentStateTypeProps {

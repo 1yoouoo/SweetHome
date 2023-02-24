@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { selectedCommentState } from "../../recoil/snsState";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import InputBox from "../../Views/InputBox/InputBox";
@@ -13,19 +13,19 @@ export interface CommentType {
   userProfileImageUrl?: string;
   hasReComment?: boolean;
   commentLikeSize?: number | undefined;
-  reCommentSize?: number;
+  reCommentSize: number;
 }
 interface AddCommentPropsType {
   onSubmit: React.FormEventHandler<HTMLFormElement> | undefined;
   inputRef: React.RefObject<HTMLInputElement>;
-  getUserProfile?: CommentType | undefined;
+  getUserProfile: any | undefined;
 }
 
 const AddComment = (props: AddCommentPropsType) => {
   const [selectedComment, setSelectedComment] =
     useRecoilState(selectedCommentState);
   const { onSubmit, inputRef, getUserProfile }: AddCommentPropsType = props;
-  const [inputValue, setInputValue] = useState<any>("");
+  const [inputValue, setInputValue] = useState<string>("");
   const onChangeValue = (
     e:
       | React.ChangeEvent<HTMLInputElement>

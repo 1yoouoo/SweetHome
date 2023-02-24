@@ -4,9 +4,8 @@ import { atom } from "recoil";
 import { FormdataType } from "../Pages/CreatePost/CreatePost";
 import { selectedCommentType } from "../Pages/PostModal/PostModal";
 
-export const postItemState = atom<PostItemType[]>({
+export const postItemState = atom<PostItemType>({
   key: "postItems",
-  default: [],
 });
 
 export const commentState = atom<CommentType[]>({

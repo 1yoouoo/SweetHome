@@ -48,6 +48,7 @@ export const useIsOverflow = (ref: any, callback: any) => {
 const PostModal = ({ toggleModal, postId }: PostModalProps) => {
   const [likes, setLikes] = useState<number>(0);
   const [postItem, setPostItem] = useState<any>();
+  const [commentSizeState, setCommentSizeState] = useState<number>(0);
   const [lastId, setLastId] = useState(0);
   const [getUserProfile, setGetUserProfile] = useState<userSimpleResponse>();
   const [viewComments, setViewComments] = useState(false);
@@ -66,6 +67,7 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
   const getPost = async () => {
     const response = await API.getPost({ postId });
     setPostItem(response?.data.data.postDetailResponse);
+    setCommentSizeState(response?.data.data.postDetailResponse.commentSize);
     setLikes(response?.data.data.postDetailResponse.postLikeSize);
   };
   const deletePost = async () => {
@@ -106,6 +108,13 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
       alert(error);
     }
   };
+  const getAllCommentSize = () => {
+    const commentSizeList = comments?.map((comment) => {
+      return comment.reCommentSize + 1;
+    });
+    const commentSize = commentSizeList.reduce((a, b) => a + b, 0);
+    return commentSize;
+  };
   const createComment = async () => {
     try {
       await API.createComment({
@@ -132,6 +141,7 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
       ? await createReplyComment(selectedComment.commentId)
       : await createComment();
     getComments();
+    setCommentSizeState(getAllCommentSize());
     setSelectedComment({
       commentId: 0,
       nickName: "",
@@ -171,7 +181,7 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
               </span>
             </div>
             <div className="PostModal__main">
-              <img src={postItem.postImageUrl1} alt="sample" />
+              <img src={postItem.postImageUrls[0].postImageUrl} alt="sample" />
             </div>
             <div className="PostModal__bottom">
               <InteractionBar
@@ -196,7 +206,7 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
               </div>
               <div className="PostModal__bottom--comments">
                 <span onClick={onClickComments}>
-                  View all {postItem.commentSize} comments
+                  View all {commentSizeState} comments
                 </span>
                 {viewComments && (
                   <div className="PostModal__comments">

@@ -8,12 +8,14 @@ import "./CreatePost.scss";
 import { useRecoilValue } from "recoil";
 import { formDataState } from "../../recoil/snsState";
 import ErrorView from "../../Components/ErrorView/ErrorView";
+import { useNavigate } from "react-router-dom";
 export interface FormdataType {
   image_file: string | Blob;
   preview_URL: string | ArrayBuffer | null;
 }
 
 const CreatePost = () => {
+  const navigate = useNavigate();
   const formData = useRecoilValue(formDataState);
   const contentRef = useRef<any>(null);
   const [error, setError] = useState<any>(null);
@@ -35,6 +37,7 @@ const CreatePost = () => {
         });
         if (response?.data.error === null) {
           alert(response.data.data.message);
+          navigate(-1);
         } else {
           alert(response.data.error.message);
         }
