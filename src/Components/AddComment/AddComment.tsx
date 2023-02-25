@@ -14,6 +14,7 @@ export interface CommentType {
   hasReComment?: boolean;
   commentLikeSize?: number | undefined;
   reCommentSize: number;
+  isCommentLike: boolean;
 }
 interface AddCommentPropsType {
   onSubmit: React.FormEventHandler<HTMLFormElement> | undefined;
