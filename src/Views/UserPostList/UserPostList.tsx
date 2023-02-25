@@ -1,25 +1,47 @@
-import { GreetingPropTypes } from "../../Pages/UserPage/UserPage";
+import React, { useState } from "react";
+import IsLoding from "../../Components/IsLoding/IsLoding";
+import PostModal from "../../Pages/PostModal/PostModal";
+import { GreetingPropTypes, post } from "../../Pages/UserPage/UserPage";
 import "./UserPostList.scss";
 
-const UserPostList = ({ posts }: GreetingPropTypes) => {
+const UserPostList = ({ posts, isLoding }: GreetingPropTypes) => {
+  const [postModal, setPostModal] = useState(false);
+  const [postId, setPostId] = useState(1);
+  const toggleModal = () => {
+    setPostModal(!postModal);
+  };
+  const onClickPost = (postId: number) => {
+    setPostId(postId);
+    toggleModal();
+  };
+  const onClickOutside = (e: any) => {
+    e.stopPropagation();
+    if (e.target.className == "background") {
+      toggleModal();
+    }
+  };
   return (
     <ul className="UserPostList">
+      {postModal && <PostModal toggleModal={onClickOutside} postId={postId} />}
       {posts &&
-        posts.map((post: any) => {
+        posts.map((post: post) => {
           return (
-            <li className="UserPostList__item" key={post.id}>
+            <li
+              className="UserPostList__item"
+              key={post.postId}
+              onClick={() => {
+                onClickPost(post.postId);
+              }}
+            >
               <span className="UserPostList__item--img">
-                <img
-                  // src={require(`/Users/blanc/Documents/Project/sns/src/Assets/cat${item.id}.png`)}
-                  src={post.img}
-                  alt=""
-                />
+                <img src={post.postImageUrls[0].postImageUrl} alt="post" />
               </span>
             </li>
           );
         })}
+      {isLoding && <IsLoding height="20" />}
     </ul>
   );
 };
 
-export default UserPostList;
+export default React.memo(UserPostList);

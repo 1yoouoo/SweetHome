@@ -1,18 +1,23 @@
+import React from "react";
 import Followers from "../../Views/Followers/Followers";
-import FollowingPage from "../../Views/Followings/Followings";
+import Followings from "../../Views/Followings/Followings";
 import UserPostList from "../../Views/UserPostList/UserPostList";
-
-const Greeting = ({ selectedNav, posts, followers, followings }: any): any => {
-  console.log(followings);
+interface GreetingPropTypes {
+  selectedNav?: number;
+  posts?: any;
+  isLoding?: boolean;
+}
+const Greeting = (props: GreetingPropTypes): any => {
+  const { selectedNav, posts, isLoding }: GreetingPropTypes = props;
   if (selectedNav == 0) {
-    return <UserPostList posts={posts} />;
+    return <UserPostList posts={posts} isLoding={isLoding} />;
   }
   if (selectedNav == 1) {
-    return <Followers followers={followers} />;
+    return <Followers />;
   }
   if (selectedNav == 2) {
-    return <FollowingPage followings={followings} />;
+    return <Followings />;
   }
 };
 
-export default Greeting;
+export default React.memo(Greeting);

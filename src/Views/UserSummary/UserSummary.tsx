@@ -1,14 +1,9 @@
-import LinkUser from "../../sass/styled-components/LinkUser";
+import { userDetailProps } from "../UserDetail/UserDetail";
 import "./UserSummary.scss";
-const UserSummary = ({ userDetail }: any) => {
-  const tagedId = "@blanc";
+const UserSummary = ({ userDetail }: userDetailProps) => {
   return (
     <div className="UserSummary">
-      <div>
-        <b>{userDetail.contentTitle}</b>
-      </div>
-      <div>{userDetail.contentTitle}</div>
-      <LinkUser tagedId={tagedId} />
+      <div>{userDetail.content}</div>
     </div>
   );
 };

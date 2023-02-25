@@ -32,3 +32,8 @@ textarea {
   resize: none;
   padding: 5px;
 }
+
+textarea {
+  padding: 0;
+  box-sizing: content-box;
+}

@@ -1,5 +1,4 @@
 import API from "../../API/API";
-import { CommentsListType } from "./../../types/snsType";
 export function timeFormat(now: any) {
   const today = new Date();
   const currentTime = new Date(now);
@@ -55,11 +54,3 @@ export const logOut = async () => {
     alert(response?.data.error.message);
   }
 };
-// import { redirect } from "react-router-dom";
-
-// const loader = async () => {
-//   const user = await getUser();
-//   if (!user) {
-//     return redirect("/login");
-//   }
-// };

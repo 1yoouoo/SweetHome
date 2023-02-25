@@ -1,0 +1,110 @@
+@import "/src/sass/abstracts/variables";
+.background {
+  display: flex;
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.598);
+}
+.PostModal {
+  display: block;
+  z-index: 1000;
+  overflow-y: auto;
+  height: 90vh;
+  position: relative;
+  background-color: $background-color-bright;
+  margin: auto;
+  width: 400px;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+
+  &__top {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $border-color;
+    &--left {
+      margin: 10px;
+      display: flex;
+      align-items: center;
+    }
+    &--right {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  }
+  &__main {
+    display: flex;
+    align-items: center;
+    & > img {
+      width: 100%;
+    }
+  }
+  &__comments {
+    position: relative;
+    > form {
+      position: relative;
+      background-color: $background-color-bright;
+      width: 100%;
+      :nth-child(2) {
+        margin-left: 0;
+      }
+    }
+    input {
+      width: 240px !important;
+    }
+    button {
+      right: 10px;
+    }
+  }
+  &__bottom {
+    padding: 0 16px;
+    position: relative;
+    & > div {
+      margin-bottom: 10px;
+    }
+    &--likes {
+      font-size: 16px;
+      font-weight: 800;
+    }
+    &--content {
+      :nth-child(1) {
+        & b {
+          display: inline;
+        }
+        width: 370px;
+        font-size: 16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      :nth-child(2) {
+        color: $font-color-link;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 800;
+      }
+    }
+    &--comments {
+      position: relative;
+      // font-size: 16px;
+      // color: $font-color-pointer;
+      & span {
+        cursor: pointer;
+      }
+      & ul {
+        padding: 10px 0;
+      }
+    }
+    &--posted-at {
+      font-size: 10px;
+      color: $font-color-pointer;
+    }
+  }
+}

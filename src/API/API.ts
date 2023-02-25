@@ -31,6 +31,12 @@ const API = {
     const response = await authInstance.post(`logout`);
     return response;
   },
+  getPosts: async ({ lastPostId }: any) => {
+    const response = await authInstance.get(`posts`, {
+      params: { postId: lastPostId },
+    });
+    return response;
+  },
   getPost: async ({ postId }: postType) => {
     const response = await authInstance.get(`post/${postId}`);
     return response;
@@ -49,22 +55,24 @@ const API = {
   },
 
   deletePost: async ({ postId }: postType) => {
-    const response = await authInstance.delete(`comment/${postId}`);
+    const response = await authInstance.delete(`post/${postId}`);
+    return response;
+  },
+  // 게시물 좋아요
+  postLike: async ({ postId }: likeType) => {
+    const response = await authInstance.post(`post/${postId}/like`);
+    return response;
+  },
+  postUnLike: async ({ postId }: likeType) => {
+    const response = await authInstance.delete(`post/${postId}/unlike`);
     return response;
   },
 
-  clickedLike: async ({ postId }: likeType) => {
-    const response = await authInstance.post(`${postId}/like`, {
-      postId: postId,
+  // 댓글
+  getComments: async ({ postId, commentId }: commentsType) => {
+    const response = await authInstance.get(`post/${postId}/comments`, {
+      params: { commentId: commentId },
     });
-    return response;
-  },
-  clickedUnLike: async ({ postId }: likeType) => {
-    const response = await authInstance.delete(`${postId}/unlike`);
-    return response;
-  },
-  getComments: async ({ postId }: commentsType) => {
-    const response = await authInstance.get(`post/${postId}/comments`);
     return response;
   },
 
@@ -88,7 +96,40 @@ const API = {
     const response = await authInstance.delete(`comment/${commentId}`);
     return response;
   },
-
+  // 댓글 좋아요
+  commentLike: async ({ commentId }: likeType) => {
+    const response = await authInstance.post(`comment/${commentId}/like`);
+    return response;
+  },
+  commentUnLike: async ({ commentId }: likeType) => {
+    const response = await authInstance.delete(`comment/${commentId}/unlike`);
+    return response;
+  },
+  // 대댓글
+  getReplyComments: async ({ commentId, reCommentId }: commentsType) => {
+    const response = await authInstance.get(`comment/${commentId}/recomments`, {
+      params: { reCommentId: reCommentId },
+    });
+    return response;
+  },
+  createReplyComment: async ({ content, commentId }: commentsType) => {
+    const response = await authInstance.post(`comment/${commentId}/recomment`, {
+      commentId: commentId,
+      content: content,
+    });
+    return response;
+  },
+  // 대댓글 좋아요
+  reCommentLike: async ({ reCommentId }: likeType) => {
+    const response = await authInstance.post(`recomment/${reCommentId}/like`);
+    return response;
+  },
+  reCommentUnLike: async ({ reCommentId }: likeType) => {
+    const response = await authInstance.delete(
+      `recomment/${reCommentId}/unlike`
+    );
+    return response;
+  },
   follow: async ({ userId }: followType) => {
     const response = await authInstance.post(`${userId}/follow`);
     return response;
@@ -96,6 +137,24 @@ const API = {
 
   unFollow: async ({ userId }: followType) => {
     const response = await authInstance.delete(`${userId}/unfollow`);
+    return response;
+  },
+  getUserProfile: async ({ userId, lastPostId }: any) => {
+    const response = await authInstance.get(`user/${userId}`, {
+      params: { postId: lastPostId },
+    });
+    return response;
+  },
+  getFollowings: async ({ userId, lastId }: any) => {
+    const response = await authInstance.get(`/user/${userId}/following`, {
+      params: { lastId: lastId },
+    });
+    return response;
+  },
+  getFollowers: async ({ userId, lastId }: any) => {
+    const response = await authInstance.get(`/user/${userId}/follower`, {
+      params: { lastId: lastId },
+    });
     return response;
   },
 };

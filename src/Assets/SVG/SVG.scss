@@ -74,10 +74,8 @@
 .EllipsisSvg {
   svg {
     fill: $font-color;
-    display: block;
-    width: 24px;
-    height: 24px;
-    padding: 12px;
+    width: 14px;
+    height: 14px;
     cursor: pointer;
   }
   :hover {
@@ -118,7 +116,7 @@
 // interaction bar --------
 
 .Setting {
-  position: fixed;
+  position: absolute;
   z-index: 3;
   top: 9px;
   left: 18px;

@@ -7,22 +7,34 @@ import { timeFormat } from "../../utills/function/function";
 import InteractionBar from "../../Components/InteractionBar/InteractionBar";
 import { PostItemType } from "../PostList/PostList";
 import "./PostItem.scss";
-import sample from "/Users/blanc/Documents/Project/sns/src/Assets/sample.png";
+import { useSetRecoilState } from "recoil";
+import { postItemState } from "../../recoil/snsState";
 
 // type
 interface postItemTypeProps {
   postItem: PostItemType;
 }
 const PostItem = ({ postItem }: postItemTypeProps) => {
-  const [likes, setLikes] = useState<number>(postItem.likes);
+  const setPostItemState = useSetRecoilState<any>(postItemState);
+  const [likes, setLikes] = useState<number>(postItem.postLikeSize);
   const navigate = useNavigate();
-
+  const onClickViewComments = () => {
+    setPostItemState(postItem);
+    navigate(`/post-detail/${postItem.postId}`);
+    localStorage.setItem("userProfileImageUrl", postItem.userProfileImageUrl);
+    localStorage.setItem("nickName", postItem.nickName);
+    localStorage.setItem("updatedAt", postItem.updatedAt);
+    localStorage.setItem("content", postItem.content);
+  };
   return (
     <>
       <section className="PostItem">
         <div className="PostItem__top">
           <span className="PostItem__top--left">
-            <UserPhoto size="44px" />
+            <UserPhoto
+              size="44px"
+              userProfileImage={postItem.userProfileImageUrl}
+            />
             <UserNickName nickName={postItem.nickName} />
           </span>
           <span className="PostItem__top--right">
@@ -30,26 +42,27 @@ const PostItem = ({ postItem }: postItemTypeProps) => {
           </span>
         </div>
         <div className="PostItem__main">
-          <img src={sample} alt="sample" />
+          <img src={postItem.postImageUrls[0].postImageUrl} alt="sample" />
         </div>
         <div className="PostItem__bottom">
           <InteractionBar
             likes={likes}
             setLikes={setLikes}
+            isLike={postItem.isPostLike}
             postId={postItem.postId}
           />
           <div className="PostItem__bottom--likes">{likes} likes</div>
           <div className="PostItem__bottom--content">
             <span>{postItem.nickName}</span>
-            <span>{postItem.postContent}</span>
+            <span>{postItem.content}</span>
           </div>
           <div className="PostItem__bottom--comments">
-            <span onClick={() => navigate(`/post/${postItem.postId}`)}>
-              View all {postItem.commentsNumber} comments
+            <span onClick={onClickViewComments}>
+              View all {postItem.commentSize} comments
             </span>
           </div>
           <div className="PostItem__bottom--posted-at">
-            {timeFormat(postItem?.postedAt)}
+            {timeFormat(postItem?.updatedAt)}
           </div>
         </div>
       </section>

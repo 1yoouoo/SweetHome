@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const API_base = "http://192.168.35.126:80";
+const API_base = "http://3.39.146.58";
 const token = localStorage.getItem("token");
 interface requestType {
   options: Request | string;
 }
 const axiosApi = ({ options }: any) => {
   const instance = axios.create({
-    baseURL: "http://192.168.35.126:80/",
+    baseURL: API_base,
     ...options,
   });
   instance.interceptors.response.use(
@@ -36,7 +36,7 @@ const axiosApi = ({ options }: any) => {
 
 const axiosAuthApi = ({ options }: any) => {
   const instance = axios.create({
-    baseURL: "http://192.168.35.126:80/",
+    baseURL: API_base,
     ...options,
     headers: {
       token: token,
@@ -69,7 +69,7 @@ const axiosAuthApi = ({ options }: any) => {
 
 const axiosFormDataApi = ({ options }: any) => {
   const instance = axios.create({
-    baseURL: "http://192.168.35.126:80/",
+    baseURL: API_base,
     ...options,
     headers: {
       "Content-Type": "multipart/form-data",
@@ -101,7 +101,7 @@ const axiosFormDataApi = ({ options }: any) => {
 
 const axiosAuthFormDataApi = ({ options }: any) => {
   const instance = axios.create({
-    baseURL: "http://192.168.35.126:80/",
+    baseURL: API_base,
     ...options,
     headers: {
       token: token,

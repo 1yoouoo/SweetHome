@@ -2,7 +2,7 @@ import StyledButton from "../../Views/StyledButton/StyledButton";
 import Logo from "../../Views/Logo/Logo";
 import "./SignUpForm.scss";
 import InputBox from "../../Views/InputBox/InputBox";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import defaultProfile from "/Users/blanc/Documents/Project/sns/src/Assets/default_profile.png";
 import API from "../../API/API";
 import { useNavigate } from "react-router-dom";
@@ -11,46 +11,35 @@ import UploadProfilePhoto from "../../Views/UploadProfilePhoto/UploadProfilePhot
 interface inputValueType {
   image_file: string | Blob;
   preview_URL: string | ArrayBuffer | null;
-  email: string;
-  name: string;
-  nickName: string;
-  password: string;
 }
 
 const SignUpForm = () => {
   const navigate = useNavigate();
+  const inputRef = useRef<HTMLInputElement[]>([]);
   const [inputValue, setInputValue] = useState<inputValueType>({
-    image_file: "",
+    image_file: "", // default 이미지 파일로 넣어놓기
     preview_URL: defaultProfile,
-    email: "",
-    name: "",
-    nickName: "",
-    password: "",
   });
-  const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue({
-      ...inputValue,
-      [e.currentTarget.name]: e.currentTarget.value,
-    });
-  };
   const onSubmit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("image", inputValue.image_file);
-    formData.append("email", inputValue.email);
-    formData.append("name", inputValue.name);
-    formData.append("nickName", inputValue.nickName);
-    formData.append("password", inputValue.password);
-    const response = await API.signUp({
-      formData,
-    });
-    // 성공
-    if (response?.data.error === null) {
-      alert(response.data.data.message);
-      navigate("/login");
-      // 실패
-    } else {
-      alert(response.data.error.message);
+    try {
+      e.preventDefault();
+      const formData = new FormData();
+      console.log(inputValue.image_file);
+      formData.append("image", inputValue.image_file);
+      formData.append("email", inputRef.current[0].value);
+      formData.append("name", inputRef.current[1].value);
+      formData.append("nickName", inputRef.current[2].value);
+      formData.append("password", inputRef.current[3].value);
+      const response = await API.signUp({
+        formData,
+      });
+      // 성공
+      if (response?.data.error === null) {
+        alert(response.data.data.message);
+        navigate("/login");
+      }
+    } catch (error: any) {
+      alert(error?.message);
     }
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -87,29 +76,25 @@ const SignUpForm = () => {
           <InputBox
             placeholder="Email"
             name="email"
-            value={inputValue.email}
-            onChangeValue={onChangeValue}
+            inputRef={(el: HTMLInputElement) => (inputRef.current[0] = el)}
           />
           {/* 이름 2자이상 10자 이하 */}
           <InputBox
             placeholder="Name"
             name="name"
-            value={inputValue.name}
-            onChangeValue={onChangeValue}
+            inputRef={(el: HTMLInputElement) => (inputRef.current[1] = el)}
           />
           {/* 중복 x 2자이상 10자 이하 */}
           <InputBox
             placeholder="NickName"
             name="nickName"
-            value={inputValue.nickName}
-            onChangeValue={onChangeValue}
+            inputRef={(el: HTMLInputElement) => (inputRef.current[2] = el)}
           />
           {/* 5자 이상 10자 이하 */}
           <InputBox
             placeholder="Password"
             name="password"
-            value={inputValue.password}
-            onChangeValue={onChangeValue}
+            inputRef={(el: HTMLInputElement) => (inputRef.current[3] = el)}
             type="password"
           />
           <div style={{ margin: "20px 0" }}>

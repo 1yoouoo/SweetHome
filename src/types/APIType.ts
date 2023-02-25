@@ -2,8 +2,8 @@ export type signUpType = {
   formData: object;
 };
 export type logInType = {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
 };
 export type createPostType = {
   formDataToServer: object;
@@ -14,12 +14,15 @@ export type postType = {
   formData?: never;
 };
 export type likeType = {
-  postId: number;
+  postId?: number;
+  commentId?: number;
+  reCommentId?: number;
 };
 export type commentsType = {
   postId?: string | number;
   commentId?: number;
   content?: string;
+  reCommentId?: number;
 };
 export type followType = {
   userId: number;

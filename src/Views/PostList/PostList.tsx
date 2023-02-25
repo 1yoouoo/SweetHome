@@ -5,27 +5,30 @@ import "./PostList.scss";
 
 export interface PostItemType {
   postId: number;
-  postImg: string;
+  postImageUrl1: string;
   likes: number;
   nickName: string;
-  commentsNumber: number;
-  postedAt?: Date | string | undefined;
+  commentSize: number;
+  isPostLike: boolean;
+  updatedAt?: Date | string | any;
   userImg: string;
-  postContent: string;
+  content: string;
   postComments: CommentType[];
+  postImageUrls: any;
+  userProfileImageUrl: string;
+  postLikeSize: number;
 }
 interface PostListTypeProps {
-  dummyList: PostItemType[];
+  posts?: PostItemType[];
   isLoding: boolean;
 }
 
-const PostList = ({ dummyList, isLoding }: any) => {
-  console.log(isLoding);
+const PostList = ({ posts, isLoding }: PostListTypeProps) => {
   return (
     <>
       <main className="PostList">
-        {dummyList &&
-          dummyList.map((postItem: PostItemType) => {
+        {posts &&
+          posts.map((postItem: PostItemType) => {
             return <PostItem postItem={postItem} key={postItem.postId} />;
           })}
       </main>

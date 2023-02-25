@@ -2,4 +2,8 @@
 
 .PostComments {
   padding: 10px;
+  &__plus {
+    display: flex;
+    justify-content: center;
+  }
 }

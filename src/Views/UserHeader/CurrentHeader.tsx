@@ -1,3 +1,4 @@
+import React from "react";
 import ChevronLeftSvg from "../../Assets/SVG/ChevronLeftSvg";
 import Setting from "../../Assets/SVG/Setting";
 import PostingButton from "../../sass/styled-components/ShareButton";
@@ -10,28 +11,26 @@ interface CurrentHeaderTypeProps {
   onClickSharing?: (e: { preventDefault: () => void }) => Promise<void>;
 }
 
-const CurrentHeader = ({
-  current,
-  createPost,
-  onClickSharing,
-  setting,
-  backwards,
-}: CurrentHeaderTypeProps) => {
-  const isUser = true;
+const CurrentHeader = (props: CurrentHeaderTypeProps) => {
+  const {
+    current,
+    createPost,
+    onClickSharing,
+    setting,
+    backwards,
+  }: CurrentHeaderTypeProps = props;
   return (
     <>
       <div className="CurrentHeader">
         {setting && <Setting />}
         {backwards && <ChevronLeftSvg />}
         <span className="CurrentHeader__user-id">{current}</span>
-        {createPost ? (
+        {createPost && (
           <PostingButton text="공유" onClickSharing={onClickSharing} />
-        ) : (
-          <></>
         )}
       </div>
     </>
   );
 };
 
-export default CurrentHeader;
+export default React.memo(CurrentHeader);

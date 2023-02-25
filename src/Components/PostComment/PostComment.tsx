@@ -4,11 +4,14 @@ import SmallHeartSvg from "../../Assets/SVG/SmallHeartSvg";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import { CommentType } from "../AddComment/AddComment";
 import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import API from "../../API/API";
 import { timeFormat } from "../../utills/function/function";
-import { useRecoilState } from "recoil";
-import { commentState } from "../../recoil/snsState";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { commentState, selectedCommentState } from "../../recoil/snsState";
+import ReplyCommentView from "../../sass/styled-components/ReplyCommentView";
+import ReplyComments from "../ReplyComments/ReplyComments";
+import SmallHeartActivedSvg from "../../Assets/SVG/SmallHeartActivedSvg";
 interface PostCommentTypeProps {
   comment: CommentType;
 }
@@ -16,9 +19,19 @@ interface PostCommentTypeProps {
 const PostComment = ({ comment }: PostCommentTypeProps) => {
   const [comments, setComments] = useRecoilState<CommentType[]>(commentState);
   const [commentItem, setCommentItem] = useState(comment);
-  const [dotToggle, setDotToggle] = useState(false);
+  const [activatedReplyComments, setActivatedReplyComments] =
+    useState<any>(false);
+  const [dotToggle, setDotToggle] = useState<boolean>(false);
+  const [likes, setLikes] = useState<any>(0);
   const [editable, setEditable] = useState(false);
-
+  const [heartToggle, setHeartToggle] = useState(false);
+  const setSelectedComment = useSetRecoilState<any>(selectedCommentState);
+  const onToggleActivatedReplyComments = () => {
+    setActivatedReplyComments(!activatedReplyComments);
+  };
+  const onClickViewReplies = () => {
+    onToggleActivatedReplyComments();
+  };
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCommentItem({ ...commentItem, commentContent: e.target.value });
   };
@@ -60,61 +73,122 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
       });
       setEditable(!editable);
     }
-    console.log(commentItem);
   };
+  const onClickReply = () => {
+    setSelectedComment({
+      commentId: comment.commentId,
+      nickName: comment.nickName,
+      isReply: true,
+    });
+  };
+  const like = async () => {
+    const response = await API.commentLike({
+      commentId: comment.commentId,
+    });
+    if (response?.data.error === null) {
+      setHeartToggle(!heartToggle);
+      setLikes(heartToggle ? likes - 1 : likes + 1);
+    } else {
+      alert(response?.data.error.message);
+    }
+  };
+  const unLike = async () => {
+    const response = await API.commentUnLike({
+      commentId: comment.commentId,
+    });
+    if (response?.data.error === null) {
+      setHeartToggle(!heartToggle);
+      setLikes(heartToggle ? likes - 1 : likes + 1);
+    } else {
+      alert(response?.data.error.message);
+    }
+  };
+  const onClickHeart = async () => {
+    heartToggle ? unLike() : like();
+  };
+  useEffect(() => {
+    setActivatedReplyComments(false);
+    setLikes(comment?.commentLikeSize);
+  }, [comments]);
   return (
-    <li className="PostComment">
-      <span className="PostComment__wrapper">
-        <span className="PostComment__left">
-          <UserPhoto
-            size="44px"
-            userProfileImage={commentItem.userProfileImage}
-          />
-        </span>
-        <div className="PostComment__center">
-          <div className="PostComment__center--wrapper">
-            <span className="PostComment__center--wrapper-username">
-              {commentItem.nickName}
-            </span>
-            <span className="PostComment__center--wrapper-dot">
-              <SingleDotSvg />
-            </span>
-            <span className="PostComment__center--wrapper-created-at">
-              {timeFormat(commentItem.updatedAt)}
-            </span>
-          </div>
-          <div className="PostComment__center--text">
-            {editable ? (
-              <span className="PostComment__center--edit">
-                <input
-                  placeholder={commentItem.commentContent}
-                  onChange={(e) => onChangeValue(e)}
-                />
-                <button onClick={editComment}>완료</button>
-              </span>
-            ) : (
-              commentItem.commentContent
-            )}
-          </div>
-          <div className="PostComment__center--comment">
-            <span className="PostComment__center--comment-like">좋아요</span>
-            <span className="PostComment__center--comment-recomment">
-              답글달기
-            </span>
-          </div>
-        </div>
-      </span>
-      <span className="PostComment__right">
-        <SmallHeartSvg />
-        <span className="PostComment__right--dot" onClick={onClickDot}>
-          <span className={dotToggle ? "activated_dot" : "hidden_dot"}>
-            <span onClick={onClickEdit}>수정</span>
-            <span onClick={deleteComment}>삭제</span>
+    <>
+      <li className="PostComment">
+        <span className="PostComment__wrapper">
+          <span className="PostComment__left">
+            <UserPhoto
+              size="44px"
+              userProfileImage={commentItem.userProfileImage}
+            />
           </span>
-          <EllipsisSvg />
+          <div className="PostComment__center">
+            <div className="PostComment__center--wrapper">
+              <b className="PostComment__center--wrapper-username">
+                {commentItem.nickName}
+              </b>
+              <div className="PostComment__center--text">
+                {editable ? (
+                  <span className="PostComment__center--edit">
+                    <input
+                      placeholder={commentItem.commentContent}
+                      onChange={(e) => onChangeValue(e)}
+                    />
+                    <button onClick={editComment}>완료</button>
+                  </span>
+                ) : (
+                  commentItem.commentContent
+                )}
+              </div>
+            </div>
+            <div className="PostComment__center--comment">
+              {/* <span className="PostComment__center--comment-like">1 Likes</span> */}
+              <span className="PostComment__center--comment-created-at">
+                {timeFormat(commentItem.updatedAt)}
+              </span>
+              <span
+                className="PostComment__center--comment-recomment"
+                onClick={onClickReply}
+              >
+                Reply
+              </span>
+              <span className="PostComment__center--comment-likes">
+                {comment.commentLikeSize != 0 && (
+                  <span>{comment.commentLikeSize}likes </span>
+                )}
+              </span>
+              <span className="PostComment__center--comment-ellipsis">
+                <EllipsisSvg />
+              </span>
+            </div>
+          </div>
         </span>
-      </span>
-    </li>
+        <span className="PostComment__right">
+          {heartToggle ? (
+            <SmallHeartActivedSvg onClickHeart={onClickHeart} />
+          ) : (
+            <SmallHeartSvg onClickHeart={onClickHeart} />
+          )}
+          <span className="PostComment__right--dot" onClick={onClickDot}>
+            <span className={dotToggle ? "activated_dot" : "hidden_dot"}>
+              <span onClick={onClickEdit}>수정</span>
+              <span onClick={deleteComment}>삭제</span>
+            </span>
+          </span>
+        </span>
+      </li>
+      {comment.reCommentSize != 0 && (
+        <div>
+          <ReplyCommentView
+            replySize={comment.reCommentSize}
+            onClickViewReplies={onClickViewReplies}
+            onToggleActivatedReplyComments={onToggleActivatedReplyComments}
+            activatedReplyComments={activatedReplyComments}
+          />
+          {activatedReplyComments && (
+            <ReplyComments commentId={comment.commentId} />
+          )}
+        </div>
+      )}
+    </>
   );
 };
 

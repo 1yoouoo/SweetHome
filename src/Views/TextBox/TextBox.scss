@@ -1,0 +1,16 @@
+.TextBox {
+  &__label {
+    display: flex;
+    position: relative;
+    &--textarea {
+      color: #fff;
+      border: 1px solid #363636;
+      margin: 5px 0;
+      width: 300px;
+      height: 20px;
+      border-radius: 3px;
+      background-color: #262626;
+      padding: 9px 0 7px 8px;
+    }
+  }
+}
