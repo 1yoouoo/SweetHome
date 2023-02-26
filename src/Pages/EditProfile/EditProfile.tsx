@@ -9,7 +9,7 @@ import "./EditProfile.scss";
 
 const testData = {
   image_file: "",
-  preview_URL: require(`${"/Users/blanc/Documents/Project/sns/src/Assets/blanc.jpeg"}`),
+  preview_URL: "",
   name: "이지윤",
   userName: "blanc",
   content: "",

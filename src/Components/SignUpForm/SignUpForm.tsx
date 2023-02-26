@@ -3,7 +3,6 @@ import Logo from "../../Views/Logo/Logo";
 import "./SignUpForm.scss";
 import InputBox from "../../Views/InputBox/InputBox";
 import { useRef, useState } from "react";
-import defaultProfile from "/Users/blanc/Documents/Project/sns/src/Assets/default_profile.png";
 import API from "../../API/API";
 import { useNavigate } from "react-router-dom";
 import UploadProfilePhoto from "../../Views/UploadProfilePhoto/UploadProfilePhoto";
@@ -18,7 +17,7 @@ const SignUpForm = () => {
   const inputRef = useRef<HTMLInputElement[]>([]);
   const [inputValue, setInputValue] = useState<inputValueType>({
     image_file: "", // default 이미지 파일로 넣어놓기
-    preview_URL: defaultProfile,
+    preview_URL: "",
   });
   const onSubmit = async (e: React.SyntheticEvent) => {
     try {
