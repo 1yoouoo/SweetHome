@@ -1,8 +1,6 @@
 import StyledButton from "../../Views/StyledButton/StyledButton";
 import "./ErrorView.scss";
-interface ErrorViewTypeProps {
-  onClick: any;
-}
+
 const ErrorView = () => {
   return (
     <div className="ErrorView">

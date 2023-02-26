@@ -1,4 +1,5 @@
 import API from "../../API/API";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function timeFormat(now: any) {
   const today = new Date();
   const currentTime = new Date(now);
@@ -26,6 +27,7 @@ export function timeFormat(now: any) {
   return `${Math.floor(betweenTimeDay / 365)}년 전`;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const newCommentId = (datas: any) => {
   console.log(datas);
   if (datas.length === 0) {

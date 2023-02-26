@@ -14,6 +14,7 @@ const UserPostList = ({ posts, isLoding }: GreetingPropTypes) => {
     setPostId(postId);
     toggleModal();
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onClickOutside = (e: any) => {
     e.stopPropagation();
     if (e.target.className == "background") {

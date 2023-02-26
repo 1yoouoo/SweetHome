@@ -17,8 +17,9 @@ export interface FormdataType {
 const CreatePost = () => {
   const navigate = useNavigate();
   const formData = useRecoilValue(formDataState);
-  const contentRef = useRef<any>(null);
-  const [error, setError] = useState<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const contentRef = useRef<any>();
+  const [error, setError] = useState<unknown>();
   const onClickSharing = async (e: { preventDefault: () => void }) => {
     try {
       e.preventDefault();

@@ -1,8 +1,14 @@
 import SingleDotSvg from "../../Assets/SVG/SingleDotSvg";
-import { clickedPostTypeProps } from "../../Pages/PostDetail/PostDetail";
 import { timeFormat } from "../../utills/function/function";
 import "./UserComment.scss";
-
+export interface clickedPostTypeProps {
+  postData: postData;
+}
+interface postData {
+  nickName: string;
+  updatedAt: string;
+  content: string;
+}
 const UserComment = ({ postData }: clickedPostTypeProps) => {
   return (
     <div className="UserComment">

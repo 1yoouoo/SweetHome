@@ -47,6 +47,7 @@ const StyledAlertModal = styled.div`
     }
   }
 `;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function AlertModal({ onPossitiveClick, onNagativeClick }: any) {
   return (
     <StyledAlertModal>

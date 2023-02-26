@@ -2,9 +2,8 @@ import StyledButton from "../../Views/StyledButton/StyledButton";
 import Logo from "../../Views/Logo/Logo";
 import "./LoginForm.scss";
 import InputBox from "../../Views/InputBox/InputBox";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import API from "../../API/API";
-import ErrorView from "../ErrorView/ErrorView";
 // type
 const LoginForm = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -26,7 +25,7 @@ const LoginForm = () => {
       } else {
         alert(response?.data.error?.message);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.log(error);
     }
   };

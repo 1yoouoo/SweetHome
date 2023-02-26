@@ -10,16 +10,23 @@ import "./EditProfile.scss";
 const testData = {
   image_file: "",
   preview_URL: "",
-  name: "이지윤",
-  userName: "blanc",
+  name: "test",
+  userName: "test",
   content: "",
 };
+interface inputValueType {
+  image_file: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  preview_URL: any;
+  name: string;
+  userName: string;
+}
 
 const EditProfile = () => {
-  const [userData, setUserData] = useState<any>();
+  const [userData, setUserData] = useState<inputValueType>();
   const contentRef = useRef<HTMLTextAreaElement>(null);
-  const [error, setError] = useState<any>(null);
-  const [inputValue, setInputValue] = useState<any>({
+  const [error, setError] = useState<unknown>();
+  const [inputValue, setInputValue] = useState<inputValueType>({
     image_file: "",
     preview_URL: testData.preview_URL,
     name: testData.name,

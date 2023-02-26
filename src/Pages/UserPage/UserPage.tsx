@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import UserDetail from "../../Views/UserDetail/UserDetail";
 import UserNav from "../../Views/UserNav/UserNav";
 import "./UserPage.scss";
@@ -17,7 +18,7 @@ import ErrorView from "../../Components/ErrorView/ErrorView";
 export interface slideTypeProps {
   selectedNav: number;
   setSelectedNav: Dispatch<SetStateAction<number>>;
-  userInfo?: any;
+  userInfo?: userInfoType;
 }
 export interface GreetingPropTypes {
   selectedNav?: number | undefined;

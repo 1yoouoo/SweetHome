@@ -19,15 +19,15 @@ const UserNav = ({ selectedNav, setSelectedNav, userInfo }: slideTypeProps) => {
         style={{ transform: `translateX(${selectedNav * 166}px)` }}
       ></li>
       <li className="UserNav__posts" onClick={onClickPosts}>
-        <span>{userInfo.postSize}</span>
+        <span>{userInfo?.postSize}</span>
         <span>posts</span>
       </li>
       <li className="UserNav__followers" onClick={onClickFollowers}>
-        <span>{userInfo.followerSize}</span>
+        <span>{userInfo?.followerSize}</span>
         <span>followers</span>
       </li>
       <li className="UserNav__following" onClick={onClickFollowing}>
-        <span>{userInfo.followingSize}</span>
+        <span>{userInfo?.followingSize}</span>
         <span>following</span>
       </li>
     </ul>

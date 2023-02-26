@@ -14,6 +14,7 @@ import AddComment, {
 } from "../../Components/AddComment/AddComment";
 import { getCommentsType, userSimpleResponse } from "../PostDetail/PostDetail";
 import AlertModal from "../../sass/styled-components/AlertModal";
+import { PostItemType } from "../../Views/PostList/PostList";
 
 interface PostModalProps {
   toggleModal: (e: unknown) => void;
@@ -24,6 +25,7 @@ export interface selectedCommentType {
   nickName: string;
   isReply: boolean;
 }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const useIsOverflow = (ref: any, callback: any) => {
   const [isOverflow, setIsOverflow] = useState<boolean | undefined>(undefined);
 
@@ -47,7 +49,7 @@ export const useIsOverflow = (ref: any, callback: any) => {
 };
 const PostModal = ({ toggleModal, postId }: PostModalProps) => {
   const [likes, setLikes] = useState<number>(0);
-  const [postItem, setPostItem] = useState<any>();
+  const [postItem, setPostItem] = useState<PostItemType>();
   const [commentSizeState, setCommentSizeState] = useState<number>(0);
   const [lastId, setLastId] = useState(0);
   const [getUserProfile, setGetUserProfile] = useState<userSimpleResponse>();
@@ -60,6 +62,7 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
   const [comments, setComments] = useRecoilState<CommentType[]>(commentState);
   const ref = useRef();
   const inputRef = useRef<HTMLInputElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
   const isOverflow = useIsOverflow(ref, (isOverflowFromCallback: any) => {
     // console.log(isOverflowFromCallback);
   });
@@ -196,6 +199,7 @@ const PostModal = ({ toggleModal, postId }: PostModalProps) => {
                   style={
                     more ? { display: "inline" } : { display: "-webkit-box" }
                   }
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   ref={ref as any}
                 >
                   <b>{postItem.nickName}</b> {postItem.content}

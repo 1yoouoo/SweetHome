@@ -10,13 +10,16 @@ export interface PostItemType {
   nickName: string;
   commentSize: number;
   isPostLike: boolean;
-  updatedAt?: Date | string | any;
+  updatedAt: string;
   userImg: string;
   content: string;
   postComments: CommentType[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   postImageUrls: any;
   userProfileImageUrl: string;
   postLikeSize: number;
+  like?: boolean;
+  userProfileImageURL?: string;
 }
 interface PostListTypeProps {
   posts?: PostItemType[];

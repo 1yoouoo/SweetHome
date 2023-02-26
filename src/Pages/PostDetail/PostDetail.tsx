@@ -14,7 +14,6 @@ import {
 } from "../../recoil/snsState";
 import PostComments from "../../Views/PostComments/PostComments";
 import PostContent from "../../Views/PostContent/PostContent";
-import { PostItemType } from "../../Views/PostList/PostList";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
 import "./PostDetail.scss";
 export interface postType {
@@ -29,24 +28,23 @@ export interface userSimpleResponse {
   userId: number;
   userProfileImageUrl: string;
 }
-export interface clickedPostTypeProps {
-  postData: any;
-}
+
 export interface getCommentsType {
   postSummaryResponse: postType;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   commentListDetailResponse: SetStateAction<any> | undefined;
   userSimpleResponse: userSimpleResponse;
-  commentResponses: any;
 }
 
 const PostDetail = () => {
   const [isLoding, setIsLoding] = useState<boolean>(true);
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<unknown>();
   const { postId } = useParams<string>();
   const [selectedComment, setSelectedComment] =
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecoilState<any>(selectedCommentState);
   const [getUserProfile, setGetUserProfile] = useState<userSimpleResponse>();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const postData = useRecoilValue<any>(postItemState);
   const setComments = useSetRecoilState<CommentType[]>(commentState);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -76,7 +74,7 @@ const PostDetail = () => {
       console.log(error);
     }
   };
-  const createReplyComment = async (commentId: any) => {
+  const createReplyComment = async (commentId: number) => {
     try {
       await API.createReplyComment({
         content: inputRef.current?.value,

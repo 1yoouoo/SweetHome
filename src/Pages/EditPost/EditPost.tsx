@@ -10,7 +10,7 @@ import "./EditPost.scss";
 
 const EditPost = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<unknown>();
   const [inputValue, setInputValue] = useState();
   const { postId } = useParams<string>();
 

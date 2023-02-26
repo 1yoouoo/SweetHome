@@ -4,6 +4,7 @@ import "./TextBox.scss";
 interface TextBoxTypeProps {
   name?: string;
   value?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   inputRef?: any;
   onChangeValue?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }

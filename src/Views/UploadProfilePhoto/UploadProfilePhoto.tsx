@@ -1,12 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef } from "react";
-// import { imageType } from "../UploadPhotos/UploadPhotos";
 import "./UploadProfilePhoto.scss";
 import CirclePlus from "../../Assets/SVG/CirclePlus";
 export interface imageType {
   image_file: string;
   preview_URL: any;
 }
-const UploadProfilePhoto = ({ inputValue, saveImage }: any) => {
+interface UploadProfilePhotoPropsType {
+  inputValue: any;
+  saveImage: any;
+}
+const UploadProfilePhoto = ({
+  inputValue,
+  saveImage,
+}: UploadProfilePhotoPropsType) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (

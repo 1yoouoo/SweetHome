@@ -4,7 +4,9 @@ import {
   followType,
   likeType,
   logInType,
+  postsType,
   postType,
+  userProfileType,
 } from "./../types/APIType";
 import { signUpType } from "../types/APIType";
 import {
@@ -31,7 +33,7 @@ const API = {
     const response = await authInstance.post(`logout`);
     return response;
   },
-  getPosts: async ({ lastPostId }: any) => {
+  getPosts: async ({ lastPostId }: postsType) => {
     const response = await authInstance.get(`posts`, {
       params: { postId: lastPostId },
     });
@@ -139,19 +141,19 @@ const API = {
     const response = await authInstance.delete(`${userId}/unfollow`);
     return response;
   },
-  getUserProfile: async ({ userId, lastPostId }: any) => {
+  getUserProfile: async ({ userId, lastPostId }: userProfileType) => {
     const response = await authInstance.get(`user/${userId}`, {
       params: { postId: lastPostId },
     });
     return response;
   },
-  getFollowings: async ({ userId, lastId }: any) => {
+  getFollowings: async ({ userId, lastId }: followType) => {
     const response = await authInstance.get(`/user/${userId}/following`, {
       params: { lastId: lastId },
     });
     return response;
   },
-  getFollowers: async ({ userId, lastId }: any) => {
+  getFollowers: async ({ userId, lastId }: followType) => {
     const response = await authInstance.get(`/user/${userId}/follower`, {
       params: { lastId: lastId },
     });

@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { FormdataType } from "../../Pages/CreatePost/CreatePost";
 import { formDataState } from "../../recoil/snsState";
 import "./UploadPhotos.scss";
 
 const UploadPhotos = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [formData, setFormData] = useRecoilState<FormdataType[]>(formDataState);
+  const setFormData = useSetRecoilState<FormdataType[]>(formDataState);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [previewImgList, setPreviewImgList] = useState<any>([]);
 

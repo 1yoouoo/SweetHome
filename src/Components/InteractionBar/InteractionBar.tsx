@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import API from "../../API/API";
 import BookMarkSvg from "../../Assets/SVG/BookMarkSvg";
 import CommentsSvg from "../../Assets/SVG/Comments";

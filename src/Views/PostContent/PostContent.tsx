@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { clickedPostTypeProps } from "../../Pages/PostDetail/PostDetail";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import UserComment from "../UserComment/UserComment";
 import "./PostContent.scss";
 
 const PostContent = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [postData, setPostData] = useState<any>();
   useEffect(
     () =>

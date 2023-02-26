@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import API from "../../API/API";
-import CirclePlus from "../../Assets/SVG/CirclePlus";
 import ReplyComment from "../ReplyComment/ReplyComment";
 import "./ReplyComments.scss";
 interface ReplyCommentsProps {
@@ -13,13 +12,12 @@ export interface ReplyCommentType {
   updatedAt?: string | Date;
   userProfileImageUrl?: string;
   reCommentLikeSize?: number;
-  replyComment: any;
 }
 function ReplyComments({ commentId }: ReplyCommentsProps) {
   const [currentPage, setCurrentPage] = useState(0);
-  const [lastId, setLastId] = useState(0);
-  const [isLastPage, setIsLastPage] = useState(false);
-  const [replyComments, setReplyComments] = useState<any>();
+  // const [lastId, setLastId] = useState(0);
+  // const [isLastPage, setIsLastPage] = useState(false);
+  const [replyComments, setReplyComments] = useState<ReplyCommentType[]>();
 
   const fetchReplyComments = async (reCommentId?: number) => {
     const response = await API.getReplyComments({ commentId, reCommentId });
@@ -28,14 +26,14 @@ function ReplyComments({ commentId }: ReplyCommentsProps) {
   const getReplyComments = async () => {
     const response = await fetchReplyComments();
     setReplyComments(response.reCommentListDetailResponseList);
-    setIsLastPage(!response.hasNext);
+    // setIsLastPage(!response.hasNext);
   };
-  const getMoreReplyComments = async () => {
-    const response = await fetchReplyComments(lastId);
-    setReplyComments([...replyComments, ...response.commentListDetailResponse]);
-    setIsLastPage(response.hasNext);
-    // setLastId(response.commentListDetailResponse.at(-1)?.commentId);
-  };
+  // const getMoreReplyComments = async () => {
+  //   const response = await fetchReplyComments(lastId);
+  //   setReplyComments([...replyComments, ...response.commentListDetailResponse]);
+  //   setIsLastPage(response.hasNext);
+  //   // setLastId(response.commentListDetailResponse.at(-1)?.commentId);
+  // };
   useEffect(() => {
     console.log("ReplyComments Mount!!!");
     getReplyComments();

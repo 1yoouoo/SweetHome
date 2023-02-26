@@ -1,30 +1,33 @@
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { selectedCommentState } from "../../recoil/snsState";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import InputBox from "../../Views/InputBox/InputBox";
 import "./AddComment.scss";
 export interface CommentType {
   commentContent?: string;
-  commentId?: number;
+  commentId: number;
   nickName: string;
   updatedAt?: string | Date;
   userProfileImage?: string;
   userProfileImageUrl?: string;
   hasReComment?: boolean;
-  commentLikeSize?: number | undefined;
+  commentLikeSize: number;
   reCommentSize: number;
   isCommentLike: boolean;
 }
 interface AddCommentPropsType {
   onSubmit: React.FormEventHandler<HTMLFormElement> | undefined;
   inputRef: React.RefObject<HTMLInputElement>;
-  getUserProfile: any | undefined;
+  getUserProfile?: getUserProfileType;
+}
+interface getUserProfileType {
+  userProfileImageUrl: string;
+  nickName: string;
 }
 
 const AddComment = (props: AddCommentPropsType) => {
-  const [selectedComment, setSelectedComment] =
-    useRecoilState(selectedCommentState);
+  const selectedComment = useRecoilValue(selectedCommentState);
   const { onSubmit, inputRef, getUserProfile }: AddCommentPropsType = props;
   const [inputValue, setInputValue] = useState<string>("");
   const onChangeValue = (

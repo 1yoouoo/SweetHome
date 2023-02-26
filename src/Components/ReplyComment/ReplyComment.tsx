@@ -1,12 +1,13 @@
-import { useEffect } from "react";
-import EllipsisSvg from "../../Assets/SVG/EllipsisSvg";
-import SingleDotSvg from "../../Assets/SVG/SingleDotSvg";
 import SmallHeartSvg from "../../Assets/SVG/SmallHeartSvg";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import { timeFormat } from "../../utills/function/function";
+import { ReplyCommentType } from "../ReplyComments/ReplyComments";
 import "./ReplyComment.scss";
+interface ReplyCommentTypeProps {
+  replyComment: ReplyCommentType;
+}
 
-function ReplyComment({ replyComment }: any) {
+function ReplyComment({ replyComment }: ReplyCommentTypeProps) {
   return (
     <li className="ReplyComment">
       <span className="ReplyComment__wrapper">

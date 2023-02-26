@@ -1,4 +1,3 @@
-import SingleDotSvg from "../../Assets/SVG/SingleDotSvg";
 import "./PostComment.scss";
 import SmallHeartSvg from "../../Assets/SVG/SmallHeartSvg";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
@@ -20,12 +19,12 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
   const [comments, setComments] = useRecoilState<CommentType[]>(commentState);
   const [commentItem, setCommentItem] = useState(comment);
   const [activatedReplyComments, setActivatedReplyComments] =
-    useState<any>(false);
+    useState<boolean>(false);
   const [dotToggle, setDotToggle] = useState<boolean>(false);
-  const [likes, setLikes] = useState<any>(comment.commentLikeSize);
+  const [likes, setLikes] = useState<number>(0);
   const [editable, setEditable] = useState(false);
   const [heartToggle, setHeartToggle] = useState(comment.isCommentLike);
-  const setSelectedComment = useSetRecoilState<any>(selectedCommentState);
+  const setSelectedComment = useSetRecoilState(selectedCommentState);
   const onToggleActivatedReplyComments = () => {
     setActivatedReplyComments(!activatedReplyComments);
   };
@@ -108,7 +107,7 @@ const PostComment = ({ comment }: PostCommentTypeProps) => {
   };
   useEffect(() => {
     setActivatedReplyComments(false);
-    setLikes(comment?.commentLikeSize);
+    setLikes(comment.commentLikeSize);
     setHeartToggle(comment.isCommentLike);
   }, [comments]);
   return (

@@ -1,12 +1,14 @@
 import React from "react";
+import { post } from "../../Pages/UserPage/UserPage";
 import Followers from "../../Views/Followers/Followers";
 import Followings from "../../Views/Followings/Followings";
 import UserPostList from "../../Views/UserPostList/UserPostList";
 interface GreetingPropTypes {
   selectedNav?: number;
-  posts?: any;
+  posts?: post[];
   isLoding?: boolean;
 }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Greeting = (props: GreetingPropTypes): any => {
   const { selectedNav, posts, isLoding }: GreetingPropTypes = props;
   if (selectedNav == 0) {

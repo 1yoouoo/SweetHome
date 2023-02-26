@@ -37,8 +37,8 @@ const SignUpForm = () => {
         alert(response.data.data.message);
         navigate("/login");
       }
-    } catch (error: any) {
-      alert(error?.message);
+    } catch (error: unknown) {
+      console.log(error);
     }
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

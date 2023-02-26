@@ -8,6 +8,7 @@ import PostList from "../../Views/PostList/PostList";
 import "./Home.scss";
 
 const Home = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [posts, setPosts] = useState<any>();
   const [throttle, setThrottle] = useState(false);
   const [isLastPage, setIsLastPage] = useState(false);
@@ -39,7 +40,7 @@ const Home = () => {
   };
   const firstGetPosts = async () => {
     const response = await fetchPosts({
-      userId: localStorage.getItem("userId"), // 이거 필요한가 ?
+      userId: localStorage.getItem("userId"),
       lastId: 0,
     });
     const postsResponse = response.data.data.newsFeedListResponse;
@@ -48,11 +49,12 @@ const Home = () => {
     setLastId(postsResponse.postListDetailResponses[-1]?.postId);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const fetchPosts = async (lastId: any) => {
     const response = await API.getPosts(lastId);
     return response;
   };
-  const getPosts = async (lastId: any) => {
+  const getPosts = async (lastId: number) => {
     const response = await fetchPosts(lastId);
     setIsLastPage(!response.data.data.newsFeedListResponse.hasNext);
     setLastId(lastId + 1);

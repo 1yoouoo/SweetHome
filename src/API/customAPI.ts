@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 
 const API_base = "http://3.39.146.58";
 const token = localStorage.getItem("token");
-interface requestType {
-  options: Request | string;
-}
+// interface requestType {
+//   baseURL: string;
+//   options: AxiosInstance;
+// }
 const axiosApi = ({ options }: any) => {
   const instance = axios.create({
     baseURL: API_base,

@@ -25,5 +25,16 @@ export type commentsType = {
   reCommentId?: number;
 };
 export type followType = {
-  userId: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  userId: any;
+  lastId?: number;
+  page?: number;
+};
+export type postsType = {
+  lastPostId: number;
+};
+export type userProfileType = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  userId: any;
+  lastPostId?: number;
 };
