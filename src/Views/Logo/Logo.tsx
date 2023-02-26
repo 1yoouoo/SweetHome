@@ -1,4 +1,3 @@
-import logo from "/Users/blanc/Documents/Project/sns/src/Assets/logo.png";
 import "./Logo.scss";
 import { LogoTypeProps } from "../../types/snsType";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +8,7 @@ const Logo = ({ width, height }: LogoTypeProps) => {
     <>
       <span className="logo" onClick={() => navigate("/home")}>
         <img
-          src={logo}
+          src=""
           alt="logo"
           style={{ width: `${width}`, height: `${height}` }}
         />
