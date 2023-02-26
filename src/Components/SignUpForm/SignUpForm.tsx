@@ -11,13 +11,21 @@ interface inputValueType {
   image_file: string | Blob;
   preview_URL: string | ArrayBuffer | null;
 }
+// const defaultImage = {
+//   lastModified:"1675048386611",
+//   lastModifiedDate: new Date(),
+//   name:"default_profile",
+//   size: 3187,
+//   type: "image/png",
+//   webkitRelativePath:""
+// }
 
 const SignUpForm = () => {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement[]>([]);
   const [inputValue, setInputValue] = useState<inputValueType>({
-    image_file: "", // default 이미지 파일로 넣어놓기
-    preview_URL: "",
+    image_file: "defaultImage", // default 이미지 파일로 넣어놓기
+    preview_URL: localStorage.getItem("basicImage"),
   });
   const onSubmit = async (e: React.SyntheticEvent) => {
     try {
@@ -55,6 +63,7 @@ const SignUpForm = () => {
         image_file: e.target.files[0],
         preview_URL: fileReader.result,
       });
+      console.log(inputValue);
     };
   };
   return (

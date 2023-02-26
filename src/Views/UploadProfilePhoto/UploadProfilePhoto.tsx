@@ -19,7 +19,7 @@ const UploadProfilePhoto = ({
   return (
     <div className="UploadProfilePhoto">
       <span className="UploadProfilePhoto__img">
-        <img src={inputValue?.preview_URL} alt="" />
+        <img src={inputValue?.preview_URL} alt="defaultImage" />
       </span>
       <span
         className="UploadProfilePhoto__upload"

@@ -16,6 +16,10 @@ import {
   formDataInstance,
 } from "./customAPI";
 const API = {
+  getHome: async () => {
+    const response = await defaultInstance.get(`start`);
+    return response;
+  },
   signUp: async ({ formData }: signUpType) => {
     const response = await formDataInstance.post(`signup`, formData);
     return response;
