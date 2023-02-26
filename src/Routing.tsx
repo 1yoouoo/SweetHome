@@ -9,8 +9,6 @@ import SignUpPage from "./Pages/SignUpPage/SignUpPage";
 import { isLogin } from "./utills/function/function";
 import EditPost from "./Pages/EditPost/EditPost";
 import EditProfile from "./Pages/EditProfile/EditProfile";
-import PostPage from "./Pages/PostModal/PostModal";
-import AlertModal from "./sass/styled-components/AlertModal";
 import ReplyCommentView from "./sass/styled-components/ReplyCommentView";
 
 const Routing: React.FC = (): JSX.Element => (
