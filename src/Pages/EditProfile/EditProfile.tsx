@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import API from "../../API/API";
 import ErrorView from "../../Components/ErrorView/ErrorView";
 import UserPhoto from "../../sass/styled-components/UserPhoto";
 import InputBox from "../../Views/InputBox/InputBox";
@@ -7,31 +8,46 @@ import TextBox from "../../Views/TextBox/TextBox";
 import CurrentHeader from "../../Views/UserHeader/CurrentHeader";
 import "./EditProfile.scss";
 
-const testData = {
-  image_file: "",
-  preview_URL: "",
-  name: "test",
-  userName: "test",
-  content: "",
-};
 interface inputValueType {
   image_file: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   preview_URL: any;
-  name: string;
+  nickName: string;
   userName: string;
 }
 
 const EditProfile = () => {
-  const [userData, setUserData] = useState<inputValueType>();
   const contentRef = useRef<HTMLTextAreaElement>(null);
   const [error, setError] = useState<unknown>();
   const [inputValue, setInputValue] = useState<inputValueType>({
     image_file: "",
-    preview_URL: testData.preview_URL,
-    name: testData.name,
-    userName: testData.userName,
+    preview_URL: "",
+    nickName: "",
+    userName: "",
   });
+  const fetchUserProfile = async () => {
+    try {
+      const response = await API.getUserProfile({
+        userId: localStorage.getItem("userId"),
+      });
+      return response.data.data.profileResponse.userDetailResponse;
+    } catch (error: unknown) {
+      setError(error);
+    }
+  };
+  const getUserProfile = async () => {
+    try {
+      const response = await fetchUserProfile();
+      setInputValue({
+        ...inputValue,
+        preview_URL: response.userProfileImageUrl,
+        nickName: response.nickName,
+        userName: response.userName,
+      });
+    } catch (error: unknown) {
+      setError(error);
+    }
+  };
   const onChangeValue = (
     e:
       | React.ChangeEvent<HTMLInputElement>
@@ -65,13 +81,12 @@ const EditProfile = () => {
           preview_URL: fileReader.result,
         });
       };
-      console.log(inputValue);
     } catch (error) {
       setError(error);
     }
   };
   useEffect(() => {
-    setUserData(testData);
+    getUserProfile();
   }, []);
   return (
     <>
@@ -85,11 +100,11 @@ const EditProfile = () => {
               <div className="Form__user">
                 <UserPhoto
                   size="66px"
-                  userProfileImage={inputValue?.preview_URL}
+                  userProfileImage={inputValue.preview_URL}
                 />
                 <span className="Form__user--wrapper">
                   <span className="Form__user--username">
-                    {userData?.userName}
+                    {inputValue.userName}
                   </span>
                   <label className="Form__user--button" htmlFor="photoInput">
                     choose profile Photo
@@ -104,10 +119,10 @@ const EditProfile = () => {
                 </span>
               </div>
               <div className="Form__name">
-                <span className="Form__name--label">Name</span>
+                <span className="Form__name--label">NickName</span>
                 <InputBox
                   name="name"
-                  value={inputValue.name}
+                  value={inputValue.nickName}
                   onChangeValue={onChangeValue}
                 />
               </div>
