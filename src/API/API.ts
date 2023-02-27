@@ -6,6 +6,7 @@ import {
   logInType,
   postsType,
   postType,
+  userProfileImageType,
   userProfileType,
 } from "./../types/APIType";
 import { signUpType } from "../types/APIType";
@@ -59,7 +60,6 @@ const API = {
     });
     return response;
   },
-
   deletePost: async ({ postId }: postType) => {
     const response = await authInstance.delete(`post/${postId}`);
     return response;
@@ -151,6 +151,27 @@ const API = {
     });
     return response;
   },
+  updateUserProfile: async ({
+    userId,
+    userName,
+    nickName,
+    content,
+  }: userProfileType) => {
+    const response = await authInstance.put(`user/${userId}`, {
+      userName: userName,
+      nickName: nickName,
+      content: content,
+    });
+    return response;
+  },
+  updateUserProfileImage: async ({
+    userId,
+    formData,
+  }: userProfileImageType) => {
+    const response = await authFormDataInstance.put(`user/${userId}`, formData);
+    return response;
+  },
+
   getFollowings: async ({ userId, lastId }: followType) => {
     const response = await authInstance.get(`/user/${userId}/following`, {
       params: { lastId: lastId },

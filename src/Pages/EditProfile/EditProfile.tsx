@@ -14,6 +14,7 @@ interface inputValueType {
   preview_URL: any;
   nickName: string;
   userName: string;
+  content: string;
 }
 
 const EditProfile = () => {
@@ -24,6 +25,7 @@ const EditProfile = () => {
     preview_URL: "",
     nickName: "",
     userName: "",
+    content: "",
   });
   const fetchUserProfile = async () => {
     try {
@@ -36,6 +38,7 @@ const EditProfile = () => {
     }
   };
   const getUserProfile = async () => {
+    // 이미지 파일로 받아야 버그 안남 FIXME
     try {
       const response = await fetchUserProfile();
       setInputValue({
@@ -62,11 +65,16 @@ const EditProfile = () => {
     e.preventDefault();
     console.log(inputValue);
     console.log(contentRef.current?.value);
-    // api call
+    API.updateUserProfile({
+      userId: localStorage.getItem("userId"),
+      userName: inputValue.userName,
+      nickName: inputValue.nickName,
+      content: inputValue.content,
+    });
     // navigate
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const saveImage = (e: any) => {
+  const saveImage = async (e: any) => {
     try {
       e.preventDefault();
       const fileReader = new FileReader();
@@ -81,6 +89,18 @@ const EditProfile = () => {
           preview_URL: fileReader.result,
         });
       };
+      if (inputValue.image_file != "") {
+        const formData = new FormData();
+        formData.append("image", inputValue.image_file);
+        console.log(inputValue);
+        const response = await API.updateUserProfileImage({
+          userId: localStorage.getItem("userId"),
+          formData,
+        });
+        if (response?.data.error === null) {
+          alert(response.data.data.message);
+        }
+      }
     } catch (error) {
       setError(error);
     }
@@ -107,7 +127,7 @@ const EditProfile = () => {
                     {inputValue.userName}
                   </span>
                   <label className="Form__user--button" htmlFor="photoInput">
-                    choose profile Photo
+                    change profile Photo
                   </label>
                   <input
                     className="Form__user--photo"

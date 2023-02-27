@@ -37,4 +37,12 @@ export type userProfileType = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   userId: any;
   lastPostId?: number;
+  userName?: string;
+  nickName?: string;
+  content?: string;
+};
+export type userProfileImageType = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  userId: any;
+  formData: object;
 };
