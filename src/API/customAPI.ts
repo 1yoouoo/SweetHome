@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 
-const API_base = "http://192.168.35.126";
+const API_base = "http://3.39.146.58";
 const token = localStorage.getItem("token");
 // interface requestType {
 //   baseURL: string;
