@@ -18,7 +18,7 @@ const Routing: React.FC = (): JSX.Element => (
       <Route path="/login" element={isLogin() ? <Home /> : <LoginPage />} />
       <Route path="/*" element={isLogin() ? <Home /> : <LoginPage />}></Route>
       <Route
-        path="/user"
+        path="/user/:userId"
         element={isLogin() ? <UserPage /> : <LoginPage />}
       ></Route>
       <Route
