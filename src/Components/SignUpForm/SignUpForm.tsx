@@ -31,7 +31,6 @@ const SignUpForm = () => {
     try {
       e.preventDefault();
       const formData = new FormData();
-      console.log(inputValue.image_file);
       formData.append("image", inputValue.image_file);
       formData.append("email", inputRef.current[0].value);
       formData.append("name", inputRef.current[1].value);

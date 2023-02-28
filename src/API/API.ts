@@ -157,7 +157,7 @@ const API = {
     nickName,
     content,
   }: userProfileType) => {
-    const response = await authInstance.put(`user/${userId}`, {
+    const response = await authInstance.put(`user/profile/${userId}`, {
       userName: userName,
       nickName: nickName,
       content: content,
@@ -168,7 +168,10 @@ const API = {
     userId,
     formData,
   }: userProfileImageType) => {
-    const response = await authFormDataInstance.put(`user/${userId}`, formData);
+    const response = await authFormDataInstance.put(
+      `user/profileimage/${userId}`,
+      formData
+    );
     return response;
   },
 

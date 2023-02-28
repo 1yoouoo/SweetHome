@@ -14,7 +14,6 @@ interface inputValueType {
   preview_URL: any;
   nickName: string;
   userName: string;
-  content: string;
 }
 
 const EditProfile = () => {
@@ -25,7 +24,6 @@ const EditProfile = () => {
     preview_URL: "",
     nickName: "",
     userName: "",
-    content: "",
   });
   const fetchUserProfile = async () => {
     try {
@@ -69,7 +67,7 @@ const EditProfile = () => {
       userId: localStorage.getItem("userId"),
       userName: inputValue.userName,
       nickName: inputValue.nickName,
-      content: inputValue.content,
+      content: contentRef.current?.value,
     });
     // navigate
   };
@@ -89,20 +87,20 @@ const EditProfile = () => {
           preview_URL: fileReader.result,
         });
       };
-      if (inputValue.image_file != "") {
-        const formData = new FormData();
-        formData.append("image", inputValue.image_file);
-        console.log(inputValue);
-        const response = await API.updateUserProfileImage({
-          userId: localStorage.getItem("userId"),
-          formData,
-        });
-        if (response?.data.error === null) {
-          alert(response.data.data.message);
-        }
-      }
     } catch (error) {
       setError(error);
+    }
+  };
+  const testClick = async () => {
+    const formData = new FormData();
+    formData.append("image", inputValue.image_file);
+    console.log(inputValue);
+    const response = await API.updateUserProfileImage({
+      userId: localStorage.getItem("userId"),
+      formData,
+    });
+    if (response?.data.error === null) {
+      alert(response.data.data.message);
     }
   };
   useEffect(() => {
@@ -129,6 +127,7 @@ const EditProfile = () => {
                   <label className="Form__user--button" htmlFor="photoInput">
                     change profile Photo
                   </label>
+                  <label onClick={testClick}>적용</label>
                   <input
                     className="Form__user--photo"
                     type="file"
