@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 
-const API_base = "http://3.39.146.58:8090";
+const API_base = "http://3.39.146.58:9000";
+// const API_base = "http://192.168.35.126:9000";
 const token = localStorage.getItem("token");
 // interface requestType {
 //   baseURL: string;
@@ -32,7 +33,7 @@ const axiosApi = ({ options }: any) => {
       return Promise.reject(error);
     }
   );
-  instance.defaults.timeout = 10000;
+  instance.defaults.timeout = 600000;
   return instance;
 };
 
@@ -65,7 +66,7 @@ const axiosAuthApi = ({ options }: any) => {
       return Promise.reject(error);
     }
   );
-  instance.defaults.timeout = 10000;
+  instance.defaults.timeout = 600000;
   return instance;
 };
 
@@ -97,7 +98,7 @@ const axiosFormDataApi = ({ options }: any) => {
       return Promise.reject(error);
     }
   );
-  instance.defaults.timeout = 10000;
+  instance.defaults.timeout = 600000;
   return instance;
 };
 
@@ -130,7 +131,7 @@ const axiosAuthFormDataApi = ({ options }: any) => {
       return Promise.reject(error);
     }
   );
-  instance.defaults.timeout = 10000;
+  instance.defaults.timeout = 600000;
   return instance;
 };
 
