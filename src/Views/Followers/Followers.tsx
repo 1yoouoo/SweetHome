@@ -13,20 +13,20 @@ export interface followerType {
 const Followers = () => {
   const [followers, setFollowers] = useState<followerType[]>();
   const getFollowers = useCallback(
-    async (page: number) => {
-      const response = await API.getFollowers({
+    async (lastId: number) => {
+      const response = await API.getFollowings({
         userId: localStorage.getItem("userId"),
-        page: page,
+        lastId: lastId,
       });
       setFollowers(
-        response.data.data.followerListResponse.followerUserListResponseList
+        response.data.data.followingListResponse.followingUserListResponseList
       );
     },
     [followers]
   );
   useEffect(() => {
     console.log("following mount !");
-    getFollowers(0);
+    getFollowers(12);
   }, []);
   return (
     <ul className="Followers">

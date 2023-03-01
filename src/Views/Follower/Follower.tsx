@@ -37,7 +37,7 @@ const Follower = ({ follower }: FollowerProps) => {
               isFollowing={isFollowing}
             />
           )}
-          <EllipsisSvg />
+          {/* <EllipsisSvg /> */}
         </span>
       </li>
     </>
