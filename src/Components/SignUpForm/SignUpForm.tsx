@@ -11,14 +11,6 @@ interface inputValueType {
   image_file: string | Blob;
   preview_URL: string | ArrayBuffer | null;
 }
-// const defaultImage = {
-//   lastModified:"1675048386611",
-//   lastModifiedDate: new Date(),
-//   name:"default_profile",
-//   size: 3187,
-//   type: "image/png",
-//   webkitRelativePath:""
-// }
 
 const SignUpForm = () => {
   const navigate = useNavigate();
@@ -36,6 +28,7 @@ const SignUpForm = () => {
       formData.append("name", inputRef.current[1].value);
       formData.append("nickName", inputRef.current[2].value);
       formData.append("password", inputRef.current[3].value);
+      console.log(formData);
       const response = await API.signUp({
         formData,
       });

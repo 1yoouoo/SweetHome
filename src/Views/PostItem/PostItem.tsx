@@ -26,6 +26,7 @@ const PostItem = ({ postItem }: postItemTypeProps) => {
     localStorage.setItem("updatedAt", postItem.updatedAt);
     localStorage.setItem("content", postItem.content);
   };
+  console.log(postItem);
   return (
     <>
       <section className="PostItem">

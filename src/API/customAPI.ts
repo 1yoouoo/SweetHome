@@ -4,10 +4,7 @@ import axios from "axios";
 const API_base = "http://3.39.146.58:9000";
 // const API_base = "http://192.168.35.126:9000";
 const token = localStorage.getItem("token");
-// interface requestType {
-//   baseURL: string;
-//   options: AxiosInstance;
-// }
+
 const axiosApi = ({ options }: any) => {
   const instance = axios.create({
     baseURL: API_base,
