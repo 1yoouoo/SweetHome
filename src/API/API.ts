@@ -38,9 +38,9 @@ const API = {
     const response = await authInstance.post(`logout`);
     return response;
   },
-  getPosts: async ({ lastPostId }: postsType) => {
+  getPosts: async ({ lastId }: postsType) => {
     const response = await authInstance.get(`posts`, {
-      params: { postId: lastPostId },
+      params: { postId: lastId },
     });
     return response;
   },

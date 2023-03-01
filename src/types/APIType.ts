@@ -31,7 +31,7 @@ export type followType = {
   page?: number;
 };
 export type postsType = {
-  lastPostId: number;
+  lastId: number;
 };
 export type userProfileType = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

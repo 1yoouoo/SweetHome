@@ -35,18 +35,18 @@ const Home = () => {
     if (scrollHeight <= scrollTop + offsetHeight && !isLastPage) {
       console.log("touched!");
       getPosts(lastId);
+      console.log("lastId", lastId);
       setIsLoding(true);
     }
   };
   const firstGetPosts = async () => {
     const response = await fetchPosts({
-      userId: localStorage.getItem("userId"),
-      lastId: 0,
+      lastId: undefined,
     });
     const postsResponse = response.data.data.newsFeedListResponse;
     setPosts(postsResponse.postListDetailResponses);
     setIsLastPage(!postsResponse.hasNext);
-    setLastId(postsResponse.postListDetailResponses[-1]?.postId);
+    setLastId(postsResponse.postListDetailResponses.at(-1)?.postId);
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -55,7 +55,7 @@ const Home = () => {
     return response;
   };
   const getPosts = async (lastId: number) => {
-    const response = await fetchPosts(lastId);
+    const response = await fetchPosts({ lastId: lastId });
     setIsLastPage(!response.data.data.newsFeedListResponse.hasNext);
     setLastId(lastId + 1);
     isThrottle(response);

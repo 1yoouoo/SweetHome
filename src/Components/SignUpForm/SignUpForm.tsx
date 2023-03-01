@@ -17,7 +17,7 @@ const SignUpForm = () => {
   const inputRef = useRef<HTMLInputElement[]>([]);
   const [inputValue, setInputValue] = useState<inputValueType>({
     image_file: "defaultImage", // default 이미지 파일로 넣어놓기
-    preview_URL: localStorage.getItem("basicImage"),
+    preview_URL: require("/Users/blanc/Documents/Project/sns/src/Assets/default_profile (1).png"),
   });
   const onSubmit = async (e: React.SyntheticEvent) => {
     try {
