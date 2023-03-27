@@ -30,22 +30,21 @@
 - **Recoil** 로 전역 스테이트를 관리했어요. props-driling을 해결했어요.
 
 ---
-
-### Back-end (참고용)
+### Back-end
 
 <p>
-  <img src="https://user-images.githubusercontent.com/52682603/138834253-9bcd8b12-241f-41b2-85c4-d723a16bdb58.png" alt="spring_boot" width=150px>
-  <img src="https://user-images.githubusercontent.com/52682603/138834267-c86e4b93-d826-4fd4-bcc8-1294f615a82d.png" alt="hybernate" width=150px>
-  <img src="https://user-images.githubusercontent.com/52682603/138834280-73acd37b-97ef-4136-b58e-6138eb4fcc46.png" alt="query_dsl" width=150px>
-  <img src="https://user-images.githubusercontent.com/52682603/138834265-5e9d309b-6b78-4c5e-adf3-981f705b7042.png" alt="flyway" width=150px>
-  <img src="https://user-images.githubusercontent.com/52682603/138834240-a4d7218f-db96-4c51-83f5-9b80f6d38758.png" alt="spring_rest_docs" width=150px>
+  <img src="https://www.svgrepo.com/show/354380/spring-icon.svg" alt="Spring" width="120px">
+  <img src="https://spring.io/img/projects/spring-boot.svg" alt="Spring Boot" width="120px">
+  <img src="https://spring.io/img/projects/spring-data.svg" alt="Spring Data JPA" width=90px>
+  <img src="https://user-images.githubusercontent.com/52682603/138834280-73acd37b-97ef-4136-b58e-6138eb4fcc46.png" alt="Querydsl" width=120px>
+  <img src="https://cdn-icons-png.flaticon.com/512/919/919836.png" alt="MySQL" width=120px>
 </p>
 
-- **Springboot** 로 웹 어플리케이션 서버를 구축했어요.
-- **Spring Data JPA(Hibernate)** 로 객체 지향 데이터 로직을 작성했어요.
-- **QueryDSL** 로 컴파일 시점에 SQL 오류를 감지해요. 더 가독성 높은 코드를 작성할 수 있어요.
-- **Flyway** 로 데이터베이스 버전 관리를 하고 있어요.
-- **RestDocs** 로 작성한 API 문서를 통해 클라이언트와 원활하게 소통해요.
+- **Spring** 로 웹 애플리케이션 서버를 구축했어요. 
+- **Spring Boot** 로 개발할 때 세팅 해야 될 요소들을 설정해서 프로젝트를 진행했어요.
+- **Spring Data JPA** 로 객체 설계 기반의 데이터 로직을 작성했어요.
+- **QueryDSL** 로 컴파일 시점에 SQL 오류를 감지해서 런타임 전에 문제를 해결할 수 있어요.
+- **MySQL** 관계형 데이터 베이스로 명확한 데이터 구조를 보장했어요.
 
 ---
 
@@ -53,13 +52,18 @@
 
 <p>
   <img src="https://user-images.githubusercontent.com/52682603/138834271-9004826c-7b4e-418a-95ea-57d1c05f6e8a.png" alt="aws_ec2" width=15%>
+  <img src="https://sonraisecurity.com/wp-content/uploads/aws-s3-icon.png" alt="aws_s3" width="15%">
+  <img src="https://blog.kakaocdn.net/dn/b99i7e/btq1JAm6HrX/OYTq97ecLTcYmCU5XYh1j1/img.png" alt="aws_rds" width="20%">
 </p>
 
 - **AWS EC2** 를 사용해 서버를 구축했어요.
+- **AWS S3** 를 사용해 이미지 스토리지를 구축했어요.
+- **AWS RDS** 를 사용해 데이터베이스 서버를 구축했어요.
+
 
 ## 🌈 Members
 
-|                                                   [blanc](https://github.com/1yoouoo)                                                   |  [태균](https://github.com/???)   |
-| :-------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------: |
-| <img src="https://user-images.githubusercontent.com/79697414/222067658-76834aa2-504f-484b-8cd9-4a5ac74dfe38.jpeg" width=150px alt="_"/> | <img src="" width=150px alt="_"/> |
-|                                                              🍷 프론트엔드                                                              |             🍶 백엔드             |
+|                                                   [blanc](https://github.com/1yoouoo)                                                   |                                                                  [태균](https://github.com/taegyun1995)                                                                   |
+| :-------------------------------------------------------------------------------------------------------------------------------------: |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| <img src="https://user-images.githubusercontent.com/79697414/222067658-76834aa2-504f-484b-8cd9-4a5ac74dfe38.jpeg" width=150px alt="_"/> | <img src="https://img2.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202212/02/bemypet/20221202152203492rhcy.jpg" width=150px height=150px  alt="_"/> |
+|                                                              🍷 프론트엔드                                                              |                                                                                 🍶 백엔드                                                                                  |
